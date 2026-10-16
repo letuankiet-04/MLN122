@@ -1,0 +1,6 @@
+{
+  "name": "MARX STUDY — Giáo trình tương tác Kinh tế chính trị",
+  "description": "Nền tảng học tập và sách giáo trình tương tác số về Giá trị thặng dư trong nền kinh tế thị trường (Chương 3 - Kinh tế chính trị Mác - Lênin).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
