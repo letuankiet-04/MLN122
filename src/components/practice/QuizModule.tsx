@@ -114,8 +114,8 @@ export const QuizModule: React.FC<QuizModuleProps> = ({
         </div>
 
         {/* Live Timer */}
-        <div className="flex items-center gap-2 px-3 py-1.5 bg-stone-100 dark:bg-stone-800 rounded-lg text-xs font-mono font-semibold text-stone-700 dark:text-stone-300">
-          <Clock className="w-4 h-4 text-[#B78C45]" />
+        <div className="flex items-center gap-2 px-3 py-1.5 bg-[#EFE8DD] dark:bg-[#2A2824] rounded-lg text-xs font-mono font-semibold text-stone-700 dark:text-stone-300">
+          <Clock className="w-4 h-4 text-[#8A6328] dark:text-[#C2A267]" />
           <span>{Math.floor(elapsedSeconds / 60)}:{String(elapsedSeconds % 60).padStart(2, '0')}</span>
         </div>
       </div>
@@ -137,8 +137,8 @@ export const QuizModule: React.FC<QuizModuleProps> = ({
             }}
             className={`px-3 py-1.5 text-xs rounded-lg transition-colors ${
               activeFilter === tab.id
-                ? 'bg-[#7F1D1D] text-white font-semibold dark:bg-[#B78C45] dark:text-stone-900'
-                : 'bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:bg-stone-200'
+                ? 'bg-[#682626] text-[#FAF7F0] font-semibold dark:bg-[#C2A267] dark:text-[#1B1A18]'
+                : 'bg-[#EFE8DD] dark:bg-[#2A2824] text-stone-700 dark:text-stone-300 hover:bg-[#E8E0D2]'
             }`}
           >
             {tab.label}
@@ -148,9 +148,9 @@ export const QuizModule: React.FC<QuizModuleProps> = ({
 
       {/* Results Screen if Submitted */}
       {isSubmitted ? (
-        <div className="p-8 bg-[#FFFDF8] dark:bg-[#1E1D1A] rounded-2xl border border-[#E7E1D6] dark:border-[#383632] shadow-sm space-y-6">
+        <div className="p-8 bg-[#FAF7F0] dark:bg-[#23221F] rounded-2xl border border-[#DFD7CA] dark:border-[#383530] shadow-sm space-y-6">
           <div className="text-center space-y-2">
-            <div className="inline-flex p-3 rounded-full bg-amber-50 dark:bg-amber-950/40 text-[#B78C45] mb-2">
+            <div className="inline-flex p-3 rounded-full bg-[#967338]/10 dark:bg-[#C2A267]/15 text-[#8A6328] dark:text-[#C2A267] mb-2">
               <Award className="w-8 h-8" />
             </div>
             <h3 className="text-xl font-serif font-bold text-stone-900 dark:text-stone-100">
@@ -247,7 +247,7 @@ export const QuizModule: React.FC<QuizModuleProps> = ({
           <div className="flex justify-center pt-4">
             <button
               onClick={handleRestart}
-              className="px-6 py-2.5 rounded-lg bg-[#7F1D1D] hover:bg-[#681818] text-white dark:bg-[#B78C45] dark:text-stone-900 font-semibold text-xs flex items-center gap-2"
+              className="px-6 py-2.5 rounded-lg bg-[#682626] hover:bg-[#541E1E] text-[#FAF7F0] dark:bg-[#C2A267] dark:hover:bg-[#AF8E53] dark:text-[#1B1A18] font-semibold text-xs flex items-center gap-2"
             >
               <RotateCcw className="w-4 h-4" />
               <span>Làm lại bài thi</span>
@@ -256,7 +256,7 @@ export const QuizModule: React.FC<QuizModuleProps> = ({
         </div>
       ) : (
         /* Question Card */
-        <div className="p-6 sm:p-8 bg-[#FFFDF8] dark:bg-[#1E1D1A] rounded-2xl border border-[#E7E1D6] dark:border-[#383632] shadow-sm space-y-6">
+        <div className="p-6 sm:p-8 bg-[#FAF7F0] dark:bg-[#23221F] rounded-2xl border border-[#DFD7CA] dark:border-[#383530] shadow-sm space-y-6">
           {/* Question Index & Meta */}
           <div className="flex items-center justify-between text-xs text-stone-500">
             <span>
@@ -267,7 +267,7 @@ export const QuizModule: React.FC<QuizModuleProps> = ({
                 {currentQ.topic}
               </span>
               <span>·</span>
-              <span className="text-[11px] bg-stone-100 dark:bg-stone-800 px-2 py-0.5 rounded text-stone-600 dark:text-stone-400">
+              <span className="text-[11px] bg-[#EFE8DD] dark:bg-[#2A2824] px-2 py-0.5 rounded text-stone-600 dark:text-stone-400">
                 {currentQ.difficulty}
               </span>
             </div>
@@ -291,14 +291,14 @@ export const QuizModule: React.FC<QuizModuleProps> = ({
                   onClick={() => handleSelectAnswer(idx)}
                   className={`w-full text-left p-3.5 rounded-xl border text-xs sm:text-sm transition-all flex items-start gap-3 ${
                     isSelected
-                      ? 'border-[#7F1D1D] dark:border-[#E2B765] bg-[#7F1D1D]/5 dark:bg-[#E2B765]/10 text-stone-900 dark:text-stone-100 font-semibold'
-                      : 'border-stone-200 dark:border-stone-700 hover:bg-stone-50 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300'
+                      ? 'border-[#682626] dark:border-[#C2A267] bg-[#682626]/10 dark:bg-[#C2A267]/15 text-stone-900 dark:text-stone-100 font-semibold shadow-xs'
+                      : 'border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0]/60 dark:bg-[#23221F]/60 hover:bg-[#EFE8DD] dark:hover:bg-[#2A2824] text-stone-700 dark:text-stone-300'
                   }`}
                 >
                   <span className={`w-5 h-5 rounded-full flex items-center justify-center text-xs shrink-0 border ${
                     isSelected
-                      ? 'border-[#7F1D1D] bg-[#7F1D1D] text-white dark:border-[#E2B765] dark:bg-[#E2B765] dark:text-stone-900'
-                      : 'border-stone-300 dark:border-stone-600 text-stone-500'
+                      ? 'border-[#682626] bg-[#682626] text-white dark:border-[#C2A267] dark:bg-[#C2A267] dark:text-[#1B1A18]'
+                      : 'border-[#DFD7CA] dark:border-[#383530] text-stone-500 bg-[#EFE8DD] dark:bg-[#2A2824]'
                   }`}>
                     {String.fromCharCode(65 + idx)}
                   </span>
@@ -309,11 +309,11 @@ export const QuizModule: React.FC<QuizModuleProps> = ({
           </div>
 
           {/* Navigation Controls */}
-          <div className="flex items-center justify-between pt-4 border-t border-stone-100 dark:border-stone-800">
+          <div className="flex items-center justify-between pt-4 border-t border-[#DFD7CA] dark:border-[#383530]">
             <button
               onClick={() => setCurrentIndex(prev => Math.max(0, prev - 1))}
               disabled={currentIndex === 0}
-              className="px-4 py-2 text-xs font-semibold rounded-lg border border-stone-200 dark:border-stone-700 disabled:opacity-30 hover:bg-stone-50 dark:hover:bg-stone-800"
+              className="px-4 py-2 text-xs font-semibold rounded-lg border border-[#DFD7CA] dark:border-[#383530] disabled:opacity-30 hover:bg-[#EFE8DD] dark:hover:bg-[#2A2824] text-stone-700 dark:text-stone-300"
             >
               Câu trước
             </button>
@@ -321,7 +321,7 @@ export const QuizModule: React.FC<QuizModuleProps> = ({
             {currentIndex < filteredQuestions.length - 1 ? (
               <button
                 onClick={() => setCurrentIndex(prev => prev + 1)}
-                className="px-4 py-2 text-xs font-semibold rounded-lg bg-[#7F1D1D] hover:bg-[#681818] text-white dark:bg-[#B78C45] dark:text-stone-900 flex items-center gap-1.5"
+                className="px-4 py-2 text-xs font-semibold rounded-lg bg-[#682626] hover:bg-[#541E1E] text-[#FAF7F0] dark:bg-[#C2A267] dark:hover:bg-[#AF8E53] dark:text-[#1B1A18] flex items-center gap-1.5 transition-colors"
               >
                 <span>Câu tiếp theo</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -329,7 +329,7 @@ export const QuizModule: React.FC<QuizModuleProps> = ({
             ) : (
               <button
                 onClick={handleFinishQuiz}
-                className="px-5 py-2 text-xs font-semibold rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white shadow-xs"
+                className="px-5 py-2 text-xs font-semibold rounded-lg bg-[#2D5A34] hover:bg-[#234729] text-[#FAF7F0] dark:bg-[#88B88E] dark:hover:bg-[#78A87E] dark:text-[#142316] shadow-xs transition-colors"
               >
                 Nộp bài thi & Xem giải thích
               </button>

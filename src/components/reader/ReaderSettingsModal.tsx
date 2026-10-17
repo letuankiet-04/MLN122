@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Check } from 'lucide-react';
+import { X, Check, Eye, SunMedium } from 'lucide-react';
 import { ReaderSettings, ReaderTheme, FontSize, ContentWidth } from '../../types/textbook';
 
 interface ReaderSettingsModalProps {
@@ -18,10 +18,10 @@ export const ReaderSettingsModal: React.FC<ReaderSettingsModalProps> = ({
   if (!isOpen) return null;
 
   const themes: { id: ReaderTheme; label: string; bg: string; text: string; border: string }[] = [
-    { id: 'paper', label: 'Trang giấy (Paper)', bg: 'bg-[#F6F2E9]', text: 'text-[#292524]', border: 'border-[#E7E1D6]' },
-    { id: 'sepia', label: 'Ấm áp (Sepia)', bg: 'bg-[#F4ECD8]', text: 'text-[#3D3028]', border: 'border-[#E5DAC3]' },
-    { id: 'dark', label: 'Đêm tối (Dark)', bg: 'bg-[#171717]', text: 'text-[#F5F1E8]', border: 'border-[#33312E]' },
-    { id: 'focus', label: 'Tập trung (Focus)', bg: 'bg-[#FAF8F5]', text: 'text-[#1F1F1F]', border: 'border-[#DDD8D0]' },
+    { id: 'paper', label: 'Trang giấy ngà (Paper)', bg: 'bg-[#F2ECE1]', text: 'text-[#2C2723]', border: 'border-[#DFD7CA]' },
+    { id: 'sepia', label: 'Nâu ấm dịu mắt (Sepia)', bg: 'bg-[#EAE0CE]', text: 'text-[#342A22]', border: 'border-[#D6C9B0]' },
+    { id: 'dark', label: 'Đêm tối êm ái (Dark)', bg: 'bg-[#1B1A18]', text: 'text-[#DCD6CA]', border: 'border-[#383530]' },
+    { id: 'focus', label: 'Tập trung thanh nhẹ (Focus)', bg: 'bg-[#F5F2EB]', text: 'text-[#262320]', border: 'border-[#E2DDD2]' },
   ];
 
   const fontSizes: { id: FontSize; label: string; size: string }[] = [
@@ -45,11 +45,16 @@ export const ReaderSettingsModal: React.FC<ReaderSettingsModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs">
-      <div className="w-full max-w-md bg-[#FFFDF8] dark:bg-[#1E1D1A] rounded-xl border border-[#E7E1D6] dark:border-[#383632] shadow-xl p-5 space-y-5 animate-in fade-in zoom-in-95 duration-150">
-        <div className="flex items-center justify-between pb-3 border-b border-[#E7E1D6] dark:border-[#383632]">
-          <h3 className="font-serif font-bold text-base text-stone-900 dark:text-stone-100">
-            Tùy chỉnh chế độ đọc sách
-          </h3>
+      <div className="w-full max-w-md bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530] shadow-xl p-5 space-y-5 animate-in fade-in zoom-in-95 duration-150">
+        <div className="flex items-center justify-between pb-3 border-b border-[#DFD7CA] dark:border-[#383530]">
+          <div>
+            <h3 className="font-serif font-bold text-base text-stone-900 dark:text-stone-100">
+              Tùy chỉnh chế độ đọc sách
+            </h3>
+            <p className="text-[11px] text-stone-500 dark:text-stone-400">
+              Cân bằng màu sắc, kiểu chữ và ánh sáng để đọc thoải mái
+            </p>
+          </div>
           <button
             onClick={onClose}
             className="p-1 text-stone-400 hover:text-stone-600 dark:hover:text-stone-200 rounded-md"
@@ -58,10 +63,38 @@ export const ReaderSettingsModal: React.FC<ReaderSettingsModalProps> = ({
           </button>
         </div>
 
+        {/* Eye-care anti-glare switch */}
+        <div className="p-3 rounded-lg border border-[#967338]/30 dark:border-[#C2A267]/30 bg-[#967338]/10 dark:bg-[#C2A267]/10 flex items-center justify-between gap-3">
+          <div className="flex items-start gap-2.5">
+            <SunMedium className="w-4 h-4 text-[#8A6328] dark:text-[#C2A267] shrink-0 mt-0.5" />
+            <div>
+              <span className="text-xs font-bold text-stone-900 dark:text-stone-100 block">
+                Chế độ chống chói & bảo vệ mắt
+              </span>
+              <span className="text-[10px] text-stone-600 dark:text-stone-400 leading-tight block mt-0.5">
+                Giảm độ chói xanh, lọc ánh sáng gắt, tăng độ êm dịu khi đọc lâu
+              </span>
+            </div>
+          </div>
+
+          <button
+            onClick={() => onUpdateSettings({ eyeCareMode: !settings.eyeCareMode })}
+            className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors shrink-0 ${
+              settings.eyeCareMode ? 'bg-[#682626] dark:bg-[#C2A267]' : 'bg-stone-300 dark:bg-stone-700'
+            }`}
+          >
+            <div
+              className={`bg-white w-4 h-4 rounded-full shadow-md transform transition-transform ${
+                settings.eyeCareMode ? 'translate-x-5' : 'translate-x-0'
+              }`}
+            />
+          </button>
+        </div>
+
         {/* Themes */}
         <div>
           <label className="text-xs font-semibold text-stone-600 dark:text-stone-400 block mb-2">
-            Giao diện đọc
+            Màu nền trang sách
           </label>
           <div className="grid grid-cols-2 gap-2">
             {themes.map((t) => (
@@ -69,7 +102,7 @@ export const ReaderSettingsModal: React.FC<ReaderSettingsModalProps> = ({
                 key={t.id}
                 onClick={() => onUpdateSettings({ theme: t.id })}
                 className={`p-2.5 rounded-lg border text-xs font-medium flex items-center justify-between transition-all ${t.bg} ${t.text} ${t.border} ${
-                  settings.theme === t.id ? 'ring-2 ring-[#7F1D1D] dark:ring-[#E2B765] shadow-xs' : 'opacity-80 hover:opacity-100'
+                  settings.theme === t.id ? 'ring-2 ring-[#682626] dark:ring-[#C2A267] shadow-xs' : 'opacity-85 hover:opacity-100'
                 }`}
               >
                 <span>{t.label}</span>
@@ -89,8 +122,8 @@ export const ReaderSettingsModal: React.FC<ReaderSettingsModalProps> = ({
               onClick={() => onUpdateSettings({ fontFamily: 'serif' })}
               className={`p-2 rounded-lg border text-xs font-serif transition-all ${
                 settings.fontFamily === 'serif'
-                  ? 'border-[#7F1D1D] dark:border-[#E2B765] bg-[#7F1D1D]/5 dark:bg-[#E2B765]/10 text-[#7F1D1D] dark:text-[#E2B765] font-bold'
-                  : 'border-stone-200 dark:border-stone-700 text-stone-700 dark:text-stone-300'
+                  ? 'border-[#682626] dark:border-[#C2A267] bg-[#682626]/10 dark:bg-[#C2A267]/15 text-[#682626] dark:text-[#C2A267] font-bold'
+                  : 'border-[#DFD7CA] dark:border-[#383530] text-stone-700 dark:text-stone-300 bg-[#EFE8DD]/50 dark:bg-[#2A2824]'
               }`}
             >
               Chữ có chân (Literata Serif)
@@ -99,8 +132,8 @@ export const ReaderSettingsModal: React.FC<ReaderSettingsModalProps> = ({
               onClick={() => onUpdateSettings({ fontFamily: 'sans' })}
               className={`p-2 rounded-lg border text-xs font-sans transition-all ${
                 settings.fontFamily === 'sans'
-                  ? 'border-[#7F1D1D] dark:border-[#E2B765] bg-[#7F1D1D]/5 dark:bg-[#E2B765]/10 text-[#7F1D1D] dark:text-[#E2B765] font-bold'
-                  : 'border-stone-200 dark:border-stone-700 text-stone-700 dark:text-stone-300'
+                  ? 'border-[#682626] dark:border-[#C2A267] bg-[#682626]/10 dark:bg-[#C2A267]/15 text-[#682626] dark:text-[#C2A267] font-bold'
+                  : 'border-[#DFD7CA] dark:border-[#383530] text-stone-700 dark:text-stone-300 bg-[#EFE8DD]/50 dark:bg-[#2A2824]'
               }`}
             >
               Chữ không chân (Sans-Serif)
@@ -120,8 +153,8 @@ export const ReaderSettingsModal: React.FC<ReaderSettingsModalProps> = ({
                 onClick={() => onUpdateSettings({ fontSize: s.id })}
                 className={`py-1.5 px-2 rounded-lg border text-xs text-center transition-all ${
                   settings.fontSize === s.id
-                    ? 'border-[#7F1D1D] dark:border-[#E2B765] bg-[#7F1D1D]/10 dark:bg-[#E2B765]/15 text-[#7F1D1D] dark:text-[#E2B765] font-bold'
-                    : 'border-stone-200 dark:border-stone-700 text-stone-700 dark:text-stone-300 hover:bg-stone-50'
+                    ? 'border-[#682626] dark:border-[#C2A267] bg-[#682626]/10 dark:bg-[#C2A267]/15 text-[#682626] dark:text-[#C2A267] font-bold'
+                    : 'border-[#DFD7CA] dark:border-[#383530] text-stone-700 dark:text-stone-300 hover:bg-[#EFE8DD]/50'
                 }`}
               >
                 <div>{s.label}</div>
@@ -144,8 +177,8 @@ export const ReaderSettingsModal: React.FC<ReaderSettingsModalProps> = ({
                   onClick={() => onUpdateSettings({ lineHeight: lh.id })}
                   className={`w-full py-1 px-2 rounded-md border text-xs text-left transition-all ${
                     settings.lineHeight === lh.id
-                      ? 'border-[#7F1D1D] dark:border-[#E2B765] bg-[#7F1D1D]/10 dark:bg-[#E2B765]/15 text-[#7F1D1D] dark:text-[#E2B765] font-bold'
-                      : 'border-stone-200 dark:border-stone-700 text-stone-700 dark:text-stone-300 hover:bg-stone-50'
+                      ? 'border-[#682626] dark:border-[#C2A267] bg-[#682626]/10 dark:bg-[#C2A267]/15 text-[#682626] dark:text-[#C2A267] font-bold'
+                      : 'border-[#DFD7CA] dark:border-[#383530] text-stone-700 dark:text-stone-300 hover:bg-[#EFE8DD]/50'
                   }`}
                 >
                   {lh.label}
@@ -165,8 +198,8 @@ export const ReaderSettingsModal: React.FC<ReaderSettingsModalProps> = ({
                   onClick={() => onUpdateSettings({ contentWidth: w.id })}
                   className={`w-full py-1 px-2 rounded-md border text-xs text-left transition-all ${
                     settings.contentWidth === w.id
-                      ? 'border-[#7F1D1D] dark:border-[#E2B765] bg-[#7F1D1D]/10 dark:bg-[#E2B765]/15 text-[#7F1D1D] dark:text-[#E2B765] font-bold'
-                      : 'border-stone-200 dark:border-stone-700 text-stone-700 dark:text-stone-300 hover:bg-stone-50'
+                      ? 'border-[#682626] dark:border-[#C2A267] bg-[#682626]/10 dark:bg-[#C2A267]/15 text-[#682626] dark:text-[#C2A267] font-bold'
+                      : 'border-[#DFD7CA] dark:border-[#383530] text-stone-700 dark:text-stone-300 hover:bg-[#EFE8DD]/50'
                   }`}
                 >
                   {w.label}
@@ -178,7 +211,7 @@ export const ReaderSettingsModal: React.FC<ReaderSettingsModalProps> = ({
 
         <button
           onClick={onClose}
-          className="w-full py-2 bg-stone-900 text-white dark:bg-stone-100 dark:text-stone-900 text-xs font-semibold rounded-lg hover:opacity-90 transition-opacity"
+          className="w-full py-2 bg-[#682626] hover:bg-[#541E1E] text-[#FAF7F0] dark:bg-[#C2A267] dark:hover:bg-[#AF8E53] dark:text-[#1B1A18] text-xs font-semibold rounded-lg transition-colors shadow-xs"
         >
           Áp dụng & Đóng
         </button>

@@ -40,9 +40,9 @@ export const LearningDashboard: React.FC<LearningDashboardProps> = ({
   return (
     <div className="max-w-4xl mx-auto px-4 py-8 space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E7E1D6] dark:border-[#383632] pb-5">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#DFD7CA] dark:border-[#383530] pb-5">
         <div>
-          <span className="text-xs uppercase tracking-wider font-semibold text-[#B78C45] dark:text-[#E2B765]">
+          <span className="text-xs uppercase tracking-wider font-semibold text-[#8A6328] dark:text-[#C2A267]">
             Bảng điều khiển tiến trình học
           </span>
           <h2 className="text-2xl font-serif font-bold text-stone-900 dark:text-stone-100">
@@ -54,7 +54,7 @@ export const LearningDashboard: React.FC<LearningDashboardProps> = ({
         </div>
 
         {/* Streak Indicator */}
-        <div className="flex items-center gap-2 px-3 py-1.5 bg-[#B78C45]/10 rounded-lg text-xs font-semibold text-[#B78C45] dark:text-[#E2B765] self-start sm:self-center">
+        <div className="flex items-center gap-2 px-3 py-1.5 bg-[#967338]/10 dark:bg-[#C2A267]/15 rounded-lg text-xs font-semibold text-[#8A6328] dark:text-[#C2A267] self-start sm:self-center">
           <Flame className="w-4 h-4 fill-current text-amber-500" />
           <span>{streakCount} ngày học liên tục</span>
         </div>
@@ -63,9 +63,9 @@ export const LearningDashboard: React.FC<LearningDashboardProps> = ({
       {/* KPI Cards Grid */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Metric 1: Reading completion */}
-        <div className="p-4 bg-[#FFFDF8] dark:bg-[#1E1D1A] rounded-xl border border-[#E7E1D6] dark:border-[#383632] shadow-2xs space-y-1">
-          <span className="text-[11px] text-stone-500 block">Tiến độ giáo trình</span>
-          <div className="text-2xl font-serif font-bold text-[#7F1D1D] dark:text-[#E2B765] tabular-nums">
+        <div className="p-4 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530] shadow-2xs space-y-1">
+          <span className="text-[11px] text-stone-500 dark:text-stone-400 block">Tiến độ giáo trình</span>
+          <div className="text-2xl font-serif font-bold text-[#682626] dark:text-[#C2A267] tabular-nums">
             {progressPercent}%
           </div>
           <span className="text-[11px] text-stone-400 block">
@@ -74,8 +74,8 @@ export const LearningDashboard: React.FC<LearningDashboardProps> = ({
         </div>
 
         {/* Metric 2: Flashcards */}
-        <div className="p-4 bg-[#FFFDF8] dark:bg-[#1E1D1A] rounded-xl border border-[#E7E1D6] dark:border-[#383632] shadow-2xs space-y-1">
-          <span className="text-[11px] text-stone-500 block">Thẻ Flashcard đã ôn</span>
+        <div className="p-4 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530] shadow-2xs space-y-1">
+          <span className="text-[11px] text-stone-500 dark:text-stone-400 block">Thẻ Flashcard đã ôn</span>
           <div className="text-2xl font-serif font-bold text-stone-900 dark:text-stone-100 tabular-nums">
             {reviewedCardsCount} / {totalCards}
           </div>
@@ -85,9 +85,9 @@ export const LearningDashboard: React.FC<LearningDashboardProps> = ({
         </div>
 
         {/* Metric 3: Quiz accuracy */}
-        <div className="p-4 bg-[#FFFDF8] dark:bg-[#1E1D1A] rounded-xl border border-[#E7E1D6] dark:border-[#383632] shadow-2xs space-y-1">
-          <span className="text-[11px] text-stone-500 block">Độ chính xác trắc nghiệm</span>
-          <div className="text-2xl font-serif font-bold text-emerald-600 dark:text-emerald-400 tabular-nums">
+        <div className="p-4 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530] shadow-2xs space-y-1">
+          <span className="text-[11px] text-stone-500 dark:text-stone-400 block">Độ chính xác trắc nghiệm</span>
+          <div className="text-2xl font-serif font-bold text-[#2D5A34] dark:text-[#88B88E] tabular-nums">
             {averageAccuracy}%
           </div>
           <span className="text-[11px] text-stone-400 block">
@@ -96,8 +96,8 @@ export const LearningDashboard: React.FC<LearningDashboardProps> = ({
         </div>
 
         {/* Metric 4: Quiz sessions */}
-        <div className="p-4 bg-[#FFFDF8] dark:bg-[#1E1D1A] rounded-xl border border-[#E7E1D6] dark:border-[#383632] shadow-2xs space-y-1">
-          <span className="text-[11px] text-stone-500 block">Số lần làm bài kiểm tra</span>
+        <div className="p-4 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530] shadow-2xs space-y-1">
+          <span className="text-[11px] text-stone-500 dark:text-stone-400 block">Số lần làm bài kiểm tra</span>
           <div className="text-2xl font-serif font-bold text-stone-900 dark:text-stone-100 tabular-nums">
             {totalQuizzes}
           </div>
@@ -106,21 +106,21 @@ export const LearningDashboard: React.FC<LearningDashboardProps> = ({
       </div>
 
       {/* Chapters Completion Checklist */}
-      <div className="p-6 bg-[#FFFDF8] dark:bg-[#1E1D1A] rounded-2xl border border-[#E7E1D6] dark:border-[#383632] shadow-2xs space-y-4">
+      <div className="p-6 bg-[#FAF7F0] dark:bg-[#23221F] rounded-2xl border border-[#DFD7CA] dark:border-[#383530] shadow-2xs space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="font-serif font-bold text-base text-stone-900 dark:text-stone-100 flex items-center gap-2">
-            <BookOpen className="w-4 h-4 text-[#7F1D1D] dark:text-[#E2B765]" />
+            <BookOpen className="w-4 h-4 text-[#682626] dark:text-[#C2A267]" />
             <span>Mục lục tiến độ đọc sách Chương 3</span>
           </h3>
           <button
             onClick={() => onSelectTab('reader')}
-            className="text-xs text-[#7F1D1D] dark:text-[#E2B765] hover:underline font-semibold"
+            className="text-xs text-[#682626] dark:text-[#C2A267] hover:underline font-semibold"
           >
             Mở sách đọc ngay
           </button>
         </div>
 
-        <div className="divide-y divide-stone-100 dark:divide-stone-800">
+        <div className="divide-y divide-[#DFD7CA]/50 dark:divide-[#383530]/50">
           {CHAPTER_SECTIONS.map((sec) => {
             const isDone = completedSections.includes(sec.id);
 
@@ -131,7 +131,7 @@ export const LearningDashboard: React.FC<LearningDashboardProps> = ({
               >
                 <div className="flex items-center gap-3">
                   <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 ${
-                    isDone ? 'bg-emerald-600 text-white' : 'border border-stone-300 dark:border-stone-600 text-stone-400'
+                    isDone ? 'bg-[#2D5A34] text-white' : 'border border-[#DFD7CA] dark:border-[#383530] text-stone-400'
                   }`}>
                     {isDone ? <CheckCircle className="w-3.5 h-3.5" /> : null}
                   </div>
@@ -139,7 +139,7 @@ export const LearningDashboard: React.FC<LearningDashboardProps> = ({
                     <span className="font-semibold text-stone-900 dark:text-stone-100 font-serif">
                       {sec.number}. {sec.title}
                     </span>
-                    <span className="text-[11px] text-stone-400 block">
+                    <span className="text-[11px] text-stone-500 dark:text-stone-400 block">
                       {sec.estimatedMinutes} phút đọc · {sec.summary.slice(0, 80)}...
                     </span>
                   </div>
@@ -147,7 +147,7 @@ export const LearningDashboard: React.FC<LearningDashboardProps> = ({
 
                 <button
                   onClick={() => onNavigateToSection(sec.id)}
-                  className="px-3 py-1 rounded text-[11px] border border-stone-200 dark:border-stone-700 hover:bg-stone-50 dark:hover:bg-stone-800 text-stone-600 dark:text-stone-300 whitespace-nowrap shrink-0"
+                  className="px-3 py-1 rounded text-[11px] border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#252420] hover:bg-[#EFE8DD] text-stone-700 dark:text-stone-300 whitespace-nowrap shrink-0"
                 >
                   {isDone ? 'Đọc lại' : 'Bắt đầu đọc'}
                 </button>
@@ -158,15 +158,15 @@ export const LearningDashboard: React.FC<LearningDashboardProps> = ({
       </div>
 
       {/* Quiz History Table */}
-      <div className="p-6 bg-[#FFFDF8] dark:bg-[#1E1D1A] rounded-2xl border border-[#E7E1D6] dark:border-[#383632] shadow-2xs space-y-4">
+      <div className="p-6 bg-[#FAF7F0] dark:bg-[#23221F] rounded-2xl border border-[#DFD7CA] dark:border-[#383530] shadow-2xs space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="font-serif font-bold text-base text-stone-900 dark:text-stone-100 flex items-center gap-2">
-            <TrendingUp className="w-4 h-4 text-emerald-600" />
+            <TrendingUp className="w-4 h-4 text-[#2D5A34] dark:text-[#88B88E]" />
             <span>Lịch sử kiểm tra gần đây</span>
           </h3>
           <button
             onClick={() => onSelectTab('practice')}
-            className="text-xs text-[#7F1D1D] dark:text-[#E2B765] hover:underline font-semibold"
+            className="text-xs text-[#682626] dark:text-[#C2A267] hover:underline font-semibold"
           >
             Làm bài thi mới
           </button>
@@ -179,7 +179,7 @@ export const LearningDashboard: React.FC<LearningDashboardProps> = ({
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-xs text-left">
-              <thead className="bg-stone-50 dark:bg-stone-800 text-stone-600 dark:text-stone-400 font-semibold border-b border-stone-200 dark:border-stone-700">
+              <thead className="bg-[#EFE8DD] dark:bg-[#2A2824] text-stone-700 dark:text-stone-300 font-semibold border-b border-[#DFD7CA] dark:border-[#383530]">
                 <tr>
                   <th className="py-2.5 px-3">Thời gian</th>
                   <th className="py-2.5 px-3">Chủ đề bài thi</th>
@@ -188,12 +188,12 @@ export const LearningDashboard: React.FC<LearningDashboardProps> = ({
                   <th className="py-2.5 px-3">Thời gian làm</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-stone-100 dark:divide-stone-800">
+              <tbody className="divide-y divide-[#DFD7CA]/40 dark:divide-[#383530]/40">
                 {quizHistory.map((q) => {
                   const pct = Math.round((q.score / q.total) * 100);
 
                   return (
-                    <tr key={q.id} className="hover:bg-stone-50/50 dark:hover:bg-stone-800/40">
+                    <tr key={q.id} className="hover:bg-[#EFE8DD]/40 dark:hover:bg-[#2A2824]/40">
                       <td className="py-2.5 px-3 text-stone-500 whitespace-nowrap">
                         {new Date(q.timestamp).toLocaleDateString('vi-VN')} {new Date(q.timestamp).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}
                       </td>
@@ -206,10 +206,10 @@ export const LearningDashboard: React.FC<LearningDashboardProps> = ({
                       <td className="py-2.5 px-3 font-mono">
                         <span className={`px-1.5 py-0.5 rounded text-[11px] font-semibold ${
                           pct >= 80
-                            ? 'bg-emerald-100 dark:bg-emerald-950/50 text-emerald-800 dark:text-emerald-300'
+                            ? 'bg-[#EDF3EC] dark:bg-[#1E2820] text-[#25462A] dark:text-[#88B88E]'
                             : pct >= 50
-                            ? 'bg-amber-100 dark:bg-amber-950/50 text-amber-800 dark:text-amber-300'
-                            : 'bg-rose-100 dark:bg-rose-950/50 text-rose-800 dark:text-rose-300'
+                            ? 'bg-[#F5EFE0] dark:bg-[#2A271E] text-[#5A451E] dark:text-[#CBB27A]'
+                            : 'bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-300'
                         }`}>
                           {pct}%
                         </span>

@@ -89,9 +89,9 @@ export const NotesManager: React.FC<NotesManagerProps> = ({
   return (
     <div className="max-w-4xl mx-auto px-4 py-8 space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#E7E1D6] dark:border-[#383632] pb-5">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#DFD7CA] dark:border-[#383530] pb-5">
         <div>
-          <span className="text-xs uppercase tracking-wider font-semibold text-[#B78C45] dark:text-[#E2B765]">
+          <span className="text-xs uppercase tracking-wider font-semibold text-[#8A6328] dark:text-[#C2A267]">
             Sổ tay học tập cá nhân
           </span>
           <h2 className="text-2xl font-serif font-bold text-stone-900 dark:text-stone-100">
@@ -104,7 +104,7 @@ export const NotesManager: React.FC<NotesManagerProps> = ({
 
         <button
           onClick={handleExportMarkdown}
-          className="px-4 py-2 text-xs font-semibold rounded-lg bg-[#7F1D1D] hover:bg-[#681818] text-white dark:bg-[#B78C45] dark:text-stone-900 flex items-center gap-1.5 transition-colors shadow-xs"
+          className="px-4 py-2 text-xs font-semibold rounded-lg bg-[#682626] hover:bg-[#541E1E] text-[#FAF7F0] dark:bg-[#C2A267] dark:hover:bg-[#AF8E53] dark:text-[#1B1A18] flex items-center gap-1.5 transition-colors shadow-xs"
         >
           <Download className="w-3.5 h-3.5" />
           <span>Xuất sổ tay (.md)</span>
@@ -116,7 +116,7 @@ export const NotesManager: React.FC<NotesManagerProps> = ({
         <select
           value={selectedSectionFilter}
           onChange={(e) => setSelectedSectionFilter(e.target.value)}
-          className="w-full sm:w-auto px-3 py-1.5 text-xs rounded-lg border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-200"
+          className="w-full sm:w-auto px-3 py-1.5 text-xs rounded-lg border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#23221F] text-stone-800 dark:text-stone-200"
         >
           <option value="all">Tất cả các mục giáo trình</option>
           {CHAPTER_SECTIONS.map(s => (
@@ -133,7 +133,7 @@ export const NotesManager: React.FC<NotesManagerProps> = ({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Tìm trong ghi chú & trích dẫn..."
-            className="w-full pl-8 pr-3 py-1.5 text-xs rounded-lg border border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-200"
+            className="w-full pl-8 pr-3 py-1.5 text-xs rounded-lg border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#23221F] text-stone-800 dark:text-stone-200"
           />
         </div>
       </div>
@@ -141,12 +141,12 @@ export const NotesManager: React.FC<NotesManagerProps> = ({
       {/* Notes Section */}
       <div className="space-y-4">
         <h3 className="font-serif font-bold text-base text-stone-900 dark:text-stone-100 flex items-center gap-2">
-          <FileText className="w-4 h-4 text-[#7F1D1D] dark:text-[#E2B765]" />
+          <FileText className="w-4 h-4 text-[#682626] dark:text-[#C2A267]" />
           <span>Ghi chú của bạn ({filteredNotes.length})</span>
         </h3>
 
         {filteredNotes.length === 0 ? (
-          <div className="p-8 text-center text-xs text-stone-400 bg-[#FFFDF8] dark:bg-[#1E1D1A] rounded-xl border border-stone-200 dark:border-stone-800">
+          <div className="p-8 text-center text-xs text-stone-400 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530]">
             Chưa có ghi chú nào phù hợp. Bạn có thể mở mục giáo trình và thêm ghi chú trong bảng điều khiển bên phải.
           </div>
         ) : (
@@ -154,7 +154,7 @@ export const NotesManager: React.FC<NotesManagerProps> = ({
             {filteredNotes.map((n) => (
               <div
                 key={n.id}
-                className="p-4 bg-[#FFFDF8] dark:bg-[#1E1D1A] rounded-xl border border-[#E7E1D6] dark:border-[#383632] shadow-2xs space-y-3 flex flex-col justify-between"
+                className="p-4 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530] shadow-2xs space-y-3 flex flex-col justify-between"
               >
                 {editingNoteId === n.id ? (
                   <div className="space-y-2">
@@ -215,10 +215,10 @@ export const NotesManager: React.FC<NotesManagerProps> = ({
                       </p>
                     </div>
 
-                    <div className="flex items-center justify-between text-[11px] text-stone-400 pt-2 border-t border-stone-100 dark:border-stone-800">
+                    <div className="flex items-center justify-between text-[11px] text-stone-400 pt-2 border-t border-[#DFD7CA]/60 dark:border-[#383530]/60">
                       <button
                         onClick={() => onNavigateToSection(n.sectionId)}
-                        className="hover:text-[#7F1D1D] dark:hover:text-[#E2B765] transition-colors flex items-center gap-1"
+                        className="hover:text-[#682626] dark:hover:text-[#C2A267] transition-colors flex items-center gap-1"
                       >
                         <ExternalLink className="w-3 h-3" />
                         <span className="truncate max-w-[200px]">{n.sectionTitle}</span>
@@ -234,14 +234,14 @@ export const NotesManager: React.FC<NotesManagerProps> = ({
       </div>
 
       {/* Highlights Section */}
-      <div className="space-y-4 pt-6 border-t border-[#E7E1D6] dark:border-[#383632]">
+      <div className="space-y-4 pt-6 border-t border-[#DFD7CA] dark:border-[#383530]">
         <h3 className="font-serif font-bold text-base text-stone-900 dark:text-stone-100 flex items-center gap-2">
-          <Bookmark className="w-4 h-4 text-[#B78C45]" />
+          <Bookmark className="w-4 h-4 text-[#8A6328] dark:text-[#C2A267]" />
           <span>Đoạn trích dẫn sách giáo khoa ({filteredHighlights.length})</span>
         </h3>
 
         {filteredHighlights.length === 0 ? (
-          <div className="p-8 text-center text-xs text-stone-400 bg-[#FFFDF8] dark:bg-[#1E1D1A] rounded-xl border border-stone-200 dark:border-stone-800">
+          <div className="p-8 text-center text-xs text-stone-400 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530]">
             Chưa có trích đoạn nào. Khi đọc sách, bạn có thể quét chọn bất kỳ câu chữ nào để đánh dấu màu sắc!
           </div>
         ) : (
@@ -249,10 +249,10 @@ export const NotesManager: React.FC<NotesManagerProps> = ({
             {filteredHighlights.map((h) => (
               <div
                 key={h.id}
-                className="p-4 bg-[#FFFDF8] dark:bg-[#1E1D1A] rounded-xl border border-[#E7E1D6] dark:border-[#383632] flex items-start justify-between gap-4"
+                className="p-4 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530] flex items-start justify-between gap-4"
               >
                 <div className="space-y-1 text-xs">
-                  <blockquote className="font-serif italic text-stone-800 dark:text-stone-200 leading-relaxed border-l-2 border-amber-400 pl-3">
+                  <blockquote className="font-serif italic text-stone-800 dark:text-stone-200 leading-relaxed border-l-2 border-[#8A6328] dark:border-[#C2A267] pl-3">
                     &ldquo;{h.text}&rdquo;
                   </blockquote>
                   {h.note && (
@@ -263,7 +263,7 @@ export const NotesManager: React.FC<NotesManagerProps> = ({
                 <div className="flex items-center gap-1 shrink-0">
                   <button
                     onClick={() => onNavigateToSection(h.sectionId)}
-                    className="p-1 text-stone-400 hover:text-[#7F1D1D] dark:hover:text-[#E2B765]"
+                    className="p-1 text-stone-400 hover:text-[#682626] dark:hover:text-[#C2A267]"
                     title="Mở mục tương ứng"
                   >
                     <ExternalLink className="w-3.5 h-3.5" />

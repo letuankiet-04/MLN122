@@ -21,6 +21,7 @@ const defaultSettings: ReaderSettings = {
   lineHeight: 'relaxed',
   contentWidth: 'normal',
   fontFamily: 'serif',
+  eyeCareMode: true,
 };
 
 export interface FlashcardProgress {

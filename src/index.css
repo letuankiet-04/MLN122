@@ -7,6 +7,28 @@
 }
 
 @layer base {
+  :root {
+    --bg-page: #F2ECE1;
+    --bg-surface: #FAF7F0;
+    --bg-subtle: #EFE8DD;
+    --border-color: #DFD7CA;
+    --text-primary: #2C2723;
+    --text-secondary: #6B645C;
+    --academic-burgundy: #682626;
+    --academic-gold: #967338;
+  }
+
+  .dark {
+    --bg-page: #1B1A18;
+    --bg-surface: #24221F;
+    --bg-subtle: #2C2A26;
+    --border-color: #383530;
+    --text-primary: #DCD6CA;
+    --text-secondary: #948E84;
+    --academic-burgundy: #B85353;
+    --academic-gold: #C2A267;
+  }
+
   html {
     scroll-behavior: smooth;
     text-rendering: optimizeLegibility;
@@ -15,7 +37,7 @@
   }
 }
 
-/* Custom subtle scrollbars for academic reading */
+/* Custom subtle, eye-friendly scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -26,10 +48,16 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(120, 113, 108, 0.25);
+  background: rgba(120, 113, 108, 0.2);
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(120, 113, 108, 0.4);
+  background: rgba(120, 113, 108, 0.35);
 }
+
+/* Eye-care anti-glare soft filter when activated */
+.eye-care-filter {
+  filter: sepia(0.06) contrast(0.96) brightness(0.98);
+}
+

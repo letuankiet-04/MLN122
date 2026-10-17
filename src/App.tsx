@@ -26,6 +26,10 @@ import { SimulatorsHub } from './components/interactive/SimulatorsHub';
 import { PracticeHub } from './components/practice/PracticeHub';
 import { NotesManager } from './components/study/NotesManager';
 import { LearningDashboard } from './components/dashboard/LearningDashboard';
+import { VideoKnowledgeHub } from './components/video/VideoKnowledgeHub';
+import { VideoKnowledgePlayerModal } from './components/video/VideoKnowledgePlayerModal';
+import { KnowledgeVideo } from './types/video';
+import { KNOWLEDGE_VIDEOS, getVideoById } from './content/knowledgeVideosData';
 
 export default function App() {
   const {
@@ -54,8 +58,24 @@ export default function App() {
   } = useStudyState();
 
   const [currentTab, setCurrentTab] = useState<
-    'reader' | 'library' | 'simulators' | 'practice' | 'dashboard' | 'notes'
+    'reader' | 'videos' | 'library' | 'simulators' | 'practice' | 'dashboard' | 'notes'
   >('reader');
+
+  const [activeVideo, setActiveVideo] = useState<KnowledgeVideo | null>(KNOWLEDGE_VIDEOS[0]);
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState<boolean>(false);
+
+  const handlePlayVideo = (video: KnowledgeVideo) => {
+    setActiveVideo(video);
+    setIsVideoModalOpen(true);
+  };
+
+  const handlePlayVideoById = (videoId: string) => {
+    const v = getVideoById(videoId);
+    if (v) {
+      setActiveVideo(v);
+      setIsVideoModalOpen(true);
+    }
+  };
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -100,15 +120,20 @@ export default function App() {
 
   const themeBgClass =
     readerSettings.theme === 'dark'
-      ? 'bg-[#171717] text-[#F5F1E8]'
+      ? 'bg-[#1B1A18] text-[#DCD6CA]'
       : readerSettings.theme === 'sepia'
-      ? 'bg-[#F4ECD8] text-[#3D3028]'
+      ? 'bg-[#EAE0CE] text-[#342A22]'
       : readerSettings.theme === 'focus'
-      ? 'bg-[#FAF8F5] text-[#1F1F1F]'
-      : 'bg-[#F6F2E9] text-[#292524]';
+      ? 'bg-[#F5F2EB] text-[#262320]'
+      : 'bg-[#F2ECE1] text-[#2C2723]';
+
+  const eyeCareClass = readerSettings.eyeCareMode ? 'eye-care-filter' : '';
 
   return (
-    <div className={`min-h-screen flex flex-col font-sans transition-colors duration-200 ${themeBgClass}`}>
+    <div
+      data-theme={readerSettings.theme}
+      className={`min-h-screen flex flex-col font-sans transition-colors duration-200 ${themeBgClass} ${eyeCareClass}`}
+    >
       {/* Top Bar Navigation */}
       <Header
         currentTab={currentTab}
@@ -161,7 +186,7 @@ export default function App() {
             <div className="hidden md:block sticky top-20 z-20 h-0">
               <button
                 onClick={() => setIsLeftSidebarOpen(prev => !prev)}
-                className={`p-1.5 rounded-r-md border border-l-0 border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 shadow-xs transition-colors`}
+                className="p-1.5 rounded-r-md border border-l-0 border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#252420] text-stone-600 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-200 shadow-xs transition-colors"
                 title={isLeftSidebarOpen ? 'Thu gọn mục lục' : 'Mở rộng mục lục'}
               >
                 {isLeftSidebarOpen ? <PanelLeftClose className="w-4 h-4" /> : <PanelLeft className="w-4 h-4" />}
@@ -171,9 +196,9 @@ export default function App() {
             {/* Center: Textbook Content Reader */}
             <div className="flex-1 overflow-y-auto min-h-[calc(100vh-3.75rem)]">
               {/* Mobile Table of Contents Quick Drawer Selector */}
-              <div className="md:hidden px-4 py-3 bg-stone-100/70 dark:bg-stone-800/70 border-b border-stone-200 dark:border-stone-700 flex items-center justify-between">
+              <div className="md:hidden px-4 py-3 bg-[#EFE9DF]/90 dark:bg-[#201F1B]/90 border-b border-[#DFD7CA] dark:border-[#383530] flex items-center justify-between">
                 <div className="text-xs">
-                  <span className="text-stone-400 block text-[10px]">Đang đọc</span>
+                  <span className="text-stone-500 dark:text-stone-400 block text-[10px]">Đang đọc</span>
                   <span className="font-serif font-bold text-stone-900 dark:text-stone-100 truncate max-w-[220px]">
                     {activeSection.number}. {activeSection.title}
                   </span>
@@ -181,7 +206,7 @@ export default function App() {
                 <select
                   value={currentSectionId}
                   onChange={(e) => handleNavigateToSection(e.target.value)}
-                  className="text-xs p-1.5 rounded border border-stone-300 dark:border-stone-600 bg-white dark:bg-stone-900"
+                  className="text-xs p-1.5 rounded border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#252420] text-stone-800 dark:text-stone-200"
                 >
                   {CHAPTER_SECTIONS.map(s => (
                     <option key={s.id} value={s.id}>
@@ -205,6 +230,8 @@ export default function App() {
                   color,
                 })}
                 readerSettings={readerSettings}
+                onPlayVideo={handlePlayVideo}
+                onSwitchToQuiz={() => setCurrentTab('practice')}
               />
             </div>
 
@@ -212,7 +239,7 @@ export default function App() {
             <div className="hidden lg:block sticky top-20 z-20 h-0">
               <button
                 onClick={() => setIsRightSidebarOpen(prev => !prev)}
-                className={`p-1.5 rounded-l-md border border-r-0 border-stone-200 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 shadow-xs transition-colors`}
+                className="p-1.5 rounded-l-md border border-r-0 border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#252420] text-stone-600 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-200 shadow-xs transition-colors"
                 title={isRightSidebarOpen ? 'Thu gọn sổ tay bên phải' : 'Mở sổ tay bên phải'}
               >
                 {isRightSidebarOpen ? <PanelRightClose className="w-4 h-4" /> : <PanelRight className="w-4 h-4" />}
@@ -235,10 +262,20 @@ export default function App() {
                   onSelectTerm={(termId) => {
                     setCurrentTab('practice');
                   }}
+                  onPlayVideo={handlePlayVideo}
                 />
               </div>
             </div>
           </div>
+        )}
+
+        {/* VIEW: VIDEO KNOWLEDGE HUB */}
+        {currentTab === 'videos' && (
+          <VideoKnowledgeHub
+            onPlayVideo={handlePlayVideo}
+            onNavigateToSection={handleNavigateToSection}
+            onSwitchToQuiz={() => setCurrentTab('practice')}
+          />
         )}
 
         {/* VIEW 3: SIMULATORS & INTERACTIVE EXPERIMENTS */}
@@ -286,29 +323,29 @@ export default function App() {
       </main>
 
       {/* Mobile Bottom Navigation Bar (≤ 15% mobile viewport) */}
-      <nav className="md:hidden sticky bottom-0 z-40 bg-[#FFFDF8] dark:bg-[#1D1C19] border-t border-[#E7E1D6] dark:border-[#383632] px-2 py-1.5 flex items-center justify-around text-[10px]">
-        <button
-          onClick={() => setCurrentTab('library')}
-          className={`flex flex-col items-center gap-0.5 p-1 ${
-            currentTab === 'library' ? 'text-[#7F1D1D] dark:text-[#E2B765] font-bold' : 'text-stone-500'
-          }`}
-        >
-          <Home className="w-4 h-4" />
-          <span>Kệ sách</span>
-        </button>
+      <nav className="md:hidden sticky bottom-0 z-40 bg-[#FAF7F0] dark:bg-[#23221F] border-t border-[#DFD7CA] dark:border-[#383530] px-2 py-1.5 flex items-center justify-around text-[10px]">
         <button
           onClick={() => setCurrentTab('reader')}
           className={`flex flex-col items-center gap-0.5 p-1 ${
-            currentTab === 'reader' ? 'text-[#7F1D1D] dark:text-[#E2B765] font-bold' : 'text-stone-500'
+            currentTab === 'reader' ? 'text-[#682626] dark:text-[#C2A267] font-bold' : 'text-stone-500 dark:text-stone-400'
           }`}
         >
           <BookOpen className="w-4 h-4" />
           <span>Đọc sách</span>
         </button>
         <button
+          onClick={() => setCurrentTab('videos')}
+          className={`flex flex-col items-center gap-0.5 p-1 ${
+            currentTab === 'videos' ? 'text-[#682626] dark:text-[#C2A267] font-bold' : 'text-stone-500 dark:text-stone-400'
+          }`}
+        >
+          <span className="text-sm">🎬</span>
+          <span>Video</span>
+        </button>
+        <button
           onClick={() => setCurrentTab('simulators')}
           className={`flex flex-col items-center gap-0.5 p-1 ${
-            currentTab === 'simulators' ? 'text-[#7F1D1D] dark:text-[#E2B765] font-bold' : 'text-stone-500'
+            currentTab === 'simulators' ? 'text-[#682626] dark:text-[#C2A267] font-bold' : 'text-stone-500 dark:text-stone-400'
           }`}
         >
           <Layers className="w-4 h-4" />
@@ -317,7 +354,7 @@ export default function App() {
         <button
           onClick={() => setCurrentTab('practice')}
           className={`flex flex-col items-center gap-0.5 p-1 ${
-            currentTab === 'practice' ? 'text-[#7F1D1D] dark:text-[#E2B765] font-bold' : 'text-stone-500'
+            currentTab === 'practice' ? 'text-[#682626] dark:text-[#C2A267] font-bold' : 'text-stone-500 dark:text-stone-400'
           }`}
         >
           <Award className="w-4 h-4" />
@@ -326,7 +363,7 @@ export default function App() {
         <button
           onClick={() => setCurrentTab('dashboard')}
           className={`flex flex-col items-center gap-0.5 p-1 ${
-            currentTab === 'dashboard' ? 'text-[#7F1D1D] dark:text-[#E2B765] font-bold' : 'text-stone-500'
+            currentTab === 'dashboard' ? 'text-[#682626] dark:text-[#C2A267] font-bold' : 'text-stone-500 dark:text-stone-400'
           }`}
         >
           <TrendingUp className="w-4 h-4" />
@@ -347,6 +384,21 @@ export default function App() {
         settings={readerSettings}
         onUpdateSettings={(newSettings) => setReaderSettings(prev => ({ ...prev, ...newSettings }))}
       />
+
+      {/* Video Knowledge Player Modal */}
+      {activeVideo && (
+        <VideoKnowledgePlayerModal
+          video={activeVideo}
+          isOpen={isVideoModalOpen}
+          onClose={() => setIsVideoModalOpen(false)}
+          onNavigateToSection={handleNavigateToSection}
+          onSwitchToQuiz={() => {
+            setIsVideoModalOpen(false);
+            setCurrentTab('practice');
+          }}
+          onSelectVideo={handlePlayVideoById}
+        />
+      )}
     </div>
   );
 }

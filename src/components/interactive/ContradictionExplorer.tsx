@@ -55,9 +55,9 @@ export const ContradictionExplorer: React.FC = () => {
   const curr = scenarios[activeScenario];
 
   return (
-    <div className="my-8 p-6 bg-[#FFFDF8] dark:bg-[#1E1D1A] rounded-xl border border-[#E7E1D6] dark:border-[#383632] shadow-xs">
-      <div className="border-b border-[#E7E1D6] dark:border-[#383632] pb-4">
-        <span className="text-xs uppercase tracking-wider font-semibold text-[#7F1D1D] dark:text-[#E2B765]">
+    <div className="my-8 p-6 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530] shadow-xs">
+      <div className="border-b border-[#DFD7CA] dark:border-[#383530] pb-4">
+        <span className="text-xs uppercase tracking-wider font-semibold text-[#8A6328] dark:text-[#C2A267]">
           Bài tập tư duy biện chứng
         </span>
         <h3 className="text-lg font-serif font-bold text-stone-900 dark:text-stone-100">
@@ -76,8 +76,8 @@ export const ContradictionExplorer: React.FC = () => {
             onClick={() => setActiveScenario(sc)}
             className={`px-4 py-2 text-xs font-semibold rounded-lg border transition-all text-left flex-1 min-w-[160px] ${
               activeScenario === sc
-                ? 'border-[#7F1D1D] dark:border-[#E2B765] bg-[#7F1D1D]/10 dark:bg-[#E2B765]/15 text-[#7F1D1D] dark:text-[#E2B765]'
-                : 'border-stone-200 dark:border-stone-700 hover:bg-stone-50 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300'
+                ? 'border-[#682626] dark:border-[#C2A267] bg-[#682626]/10 dark:bg-[#C2A267]/15 text-[#682626] dark:text-[#C2A267]'
+                : 'border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#252420] hover:bg-[#EFE8DD] text-stone-700 dark:text-stone-300'
             }`}
           >
             <div className="font-bold">{scenarios[sc].title.split(':')[0]}</div>
@@ -89,7 +89,7 @@ export const ContradictionExplorer: React.FC = () => {
       </div>
 
       {/* Scenario Interactive Card */}
-      <div className="p-5 bg-stone-50/80 dark:bg-stone-800/40 rounded-xl border border-stone-200/80 dark:border-stone-700/80">
+      <div className="p-5 bg-[#EFE8DD]/50 dark:bg-[#2A2824]/50 rounded-xl border border-[#DFD7CA] dark:border-[#383530]">
         <h4 className="font-serif font-bold text-sm text-stone-900 dark:text-stone-100">
           {curr.title}
         </h4>
@@ -101,7 +101,7 @@ export const ContradictionExplorer: React.FC = () => {
         </p>
 
         {/* Check your understanding mini question */}
-        <div className="pt-3 border-t border-stone-200 dark:border-stone-700">
+        <div className="pt-3 border-t border-[#DFD7CA] dark:border-[#383530]">
           <p className="text-xs font-semibold text-stone-900 dark:text-stone-100 mb-2">
             Câu hỏi kiểm tra nhanh: {curr.question}
           </p>
@@ -118,16 +118,16 @@ export const ContradictionExplorer: React.FC = () => {
                   className={`w-full text-left p-2.5 text-xs rounded-md border transition-all flex items-center justify-between ${
                     showResult && isSelected
                       ? isCorrect
-                        ? 'border-emerald-500 bg-emerald-50 dark:bg-emerald-950/30 text-emerald-900 dark:text-emerald-200'
-                        : 'border-rose-500 bg-rose-50 dark:bg-rose-950/30 text-rose-900 dark:text-rose-200'
+                        ? 'border-emerald-600 bg-emerald-50 dark:bg-emerald-950/30 text-emerald-900 dark:text-emerald-200'
+                        : 'border-[#8A3333] bg-[#8A3333]/10 dark:bg-[#8A3333]/20 text-[#8A3333] dark:text-[#E09B9B]'
                       : showResult && isCorrect
-                      ? 'border-emerald-500/50 bg-emerald-50/50 dark:bg-emerald-950/20 text-emerald-800 dark:text-emerald-300'
-                      : 'border-stone-200 dark:border-stone-700 hover:bg-white dark:hover:bg-stone-800 text-stone-800 dark:text-stone-200'
+                      ? 'border-emerald-600/50 bg-emerald-50/50 dark:bg-emerald-950/20 text-emerald-800 dark:text-emerald-300'
+                      : 'border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#23221F] hover:bg-[#EFE8DD] text-stone-800 dark:text-stone-200'
                   }`}
                 >
                   <span>{opt}</span>
                   {showResult && isSelected && (
-                    isCorrect ? <Check className="w-4 h-4 text-emerald-600 shrink-0" /> : <X className="w-4 h-4 text-rose-600 shrink-0" />
+                    isCorrect ? <Check className="w-4 h-4 text-emerald-600 shrink-0" /> : <X className="w-4 h-4 text-[#8A3333] shrink-0" />
                   )}
                 </button>
               );
@@ -135,7 +135,7 @@ export const ContradictionExplorer: React.FC = () => {
           </div>
 
           {selectedAnswers[activeScenario] !== null && (
-            <p className="mt-3 text-xs text-emerald-700 dark:text-emerald-400 font-medium">
+            <p className="mt-3 text-xs text-[#2D5A34] dark:text-[#88B88E] font-medium">
               {curr.explanation}
             </p>
           )}
@@ -143,8 +143,8 @@ export const ContradictionExplorer: React.FC = () => {
       </div>
 
       {/* Synthesis Box */}
-      <div className="mt-6 p-4 bg-[#B78C45]/10 rounded-xl border border-[#B78C45]/30 flex items-start gap-3">
-        <Lightbulb className="w-5 h-5 text-[#B78C45] shrink-0 mt-0.5" />
+      <div className="mt-6 p-4 bg-[#8A6328]/10 dark:bg-[#C2A267]/15 rounded-xl border border-[#8A6328]/25 dark:border-[#C2A267]/35 flex items-start gap-3">
+        <Lightbulb className="w-5 h-5 text-[#8A6328] dark:text-[#C2A267] shrink-0 mt-0.5" />
         <div className="text-xs sm:text-sm text-stone-800 dark:text-stone-200 leading-relaxed">
           <strong className="text-stone-900 dark:text-stone-100 font-serif">Kết luận logic vĩ đại của C. Mác:</strong>{' '}
           &quot;Tư bản không thể xuất hiện từ lưu thông và cũng không thể xuất hiện ở bên ngoài lưu thông. Nó phải xuất hiện trong lưu thông và đồng thời không phải trong lưu thông.&quot; Chìa khóa giải quyết là: trong lưu thông, nhà tư bản mua được <strong>hàng hóa sức lao động</strong>, và ngoài lưu thông (trong xưởng sản xuất), nhà tư bản tiêu dùng sức lao động đó để tạo ra giá trị thặng dư.

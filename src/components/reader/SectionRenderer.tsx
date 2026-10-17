@@ -11,6 +11,9 @@ import { SurplusValueCalculator } from '../interactive/SurplusValueCalculator';
 import { SurplusValueMethodsSimulator } from '../interactive/SurplusValueMethodsSimulator';
 import { AnnotatedText } from '../common/AnnotatedText';
 import { ReaderSettings } from '../../types/textbook';
+import { VideoLessonCard } from '../video/VideoLessonCard';
+import { getVideosBySectionId, KNOWLEDGE_VIDEOS } from '../../content/knowledgeVideosData';
+import { KnowledgeVideo } from '../../types/video';
 
 interface SectionRendererProps {
   section: ChapterSection;
@@ -21,6 +24,8 @@ interface SectionRendererProps {
   onToggleBookmark: () => void;
   onAddHighlight: (text: string, color: 'yellow' | 'green' | 'blue' | 'rose') => void;
   readerSettings: ReaderSettings;
+  onPlayVideo?: (video: KnowledgeVideo) => void;
+  onSwitchToQuiz?: () => void;
 }
 
 export const SectionRenderer: React.FC<SectionRendererProps> = ({
@@ -32,9 +37,14 @@ export const SectionRenderer: React.FC<SectionRendererProps> = ({
   onToggleBookmark,
   onAddHighlight,
   readerSettings,
+  onPlayVideo,
+  onSwitchToQuiz,
 }) => {
   const [selectedText, setSelectedText] = useState<string>('');
   const [selectionPosition, setSelectionPosition] = useState<{ x: number; y: number } | null>(null);
+
+  const sectionVideos = getVideosBySectionId(section.id);
+  const primaryVideo = sectionVideos.length > 0 ? sectionVideos[0] : KNOWLEDGE_VIDEOS[0];
 
   const currentIndex = CHAPTER_SECTIONS.findIndex(s => s.id === section.id);
   const prevSection = currentIndex > 0 ? CHAPTER_SECTIONS[currentIndex - 1] : null;
@@ -134,10 +144,10 @@ export const SectionRenderer: React.FC<SectionRendererProps> = ({
       )}
 
       {/* Section Header */}
-      <header className="pb-6 border-b border-[#E7E1D6] dark:border-[#383632]">
+      <header className="pb-6 border-b border-[#DFD7CA] dark:border-[#383530]">
         <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-stone-500 mb-2 font-sans">
           <div className="flex items-center gap-2">
-            <span className="font-semibold text-[#7F1D1D] dark:text-[#E2B765] uppercase tracking-wider">
+            <span className="font-semibold text-[#682626] dark:text-[#C2A267] uppercase tracking-wider">
               Mục {section.number}
             </span>
             <span>·</span>
@@ -152,8 +162,8 @@ export const SectionRenderer: React.FC<SectionRendererProps> = ({
               onClick={onToggleBookmark}
               className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md border text-xs transition-colors ${
                 isBookmarked
-                  ? 'border-[#B78C45] bg-[#B78C45]/10 text-[#B78C45] dark:text-[#E2B765]'
-                  : 'border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-stone-100'
+                  ? 'border-[#967338]/40 bg-[#967338]/10 text-[#682626] dark:text-[#C2A267]'
+                  : 'border-[#DFD7CA] dark:border-[#383530] text-stone-600 dark:text-stone-400 hover:bg-[#FAF7F0] dark:hover:bg-[#252420]'
               }`}
             >
               <BookMarked className="w-3.5 h-3.5 fill-current" />
@@ -164,8 +174,8 @@ export const SectionRenderer: React.FC<SectionRendererProps> = ({
               onClick={onToggleComplete}
               className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md border text-xs transition-colors ${
                 isCompleted
-                  ? 'border-emerald-600 bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300'
-                  : 'border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-stone-100'
+                  ? 'border-[#2D5A34] bg-[#EDF3EC] dark:bg-[#1E2820] text-[#25462A] dark:text-[#88B88E]'
+                  : 'border-[#DFD7CA] dark:border-[#383530] text-stone-600 dark:text-stone-400 hover:bg-[#FAF7F0] dark:hover:bg-[#252420]'
               }`}
             >
               <CheckCircle2 className="w-3.5 h-3.5" />
@@ -186,7 +196,7 @@ export const SectionRenderer: React.FC<SectionRendererProps> = ({
 
         {/* Learning Objectives Box */}
         {section.objectives && section.objectives.length > 0 && (
-          <div className="mt-5 p-4 rounded-xl border border-stone-200/80 dark:border-stone-700/80 bg-stone-50/60 dark:bg-stone-800/30 font-sans text-xs">
+          <div className="mt-5 p-4 rounded-xl border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#23221F] font-sans text-xs">
             <span className="font-semibold text-stone-900 dark:text-stone-100 uppercase tracking-wider block mb-2">
               Mục tiêu bài học:
             </span>
@@ -197,12 +207,56 @@ export const SectionRenderer: React.FC<SectionRendererProps> = ({
             </ul>
           </div>
         )}
+
+        {/* Learning Mode Switcher Bar */}
+        <div className="mt-5 p-2 rounded-xl bg-[#EFE8DD] dark:bg-[#252420] border border-[#DFD7CA] dark:border-[#383530] flex flex-wrap items-center justify-between gap-2 font-sans text-xs">
+          <div className="flex items-center gap-2">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-stone-500 pl-1 hidden sm:inline">
+              Cách học:
+            </span>
+            <div className="flex items-center gap-1.5">
+              <button
+                onClick={() => onPlayVideo && onPlayVideo(primaryVideo)}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#682626] dark:bg-[#C2A267] text-[#FAF7F0] dark:text-[#1B1A18] font-semibold shadow-xs hover:opacity-90 transition-opacity"
+              >
+                <span>🎬 Xem video ({sectionVideos.length || 1})</span>
+              </button>
+              <a
+                href="#theory-content"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#FAF7F0] dark:bg-[#1E1D1A] border border-[#DFD7CA] dark:border-[#383530] text-stone-700 dark:text-stone-300 font-medium hover:bg-white dark:hover:bg-[#2C2A26] transition-colors"
+              >
+                <span>📖 Đọc lý thuyết</span>
+              </a>
+              {onSwitchToQuiz && (
+                <button
+                  onClick={onSwitchToQuiz}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#FAF7F0] dark:bg-[#1E1D1A] border border-[#DFD7CA] dark:border-[#383530] text-stone-700 dark:text-stone-300 font-medium hover:bg-white dark:hover:bg-[#2C2A26] transition-colors"
+                >
+                  <span>✍️ Làm Quiz</span>
+                </button>
+              )}
+            </div>
+          </div>
+
+          <div className="text-[11px] text-stone-500 font-medium pr-1 hidden md:block">
+            Xem video 3 phút trước để nắm 80% cốt lõi
+          </div>
+        </div>
+
+        {/* Featured Knowledge Video Card */}
+        {primaryVideo && (
+          <VideoLessonCard
+            primaryVideo={primaryVideo}
+            allVideosForSection={sectionVideos}
+            onPlayVideo={video => onPlayVideo && onPlayVideo(video)}
+          />
+        )}
       </header>
 
       {/* Main Content Body */}
-      <div className={`py-6 space-y-6 ${fontSizeClass} ${lineHeightClass}`}>
+      <div id="theory-content" className={`py-6 space-y-6 ${fontSizeClass} ${lineHeightClass}`}>
         {/* Lead paragraph */}
-        <p className="text-base sm:text-lg font-serif italic text-stone-800 dark:text-stone-200 leading-relaxed border-l-2 border-[#7F1D1D] dark:border-[#E2B765] pl-4 py-1">
+        <p className="text-base sm:text-lg font-serif italic text-stone-800 dark:text-stone-200 leading-relaxed border-l-2 border-[#682626] dark:border-[#C2A267] pl-4 py-1">
           <AnnotatedText text={section.content.lead} onNavigateToSection={onNavigateSection} />
         </p>
 
@@ -248,11 +302,11 @@ export const SectionRenderer: React.FC<SectionRendererProps> = ({
       </div>
 
       {/* Footer Navigation Bar */}
-      <footer className="pt-8 mt-10 border-t border-[#E7E1D6] dark:border-[#383632] flex flex-col sm:flex-row items-center justify-between gap-4 font-sans text-xs">
+      <footer className="pt-8 mt-10 border-t border-[#DFD7CA] dark:border-[#383530] flex flex-col sm:flex-row items-center justify-between gap-4 font-sans text-xs">
         {prevSection ? (
           <button
             onClick={() => onNavigateSection(prevSection.id)}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-stone-200 dark:border-stone-700 hover:bg-stone-50 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300 transition-colors w-full sm:w-auto"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#23221F] hover:bg-[#EFE8DD] dark:hover:bg-[#2C2A26] text-stone-700 dark:text-stone-300 transition-colors w-full sm:w-auto"
           >
             <ArrowLeft className="w-4 h-4" />
             <div className="text-left">
@@ -265,7 +319,7 @@ export const SectionRenderer: React.FC<SectionRendererProps> = ({
         {nextSection ? (
           <button
             onClick={() => onNavigateSection(nextSection.id)}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[#7F1D1D] hover:bg-[#681818] dark:bg-[#B78C45] dark:hover:bg-[#9E7535] text-white dark:text-stone-900 font-semibold transition-colors w-full sm:w-auto justify-end"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[#682626] hover:bg-[#541E1E] dark:bg-[#C2A267] dark:hover:bg-[#AF8E53] text-[#FAF7F0] dark:text-[#1B1A18] font-semibold transition-colors w-full sm:w-auto justify-end shadow-xs"
           >
             <div className="text-right">
               <span className="text-[10px] opacity-80 block">Bài tiếp theo</span>
@@ -274,7 +328,7 @@ export const SectionRenderer: React.FC<SectionRendererProps> = ({
             <ArrowRight className="w-4 h-4" />
           </button>
         ) : (
-          <div className="p-3 bg-emerald-50 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300 rounded-lg text-center font-semibold">
+          <div className="p-3 bg-[#EDF3EC] dark:bg-[#1E2820] text-[#25462A] dark:text-[#88B88E] rounded-lg text-center font-semibold border border-[#C8DAC6] dark:border-[#2D3F30]">
             Chúc mừng! Bạn đã hoàn thành toàn bộ nội dung giáo trình Chương 3.
           </div>
         )}

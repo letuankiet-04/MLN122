@@ -32,8 +32,8 @@ export const SimulatorsHub: React.FC<SimulatorsHubProps> = ({ onNavigateToSectio
   return (
     <div className="max-w-5xl mx-auto px-4 py-8 space-y-6">
       {/* Header */}
-      <div className="border-b border-[#E7E1D6] dark:border-[#383632] pb-5">
-        <span className="text-xs uppercase tracking-wider font-semibold text-[#B78C45] dark:text-[#E2B765]">
+      <div className="border-b border-[#DFD7CA] dark:border-[#383530] pb-5">
+        <span className="text-xs uppercase tracking-wider font-semibold text-[#8A6328] dark:text-[#C2A267]">
           Phòng thí nghiệm kinh tế chính trị tương tác
         </span>
         <h2 className="text-2xl font-serif font-bold text-stone-900 dark:text-stone-100">
@@ -56,8 +56,8 @@ export const SimulatorsHub: React.FC<SimulatorsHubProps> = ({ onNavigateToSectio
               onClick={() => setActiveSim(t.id as any)}
               className={`px-3.5 py-2 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all whitespace-nowrap ${
                 isActive
-                  ? 'bg-[#7F1D1D] text-white shadow-xs dark:bg-[#B78C45] dark:text-stone-900'
-                  : 'bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 text-stone-700 dark:text-stone-300 hover:bg-stone-50'
+                  ? 'bg-[#682626] text-[#FAF7F0] shadow-xs dark:bg-[#C2A267] dark:text-[#1B1A18]'
+                  : 'bg-[#FAF7F0] dark:bg-[#23221F] border border-[#DFD7CA] dark:border-[#383530] text-stone-700 dark:text-stone-300 hover:bg-[#EFE8DD]'
               }`}
             >
               <Icon className="w-3.5 h-3.5" />

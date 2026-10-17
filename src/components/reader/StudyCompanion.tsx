@@ -3,6 +3,9 @@ import { FileText, Bookmark, BookOpen, Bot, Plus, Trash2, ExternalLink, Lightbul
 import { Note, Highlight } from '../../types/textbook';
 import { GLOSSARY_TERMS } from '../../content/glossaryData';
 import { CHAPTER_SECTIONS } from '../../content/chaptersData';
+import { KnowledgeVideo } from '../../types/video';
+import { getVideosBySectionId } from '../../content/knowledgeVideosData';
+import { Play } from 'lucide-react';
 
 interface StudyCompanionProps {
   currentSectionId: string;
@@ -11,6 +14,7 @@ interface StudyCompanionProps {
   onAddNote: (note: { sectionId: string; sectionTitle: string; title: string; content: string }) => void;
   onDeleteNote: (id: string) => void;
   onSelectTerm: (termId: string) => void;
+  onPlayVideo?: (video: KnowledgeVideo) => void;
 }
 
 export const StudyCompanion: React.FC<StudyCompanionProps> = ({
@@ -20,6 +24,7 @@ export const StudyCompanion: React.FC<StudyCompanionProps> = ({
   onAddNote,
   onDeleteNote,
   onSelectTerm,
+  onPlayVideo,
 }) => {
   const [activeTab, setActiveTab] = useState<'notes' | 'glossary' | 'tutor'>('notes');
   const [isAddingNote, setIsAddingNote] = useState(false);
@@ -34,6 +39,8 @@ export const StudyCompanion: React.FC<StudyCompanionProps> = ({
   const sectionNotes = notes.filter(n => n.sectionId === currentSectionId);
   const sectionHighlights = highlights.filter(h => h.sectionId === currentSectionId);
   const relatedTerms = GLOSSARY_TERMS.filter(t => t.relatedSectionId === currentSectionId);
+  const sectionVideos = getVideosBySectionId(currentSectionId);
+  const companionVideo = sectionVideos.length > 0 ? sectionVideos[0] : null;
 
   const handleSaveNote = () => {
     if (!newNoteContent.trim() || !currentSection) return;
@@ -74,15 +81,36 @@ export const StudyCompanion: React.FC<StudyCompanionProps> = ({
   };
 
   return (
-    <aside className="w-full h-full flex flex-col bg-stone-50/50 dark:bg-[#1E1D1A]/50 border-l border-[#E7E1D6] dark:border-[#383632]">
+    <aside className="w-full h-full flex flex-col bg-[#EFE9DF]/80 dark:bg-[#1F1E1B]/80 border-l border-[#DFD7CA] dark:border-[#383530]">
+      {/* Video Quick Action Pill if video available */}
+      {companionVideo && onPlayVideo && (
+        <div className="p-2.5 bg-[#FAF7F0] dark:bg-[#252420] border-b border-[#DFD7CA] dark:border-[#383530] flex items-center justify-between gap-2 shrink-0">
+          <div className="min-w-0">
+            <span className="text-[10px] uppercase font-bold text-[#8A6328] dark:text-[#C2A267] tracking-wider block">
+              🎬 Video bài học ({companionVideo.formattedDuration})
+            </span>
+            <span className="text-xs font-semibold text-stone-800 dark:text-stone-200 truncate block">
+              {companionVideo.title}
+            </span>
+          </div>
+          <button
+            onClick={() => onPlayVideo(companionVideo)}
+            className="flex items-center gap-1 px-2.5 py-1 rounded-md bg-[#682626] hover:bg-[#541E1E] dark:bg-[#C2A267] dark:hover:bg-[#AF8E53] text-[#FAF7F0] dark:text-[#1B1A18] text-[11px] font-semibold transition-colors shrink-0 shadow-xs"
+          >
+            <Play className="w-3 h-3 fill-current" />
+            <span>Xem</span>
+          </button>
+        </div>
+      )}
+
       {/* Companion Tabs Header */}
-      <div className="flex border-b border-[#E7E1D6] dark:border-[#383632] bg-stone-100/60 dark:bg-stone-900/40">
+      <div className="flex border-b border-[#DFD7CA] dark:border-[#383530] bg-[#EAE4D7] dark:bg-[#201F1B]">
         <button
           onClick={() => setActiveTab('notes')}
           className={`flex-1 py-2.5 px-2 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors border-b-2 ${
             activeTab === 'notes'
-              ? 'border-[#7F1D1D] dark:border-[#E2B765] text-[#7F1D1D] dark:text-[#E2B765] bg-white dark:bg-stone-800'
-              : 'border-transparent text-stone-600 dark:text-stone-400 hover:text-stone-900'
+              ? 'border-[#682626] dark:border-[#C2A267] text-[#682626] dark:text-[#C2A267] bg-[#FAF7F0] dark:bg-[#282723]'
+              : 'border-transparent text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200'
           }`}
         >
           <FileText className="w-3.5 h-3.5" />
@@ -93,8 +121,8 @@ export const StudyCompanion: React.FC<StudyCompanionProps> = ({
           onClick={() => setActiveTab('glossary')}
           className={`flex-1 py-2.5 px-2 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors border-b-2 ${
             activeTab === 'glossary'
-              ? 'border-[#7F1D1D] dark:border-[#E2B765] text-[#7F1D1D] dark:text-[#E2B765] bg-white dark:bg-stone-800'
-              : 'border-transparent text-stone-600 dark:text-stone-400 hover:text-stone-900'
+              ? 'border-[#682626] dark:border-[#C2A267] text-[#682626] dark:text-[#C2A267] bg-[#FAF7F0] dark:bg-[#282723]'
+              : 'border-transparent text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200'
           }`}
         >
           <Bookmark className="w-3.5 h-3.5" />
@@ -105,8 +133,8 @@ export const StudyCompanion: React.FC<StudyCompanionProps> = ({
           onClick={() => setActiveTab('tutor')}
           className={`flex-1 py-2.5 px-2 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors border-b-2 ${
             activeTab === 'tutor'
-              ? 'border-[#7F1D1D] dark:border-[#E2B765] text-[#7F1D1D] dark:text-[#E2B765] bg-white dark:bg-stone-800'
-              : 'border-transparent text-stone-600 dark:text-stone-400 hover:text-stone-900'
+              ? 'border-[#682626] dark:border-[#C2A267] text-[#682626] dark:text-[#C2A267] bg-[#FAF7F0] dark:bg-[#282723]'
+              : 'border-transparent text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200'
           }`}
         >
           <Bot className="w-3.5 h-3.5" />
@@ -125,7 +153,7 @@ export const StudyCompanion: React.FC<StudyCompanionProps> = ({
               </span>
               <button
                 onClick={() => setIsAddingNote(true)}
-                className="px-2 py-1 text-[11px] font-semibold text-[#7F1D1D] dark:text-[#E2B765] hover:bg-[#7F1D1D]/10 rounded flex items-center gap-1 transition-colors"
+                className="px-2 py-1 text-[11px] font-semibold text-[#682626] dark:text-[#C2A267] hover:bg-[#682626]/10 rounded flex items-center gap-1 transition-colors"
               >
                 <Plus className="w-3 h-3" />
                 <span>Thêm ghi chú</span>
@@ -134,20 +162,20 @@ export const StudyCompanion: React.FC<StudyCompanionProps> = ({
 
             {/* Add Note Form */}
             {isAddingNote && (
-              <div className="p-3 bg-white dark:bg-stone-800 rounded-lg border border-stone-200 dark:border-stone-700 shadow-xs space-y-2 animate-in fade-in duration-150">
+              <div className="p-3 bg-[#FAF7F0] dark:bg-[#252420] rounded-lg border border-[#DFD7CA] dark:border-[#383530] shadow-xs space-y-2 animate-in fade-in duration-150">
                 <input
                   type="text"
                   placeholder="Tiêu đề ghi chú (tùy chọn)"
                   value={newNoteTitle}
                   onChange={(e) => setNewNoteTitle(e.target.value)}
-                  className="w-full text-xs font-semibold px-2 py-1 border rounded bg-transparent border-stone-200 dark:border-stone-700"
+                  className="w-full text-xs font-semibold px-2 py-1 border rounded bg-transparent border-[#DFD7CA] dark:border-[#383530]"
                 />
                 <textarea
                   placeholder="Nhập suy nghĩ, công thức hoặc lưu ý cần nhớ..."
                   value={newNoteContent}
                   onChange={(e) => setNewNoteContent(e.target.value)}
                   rows={3}
-                  className="w-full text-xs p-2 border rounded bg-transparent border-stone-200 dark:border-stone-700 leading-relaxed"
+                  className="w-full text-xs p-2 border rounded bg-transparent border-[#DFD7CA] dark:border-[#383530] leading-relaxed"
                 />
                 <div className="flex justify-end gap-1.5 pt-1">
                   <button
@@ -158,7 +186,7 @@ export const StudyCompanion: React.FC<StudyCompanionProps> = ({
                   </button>
                   <button
                     onClick={handleSaveNote}
-                    className="px-3 py-1 text-[11px] font-semibold bg-[#7F1D1D] text-white dark:bg-[#B78C45] dark:text-stone-900 rounded"
+                    className="px-3 py-1 text-[11px] font-semibold bg-[#682626] text-[#FAF7F0] dark:bg-[#C2A267] dark:text-[#1B1A18] rounded"
                   >
                     Lưu
                   </button>
@@ -175,7 +203,7 @@ export const StudyCompanion: React.FC<StudyCompanionProps> = ({
               sectionNotes.map((n) => (
                 <div
                   key={n.id}
-                  className="p-3 bg-white dark:bg-stone-800 rounded-lg border border-stone-200/80 dark:border-stone-700/80 shadow-2xs space-y-1.5 group"
+                  className="p-3 bg-[#FAF7F0] dark:bg-[#252420] rounded-lg border border-[#DFD7CA] dark:border-[#383530] shadow-2xs space-y-1.5 group"
                 >
                   <div className="flex items-center justify-between">
                     <span className="font-serif font-bold text-xs text-stone-900 dark:text-stone-100">
@@ -201,17 +229,17 @@ export const StudyCompanion: React.FC<StudyCompanionProps> = ({
 
             {/* Highlights section */}
             {sectionHighlights.length > 0 && (
-              <div className="pt-3 border-t border-stone-200 dark:border-stone-700 space-y-2">
+              <div className="pt-3 border-t border-[#DFD7CA] dark:border-[#383530] space-y-2">
                 <span className="text-xs font-semibold text-stone-600 dark:text-stone-400 block">
                   Đoạn trích đã đánh dấu:
                 </span>
                 {sectionHighlights.map((hl) => (
                   <div
                     key={hl.id}
-                    className="p-2.5 rounded-lg border border-amber-200/80 dark:border-amber-900/60 bg-amber-50/40 dark:bg-amber-950/20 text-xs italic text-stone-800 dark:text-stone-200"
+                    className="p-2.5 rounded-lg border border-[#DFD5C0] dark:border-[#3D3728] bg-[#F5EFE0]/80 dark:bg-[#2A271E] text-xs italic text-stone-800 dark:text-stone-200"
                   >
                     &ldquo;{hl.text}&rdquo;
-                    {hl.note && <div className="text-[10px] text-amber-800 dark:text-amber-300 font-sans mt-1">Ghi chú: {hl.note}</div>}
+                    {hl.note && <div className="text-[10px] text-[#5A451E] dark:text-[#CBB27A] font-sans mt-1">Ghi chú: {hl.note}</div>}
                   </div>
                 ))}
               </div>
@@ -234,7 +262,7 @@ export const StudyCompanion: React.FC<StudyCompanionProps> = ({
                 <div
                   key={t.id}
                   onClick={() => onSelectTerm(t.id)}
-                  className="p-3 bg-white dark:bg-stone-800 rounded-lg border border-stone-200/80 dark:border-stone-700/80 hover:border-[#7F1D1D]/50 transition-colors cursor-pointer space-y-1"
+                  className="p-3 bg-[#FAF7F0] dark:bg-[#252420] rounded-lg border border-[#DFD7CA] dark:border-[#383530] hover:border-[#682626]/50 dark:hover:border-[#C2A267]/50 transition-colors cursor-pointer space-y-1"
                 >
                   <div className="flex items-center justify-between">
                     <span className="font-serif font-bold text-xs text-stone-900 dark:text-stone-100">
@@ -254,8 +282,8 @@ export const StudyCompanion: React.FC<StudyCompanionProps> = ({
         {/* TAB 3: SMART STUDY ASSISTANT */}
         {activeTab === 'tutor' && (
           <div className="space-y-3">
-            <div className="p-2.5 bg-[#B78C45]/10 rounded-lg border border-[#B78C45]/20 text-[11px] text-stone-700 dark:text-stone-300 flex items-start gap-2">
-              <Sparkles className="w-4 h-4 text-[#B78C45] shrink-0 mt-0.5" />
+            <div className="p-2.5 bg-[#967338]/10 dark:bg-[#C2A267]/15 rounded-lg border border-[#967338]/20 dark:border-[#C2A267]/30 text-[11px] text-stone-700 dark:text-stone-300 flex items-start gap-2">
+              <Sparkles className="w-4 h-4 text-[#8A6328] dark:text-[#C2A267] shrink-0 mt-0.5" />
               <div>
                 <strong>Trợ lý học thuật Mác – Lênin (Offline-grounded):</strong> Cung cấp hướng dẫn, giải mã công thức và gợi ý ôn thi bám sát 100% nội dung giáo trình.
               </div>
@@ -265,26 +293,26 @@ export const StudyCompanion: React.FC<StudyCompanionProps> = ({
               <span className="text-[11px] font-semibold text-stone-500 block">Hành động gợi ý:</span>
               <button
                 onClick={() => handleAskTutor('explain')}
-                className="w-full text-left p-2 rounded-md bg-stone-100 dark:bg-stone-800 hover:bg-stone-200 text-xs text-stone-800 dark:text-stone-200 transition-colors"
+                className="w-full text-left p-2 rounded-md bg-[#FAF7F0] dark:bg-[#252420] border border-[#DFD7CA] dark:border-[#383530] hover:bg-[#EFE8DD] text-xs text-stone-800 dark:text-stone-200 transition-colors"
               >
                 💡 Giải thích dễ hiểu phần này
               </button>
               <button
                 onClick={() => handleAskTutor('formula')}
-                className="w-full text-left p-2 rounded-md bg-stone-100 dark:bg-stone-800 hover:bg-stone-200 text-xs text-stone-800 dark:text-stone-200 transition-colors"
+                className="w-full text-left p-2 rounded-md bg-[#FAF7F0] dark:bg-[#252420] border border-[#DFD7CA] dark:border-[#383530] hover:bg-[#EFE8DD] text-xs text-stone-800 dark:text-stone-200 transition-colors"
               >
                 📐 Hướng dẫn công thức & bài toán
               </button>
               <button
                 onClick={() => handleAskTutor('exam_tip')}
-                className="w-full text-left p-2 rounded-md bg-stone-100 dark:bg-stone-800 hover:bg-stone-200 text-xs text-stone-800 dark:text-stone-200 transition-colors"
+                className="w-full text-left p-2 rounded-md bg-[#FAF7F0] dark:bg-[#252420] border border-[#DFD7CA] dark:border-[#383530] hover:bg-[#EFE8DD] text-xs text-stone-800 dark:text-stone-200 transition-colors"
               >
                 🎯 Trọng tâm câu hỏi thi học phần
               </button>
             </div>
 
             {tutorResponse && (
-              <div className="mt-3 p-3 bg-white dark:bg-stone-800 rounded-lg border border-[#7F1D1D]/30 dark:border-[#E2B765]/30 text-xs text-stone-800 dark:text-stone-200 whitespace-pre-line leading-relaxed shadow-xs animate-in fade-in duration-150">
+              <div className="mt-3 p-3 bg-[#FAF7F0] dark:bg-[#252420] rounded-lg border border-[#682626]/20 dark:border-[#C2A267]/30 text-xs text-stone-800 dark:text-stone-200 whitespace-pre-line leading-relaxed shadow-xs animate-in fade-in duration-150">
                 {tutorResponse}
               </div>
             )}

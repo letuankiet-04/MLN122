@@ -112,7 +112,7 @@ export const TermTooltip: React.FC<TermTooltipProps> = ({
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClick={handleClickTrigger}
-        className="inline border-b-2 border-dotted border-[#B78C45]/80 hover:border-[#7F1D1D] dark:border-[#E2B765]/80 dark:hover:border-[#E2B765] cursor-help text-stone-900 dark:text-stone-100 font-medium hover:text-[#7F1D1D] dark:hover:text-[#E2B765] transition-colors rounded-xs px-0.5 bg-[#B78C45]/5 hover:bg-[#B78C45]/15 dark:bg-[#E2B765]/10 dark:hover:bg-[#E2B765]/20"
+        className="inline border-b border-stone-400/70 hover:border-[#682626] dark:border-stone-500/70 dark:hover:border-[#C2A267] cursor-help text-stone-900 dark:text-stone-100 font-medium hover:text-[#682626] dark:hover:text-[#C2A267] transition-all rounded-xs px-0.5 hover:bg-stone-200/50 dark:hover:bg-stone-700/40"
         title="Nhấp hoặc rê chuột để xem định nghĩa nhanh"
       >
         {children}
@@ -128,19 +128,19 @@ export const TermTooltip: React.FC<TermTooltipProps> = ({
             left: `${coords.left}px`,
             transform: coords.placeAbove ? 'translateY(-100%)' : 'none',
           }}
-          className="fixed z-50 w-80 max-w-[calc(100vw-32px)] p-4 bg-[#FFFDF8] dark:bg-[#1E1D1A] rounded-xl border border-[#7F1D1D]/30 dark:border-[#E2B765]/40 shadow-2xl animate-in fade-in zoom-in-95 duration-150 text-left font-sans text-xs space-y-2.5 backdrop-blur-xs select-text"
+          className="fixed z-50 w-80 max-w-[calc(100vw-32px)] p-4 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530] shadow-xl animate-in fade-in zoom-in-95 duration-150 text-left font-sans text-xs space-y-2.5 backdrop-blur-xs select-text"
         >
           {/* Header */}
-          <div className="flex items-start justify-between gap-2 border-b border-stone-200/80 dark:border-stone-700/80 pb-2">
+          <div className="flex items-start justify-between gap-2 border-b border-[#DFD7CA] dark:border-[#383530] pb-2">
             <div>
               <div className="flex items-center gap-1.5">
-                <Bookmark className="w-3.5 h-3.5 text-[#7F1D1D] dark:text-[#E2B765] fill-current" />
+                <Bookmark className="w-3.5 h-3.5 text-[#682626] dark:text-[#C2A267] fill-current" />
                 <span className="font-serif font-bold text-sm text-stone-900 dark:text-stone-100">
-                  {term.term} {term.symbol && <span className="text-[#7F1D1D] dark:text-[#E2B765] font-serif">({term.symbol})</span>}
+                  {term.term} {term.symbol && <span className="text-[#682626] dark:text-[#C2A267] font-serif">({term.symbol})</span>}
                 </span>
               </div>
               {term.englishTerm && (
-                <span className="text-[10px] text-stone-400 italic block mt-0.5">
+                <span className="text-[10px] text-stone-500 dark:text-stone-400 italic block mt-0.5">
                   {term.englishTerm} · {categoryLabels[term.category] || 'Thuật ngữ'}
                 </span>
               )}
@@ -156,7 +156,7 @@ export const TermTooltip: React.FC<TermTooltipProps> = ({
           </div>
 
           {/* Academic Definition */}
-          <p className="font-serif text-xs text-stone-800 dark:text-stone-200 leading-relaxed italic bg-stone-50 dark:bg-stone-800/50 p-2 rounded-lg border border-stone-200/60 dark:border-stone-700/60">
+          <p className="font-serif text-xs text-stone-800 dark:text-stone-200 leading-relaxed italic bg-[#EFE8DD]/70 dark:bg-[#2C2A26] p-2.5 rounded-lg border border-[#DFD7CA] dark:border-[#383530]">
             &quot;{term.definition}&quot;
           </p>
 
@@ -176,8 +176,8 @@ export const TermTooltip: React.FC<TermTooltipProps> = ({
 
           {/* Direct link to related section */}
           {onNavigateToSection && term.relatedSectionId && (
-            <div className="pt-2 border-t border-stone-100 dark:border-stone-800 flex justify-between items-center">
-              <span className="text-[10px] text-stone-400">
+            <div className="pt-2 border-t border-[#DFD7CA] dark:border-[#383530] flex justify-between items-center">
+              <span className="text-[10px] text-stone-500 dark:text-stone-400">
                 Mục {term.relatedSectionId} trong sách
               </span>
               <button
@@ -185,7 +185,7 @@ export const TermTooltip: React.FC<TermTooltipProps> = ({
                   setIsOpen(false);
                   onNavigateToSection(term.relatedSectionId);
                 }}
-                className="text-[11px] font-semibold text-[#7F1D1D] dark:text-[#E2B765] hover:underline flex items-center gap-1"
+                className="text-[11px] font-semibold text-[#682626] dark:text-[#C2A267] hover:underline flex items-center gap-1"
               >
                 <span>Xem mục chi tiết</span>
                 <ExternalLink className="w-3 h-3" />

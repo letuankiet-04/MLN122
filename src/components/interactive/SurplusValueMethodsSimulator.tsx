@@ -8,9 +8,9 @@ export const SurplusValueMethodsSimulator: React.FC = () => {
   const [isRelativeOptimized, setIsRelativeOptimized] = useState<boolean>(true);
 
   return (
-    <div className="my-8 p-6 bg-[#FFFDF8] dark:bg-[#1E1D1A] rounded-xl border border-[#E7E1D6] dark:border-[#383632] shadow-xs">
-      <div className="border-b border-[#E7E1D6] dark:border-[#383632] pb-4">
-        <span className="text-xs uppercase tracking-wider font-semibold text-[#7F1D1D] dark:text-[#E2B765]">
+    <div className="my-8 p-6 bg-[#FAF6EE] dark:bg-[#1E1D1A] rounded-xl border border-[#E2DACD] dark:border-[#383632] shadow-xs">
+      <div className="border-b border-[#E2DACD] dark:border-[#383632] pb-4">
+        <span className="text-xs uppercase tracking-wider font-semibold text-[#A67C37] dark:text-[#C99E52]">
           Mô phỏng cơ chế bóc lột
         </span>
         <h3 className="text-lg font-serif font-bold text-stone-900 dark:text-stone-100">
@@ -27,8 +27,8 @@ export const SurplusValueMethodsSimulator: React.FC = () => {
           onClick={() => setActiveMethod('absolute')}
           className={`flex-1 py-2 px-3 text-xs font-semibold rounded-lg border transition-all ${
             activeMethod === 'absolute'
-              ? 'border-[#7F1D1D] dark:border-[#E2B765] bg-[#7F1D1D]/10 dark:bg-[#E2B765]/15 text-[#7F1D1D] dark:text-[#E2B765]'
-              : 'border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-stone-50'
+              ? 'border-[#742424] dark:border-[#C99E52] bg-[#742424]/10 dark:bg-[#C99E52]/15 text-[#742424] dark:text-[#C99E52]'
+              : 'border-[#E2DACD] dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-[#F4EFE6]'
           }`}
         >
           1. Thặng dư Tuyệt đối (Kéo dài giờ làm)
@@ -37,8 +37,8 @@ export const SurplusValueMethodsSimulator: React.FC = () => {
           onClick={() => setActiveMethod('relative')}
           className={`flex-1 py-2 px-3 text-xs font-semibold rounded-lg border transition-all ${
             activeMethod === 'relative'
-              ? 'border-[#7F1D1D] dark:border-[#E2B765] bg-[#7F1D1D]/10 dark:bg-[#E2B765]/15 text-[#7F1D1D] dark:text-[#E2B765]'
-              : 'border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-stone-50'
+              ? 'border-[#742424] dark:border-[#C99E52] bg-[#742424]/10 dark:bg-[#C99E52]/15 text-[#742424] dark:text-[#C99E52]'
+              : 'border-[#E2DACD] dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-[#F4EFE6]'
           }`}
         >
           2. Thặng dư Tương đối (Tăng NSLĐ)
@@ -47,8 +47,8 @@ export const SurplusValueMethodsSimulator: React.FC = () => {
           onClick={() => setActiveMethod('extraordinary')}
           className={`flex-1 py-2 px-3 text-xs font-semibold rounded-lg border transition-all ${
             activeMethod === 'extraordinary'
-              ? 'border-[#7F1D1D] dark:border-[#E2B765] bg-[#7F1D1D]/10 dark:bg-[#E2B765]/15 text-[#7F1D1D] dark:text-[#E2B765]'
-              : 'border-stone-200 dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-stone-50'
+              ? 'border-[#742424] dark:border-[#C99E52] bg-[#742424]/10 dark:bg-[#C99E52]/15 text-[#742424] dark:text-[#C99E52]'
+              : 'border-[#E2DACD] dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-[#F4EFE6]'
           }`}
         >
           3. Thặng dư Siêu ngạch (Kỹ thuật cá biệt)
@@ -64,7 +64,7 @@ export const SurplusValueMethodsSimulator: React.FC = () => {
             </span>
             <button
               onClick={() => setIsAbsoluteExtended(prev => !prev)}
-              className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-[#7F1D1D] text-white hover:bg-[#681818] transition-colors"
+              className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-[#742424] text-[#FDFBF7] hover:bg-[#5E1D1D] transition-colors"
             >
               {isAbsoluteExtended ? 'Xem ngày làm ban đầu (8h)' : 'Thực hiện kéo dài ngày làm việc (10h)'}
             </button>
@@ -76,13 +76,13 @@ export const SurplusValueMethodsSimulator: React.FC = () => {
             <div>
               <div className="flex justify-between text-xs mb-1 font-semibold text-stone-700 dark:text-stone-300">
                 <span>Ngày lao động ban đầu (8 giờ)</span>
-                <span className="text-[#7F1D1D] dark:text-[#E2B765]">m′ = (4h / 4h) × 100% = 100%</span>
+                <span className="text-[#742424] dark:text-[#C99E52]">m′ = (4h / 4h) × 100% = 100%</span>
               </div>
-              <div className="h-9 w-full rounded-lg overflow-hidden flex border border-stone-300 dark:border-stone-700">
-                <div className="w-1/2 bg-amber-400 text-amber-950 flex items-center justify-center text-xs font-bold">
+              <div className="h-9 w-full rounded-lg overflow-hidden flex border border-[#DCD3C4] dark:border-stone-700">
+                <div className="w-1/2 bg-[#D6C29E] text-[#3D311F] flex items-center justify-center text-xs font-bold">
                   Tất yếu: 4h (t)
                 </div>
-                <div className="w-1/2 bg-[#7F1D1D] text-white flex items-center justify-center text-xs font-bold">
+                <div className="w-1/2 bg-[#742424] text-[#FDFBF7] flex items-center justify-center text-xs font-bold">
                   Thặng dư: 4h (t′)
                 </div>
               </div>
@@ -92,18 +92,18 @@ export const SurplusValueMethodsSimulator: React.FC = () => {
             {isAbsoluteExtended && (
               <div className="animate-in slide-in-from-top-2 duration-200">
                 <div className="flex justify-between text-xs mb-1 font-semibold text-stone-700 dark:text-stone-300">
-                  <span className="text-rose-700 dark:text-rose-400 font-bold">
+                  <span className="text-[#853636] dark:text-[#E09B9B] font-bold">
                     Kéo dài thêm 2 giờ thành 10 giờ
                   </span>
-                  <span className="text-rose-700 dark:text-rose-400 font-bold">
+                  <span className="text-[#853636] dark:text-[#E09B9B] font-bold">
                     m′ = (6h / 4h) × 100% = 150% (+50%)
                   </span>
                 </div>
-                <div className="h-9 w-full rounded-lg overflow-hidden flex border border-rose-300 dark:border-rose-900">
-                  <div style={{ width: '40%' }} className="bg-amber-400 text-amber-950 flex items-center justify-center text-xs font-bold">
+                <div className="h-9 w-full rounded-lg overflow-hidden flex border border-[#DCD3C4] dark:border-stone-700">
+                  <div style={{ width: '40%' }} className="bg-[#D6C29E] text-[#3D311F] flex items-center justify-center text-xs font-bold">
                     Tất yếu: 4h (t)
                   </div>
-                  <div style={{ width: '60%' }} className="bg-rose-700 text-white flex items-center justify-center text-xs font-bold">
+                  <div style={{ width: '60%' }} className="bg-[#853636] text-[#FDFBF7] flex items-center justify-center text-xs font-bold">
                     Thặng dư: 6h (t′)
                   </div>
                 </div>
@@ -111,7 +111,7 @@ export const SurplusValueMethodsSimulator: React.FC = () => {
             )}
           </div>
 
-          <div className="p-4 bg-stone-50 dark:bg-stone-800/40 rounded-xl border border-stone-200 dark:border-stone-700 text-xs text-stone-700 dark:text-stone-300 space-y-2">
+          <div className="p-4 bg-[#F4EFE6]/80 dark:bg-stone-800/40 rounded-xl border border-[#DFD5C4] dark:border-stone-700 text-xs text-stone-700 dark:text-stone-300 space-y-2">
             <h4 className="font-serif font-bold text-stone-900 dark:text-stone-100">
               Nhận định học thuật quan trọng:
             </h4>
@@ -134,7 +134,7 @@ export const SurplusValueMethodsSimulator: React.FC = () => {
             </span>
             <button
               onClick={() => setIsRelativeOptimized(prev => !prev)}
-              className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-[#B78C45] text-white hover:bg-[#9E7535] transition-colors"
+              className="px-3 py-1.5 text-xs font-semibold rounded-lg bg-[#A67C37] text-white hover:bg-[#8F692E] transition-colors"
             >
               {isRelativeOptimized ? 'Xem trạng thái ban đầu' : 'Tăng năng suất lao động xã hội'}
             </button>
@@ -146,13 +146,13 @@ export const SurplusValueMethodsSimulator: React.FC = () => {
             <div>
               <div className="flex justify-between text-xs mb-1 font-semibold text-stone-700 dark:text-stone-300">
                 <span>Ngày lao động 8 giờ (Ban đầu)</span>
-                <span className="text-[#7F1D1D] dark:text-[#E2B765]">m′ = (4h / 4h) × 100% = 100%</span>
+                <span className="text-[#742424] dark:text-[#C99E52]">m′ = (4h / 4h) × 100% = 100%</span>
               </div>
-              <div className="h-9 w-full rounded-lg overflow-hidden flex border border-stone-300 dark:border-stone-700">
-                <div className="w-1/2 bg-amber-400 text-amber-950 flex items-center justify-center text-xs font-bold">
+              <div className="h-9 w-full rounded-lg overflow-hidden flex border border-[#DCD3C4] dark:border-stone-700">
+                <div className="w-1/2 bg-[#D6C29E] text-[#3D311F] flex items-center justify-center text-xs font-bold">
                   Tất yếu: 4h (t)
                 </div>
-                <div className="w-1/2 bg-[#7F1D1D] text-white flex items-center justify-center text-xs font-bold">
+                <div className="w-1/2 bg-[#742424] text-[#FDFBF7] flex items-center justify-center text-xs font-bold">
                   Thặng dư: 4h (t′)
                 </div>
               </div>
@@ -162,18 +162,18 @@ export const SurplusValueMethodsSimulator: React.FC = () => {
             {isRelativeOptimized && (
               <div className="animate-in slide-in-from-top-2 duration-200">
                 <div className="flex justify-between text-xs mb-1 font-semibold text-stone-700 dark:text-stone-300">
-                  <span className="text-emerald-700 dark:text-emerald-400 font-bold">
+                  <span className="text-[#3F6B52] dark:text-[#88C49F] font-bold">
                     Ngày lao động vẫn 8 giờ (Rút ngắn t từ 4h xuống 2h)
                   </span>
-                  <span className="text-emerald-700 dark:text-emerald-400 font-bold">
+                  <span className="text-[#3F6B52] dark:text-[#88C49F] font-bold">
                     m′ = (6h / 2h) × 100% = 300% (+200%!)
                   </span>
                 </div>
-                <div className="h-9 w-full rounded-lg overflow-hidden flex border border-emerald-300 dark:border-emerald-900">
-                  <div style={{ width: '25%' }} className="bg-amber-400 text-amber-950 flex items-center justify-center text-xs font-bold">
+                <div className="h-9 w-full rounded-lg overflow-hidden flex border border-[#DCD3C4] dark:border-stone-700">
+                  <div style={{ width: '25%' }} className="bg-[#D6C29E] text-[#3D311F] flex items-center justify-center text-xs font-bold">
                     t: 2h
                   </div>
-                  <div style={{ width: '75%' }} className="bg-emerald-700 text-white flex items-center justify-center text-xs font-bold">
+                  <div style={{ width: '75%' }} className="bg-[#3F6B52] text-[#FDFBF7] flex items-center justify-center text-xs font-bold">
                     Thặng dư: 6h (t′)
                   </div>
                 </div>

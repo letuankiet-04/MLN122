@@ -54,11 +54,14 @@ export const AnnotatedText: React.FC<AnnotatedTextProps> = ({
     // We build segments of { text, term?: GlossaryTerm }
     let segments: { text: string; term?: GlossaryTerm }[] = [{ text }];
 
+    let totalAnnotatedInBlock = 0;
+    const MAX_ANNOTATIONS_PER_BLOCK = 3;
     const annotatedTermCount: Record<string, number> = {};
 
     matchers.forEach(({ pattern, term }) => {
-      // Max 2 annotations per distinct term per paragraph to avoid visual clutter
-      if ((annotatedTermCount[term.id] || 0) >= 2) return;
+      // Don't overwhelm reading: max 3 terms per paragraph and max 1 per specific term
+      if (totalAnnotatedInBlock >= MAX_ANNOTATIONS_PER_BLOCK) return;
+      if ((annotatedTermCount[term.id] || 0) >= 1) return;
 
       const nextSegments: { text: string; term?: GlossaryTerm }[] = [];
 
@@ -69,7 +72,7 @@ export const AnnotatedText: React.FC<AnnotatedTextProps> = ({
           return;
         }
 
-        if ((annotatedTermCount[term.id] || 0) >= 2) {
+        if (totalAnnotatedInBlock >= MAX_ANNOTATIONS_PER_BLOCK || (annotatedTermCount[term.id] || 0) >= 1) {
           nextSegments.push(seg);
           return;
         }
@@ -80,13 +83,14 @@ export const AnnotatedText: React.FC<AnnotatedTextProps> = ({
           return;
         }
 
-        parts.forEach((part, index) => {
+        parts.forEach((part) => {
           if (!part) return;
 
           // Odd indices in split(regex) with capturing group are the matched substrings
-          if (pattern.test(part) && (annotatedTermCount[term.id] || 0) < 2) {
+          if (pattern.test(part) && (annotatedTermCount[term.id] || 0) < 1 && totalAnnotatedInBlock < MAX_ANNOTATIONS_PER_BLOCK) {
             nextSegments.push({ text: part, term });
             annotatedTermCount[term.id] = (annotatedTermCount[term.id] || 0) + 1;
+            totalAnnotatedInBlock++;
           } else {
             nextSegments.push({ text: part });
           }

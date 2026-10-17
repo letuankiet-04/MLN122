@@ -8,6 +8,7 @@ export interface ReaderSettings {
   lineHeight: 'normal' | 'relaxed' | 'loose';
   contentWidth: ContentWidth;
   fontFamily: 'serif' | 'sans';
+  eyeCareMode?: boolean;
 }
 
 export interface LearningObjective {

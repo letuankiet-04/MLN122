@@ -35,12 +35,12 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
     <div className="space-y-6">
       {/* Sub-tab Navigation */}
       <div className="max-w-4xl mx-auto px-4 pt-4">
-        <div className="flex border-b border-[#E7E1D6] dark:border-[#383632] gap-6 text-sm font-semibold">
+        <div className="flex border-b border-[#DFD7CA] dark:border-[#383530] gap-6 text-sm font-semibold">
           <button
             onClick={() => setActiveSubTab('flashcards')}
             className={`pb-3 transition-colors flex items-center gap-2 ${
               activeSubTab === 'flashcards'
-                ? 'border-b-2 border-[#7F1D1D] dark:border-[#E2B765] text-[#7F1D1D] dark:text-[#E2B765]'
+                ? 'border-b-2 border-[#682626] dark:border-[#C2A267] text-[#682626] dark:text-[#C2A267]'
                 : 'text-stone-500 hover:text-stone-900 dark:hover:text-stone-100'
             }`}
           >
@@ -52,7 +52,7 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
             onClick={() => setActiveSubTab('quiz')}
             className={`pb-3 transition-colors flex items-center gap-2 ${
               activeSubTab === 'quiz'
-                ? 'border-b-2 border-[#7F1D1D] dark:border-[#E2B765] text-[#7F1D1D] dark:text-[#E2B765]'
+                ? 'border-b-2 border-[#682626] dark:border-[#C2A267] text-[#682626] dark:text-[#C2A267]'
                 : 'text-stone-500 hover:text-stone-900 dark:hover:text-stone-100'
             }`}
           >
@@ -64,7 +64,7 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
             onClick={() => setActiveSubTab('recall')}
             className={`pb-3 transition-colors flex items-center gap-2 ${
               activeSubTab === 'recall'
-                ? 'border-b-2 border-[#7F1D1D] dark:border-[#E2B765] text-[#7F1D1D] dark:text-[#E2B765]'
+                ? 'border-b-2 border-[#682626] dark:border-[#C2A267] text-[#682626] dark:text-[#C2A267]'
                 : 'text-stone-500 hover:text-stone-900 dark:hover:text-stone-100'
             }`}
           >
@@ -76,7 +76,7 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
             onClick={() => setActiveSubTab('glossary')}
             className={`pb-3 transition-colors flex items-center gap-2 ${
               activeSubTab === 'glossary'
-                ? 'border-b-2 border-[#7F1D1D] dark:border-[#E2B765] text-[#7F1D1D] dark:text-[#E2B765]'
+                ? 'border-b-2 border-[#682626] dark:border-[#C2A267] text-[#682626] dark:text-[#C2A267]'
                 : 'text-stone-500 hover:text-stone-900 dark:hover:text-stone-100'
             }`}
           >
