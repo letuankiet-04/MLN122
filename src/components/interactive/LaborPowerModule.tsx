@@ -22,8 +22,8 @@ export const LaborPowerModule: React.FC = () => {
   ];
 
   return (
-    <div className="my-8 p-6 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530] shadow-xs">
-      <div className="border-b border-[#DFD7CA] dark:border-[#383530] pb-4">
+    <div className="my-8 p-6 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] shadow-xs">
+      <div className="border-b border-[var(--border-color)] dark:border-[var(--border-color)] pb-4">
         <span className="text-xs uppercase tracking-wider font-semibold text-[#8A6328] dark:text-[#C2A267]">
           Phân tích phạm trù trung tâm
         </span>
@@ -42,7 +42,7 @@ export const LaborPowerModule: React.FC = () => {
           className={`flex-1 py-2 px-3 text-xs font-semibold rounded-lg border transition-all ${
             activeTab === 'conditions'
               ? 'border-[#682626] dark:border-[#C2A267] bg-[#682626]/10 dark:bg-[#C2A267]/15 text-[#682626] dark:text-[#C2A267]'
-              : 'border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#252420] text-stone-600 dark:text-stone-400 hover:bg-[#EFE8DD]'
+              : 'border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)] text-stone-600 dark:text-stone-400 hover:bg-[var(--bg-subtle)]'
           }`}
         >
           2 Điều kiện lịch sử
@@ -52,7 +52,7 @@ export const LaborPowerModule: React.FC = () => {
           className={`flex-1 py-2 px-3 text-xs font-semibold rounded-lg border transition-all ${
             activeTab === 'value'
               ? 'border-[#682626] dark:border-[#C2A267] bg-[#682626]/10 dark:bg-[#C2A267]/15 text-[#682626] dark:text-[#C2A267]'
-              : 'border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#252420] text-stone-600 dark:text-stone-400 hover:bg-[#EFE8DD]'
+              : 'border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)] text-stone-600 dark:text-stone-400 hover:bg-[var(--bg-subtle)]'
           }`}
         >
           Giá trị của Sức lao động
@@ -62,7 +62,7 @@ export const LaborPowerModule: React.FC = () => {
           className={`flex-1 py-2 px-3 text-xs font-semibold rounded-lg border transition-all ${
             activeTab === 'useValue'
               ? 'border-[#682626] dark:border-[#C2A267] bg-[#682626]/10 dark:bg-[#C2A267]/15 text-[#682626] dark:text-[#C2A267]'
-              : 'border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#252420] text-stone-600 dark:text-stone-400 hover:bg-[#EFE8DD]'
+              : 'border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)] text-stone-600 dark:text-stone-400 hover:bg-[var(--bg-subtle)]'
           }`}
         >
           Giá trị sử dụng đặc biệt
@@ -73,7 +73,7 @@ export const LaborPowerModule: React.FC = () => {
       {activeTab === 'conditions' && (
         <div className="space-y-4 animate-in fade-in duration-150">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-4 rounded-xl border border-[#DFD7CA] dark:border-[#383530] bg-[#EFE8DD]/50 dark:bg-[#2A2824]/50">
+            <div className="p-4 rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-subtle)]/50 dark:bg-[var(--bg-subtle)]/50">
               <div className="flex items-center gap-2 mb-2 text-[#682626] dark:text-[#C2A267]">
                 <UserCheck className="w-5 h-5" />
                 <h4 className="font-serif font-bold text-sm">Điều kiện 1: Tự do về thân thể</h4>
@@ -83,7 +83,7 @@ export const LaborPowerModule: React.FC = () => {
               </p>
             </div>
 
-            <div className="p-4 rounded-xl border border-[#DFD7CA] dark:border-[#383530] bg-[#EFE8DD]/50 dark:bg-[#2A2824]/50">
+            <div className="p-4 rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-subtle)]/50 dark:bg-[var(--bg-subtle)]/50">
               <div className="flex items-center gap-2 mb-2 text-[#682626] dark:text-[#C2A267]">
                 <Scale className="w-5 h-5" />
                 <h4 className="font-serif font-bold text-sm">Điều kiện 2: Không có tư liệu sản xuất</h4>
@@ -94,7 +94,7 @@ export const LaborPowerModule: React.FC = () => {
             </div>
           </div>
 
-          <div className="p-3 bg-[#EFE8DD] dark:bg-[#2A2824] rounded-lg text-xs text-stone-600 dark:text-stone-300">
+          <div className="p-3 bg-[var(--bg-subtle)] dark:bg-[var(--bg-subtle)] rounded-lg text-xs text-stone-600 dark:text-stone-300">
             <strong>Phân biệt then chốt:</strong> <em>Sức lao động</em> là khả năng lao động tiềm tàng trong cơ thể con người. <em>Lao động</em> là quá trình vận dụng sức lao động vào thực tế sản xuất. Người công nhân bán <strong>sức lao động</strong>, chứ không thể bán lao động.
           </div>
         </div>
@@ -111,17 +111,17 @@ export const LaborPowerModule: React.FC = () => {
             {componentsOfValue.map((comp, idx) => (
               <div
                 key={idx}
-                className="border border-[#DFD7CA] dark:border-[#383530] rounded-lg overflow-hidden bg-[#FAF7F0] dark:bg-[#252420]"
+                className="border border-[var(--border-color)] dark:border-[var(--border-color)] rounded-lg overflow-hidden bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)]"
               >
                 <button
                   onClick={() => setExpandedComponent(expandedComponent === idx ? null : idx)}
-                  className="w-full p-3 text-left font-serif font-semibold text-xs text-stone-900 dark:text-stone-100 flex items-center justify-between hover:bg-[#EFE8DD]/60 dark:hover:bg-[#2A2824]/60"
+                  className="w-full p-3 text-left font-serif font-semibold text-xs text-stone-900 dark:text-stone-100 flex items-center justify-between hover:bg-[var(--bg-subtle)]/60 dark:hover:bg-[var(--bg-subtle)]/60"
                 >
                   <span>{comp.title}</span>
                   {expandedComponent === idx ? <ChevronUp className="w-4 h-4 text-stone-400" /> : <ChevronDown className="w-4 h-4 text-stone-400" />}
                 </button>
                 {expandedComponent === idx && (
-                  <div className="p-3 pt-0 text-xs text-stone-600 dark:text-stone-300 border-t border-[#DFD7CA]/50 dark:border-[#383530]/50 mt-1">
+                  <div className="p-3 pt-0 text-xs text-stone-600 dark:text-stone-300 border-t border-[var(--border-color)]/50 dark:border-[var(--border-color)]/50 mt-1">
                     {comp.desc}
                   </div>
                 )}
@@ -146,7 +146,7 @@ export const LaborPowerModule: React.FC = () => {
             <p className="text-xs sm:text-sm text-stone-800 dark:text-stone-200 leading-relaxed mb-3">
               Khi tiêu dùng một hàng hóa thông thường (như ăn một cái bánh, mặc một chiếc áo), giá trị sử dụng của nó sẽ mất đi hoặc hao mòn dần theo thời gian. Nhưng khi tiêu dùng hàng hóa sức lao động (tức để người công nhân tiến hành lao động), người công nhân sáng tạo ra một lượng giá trị <strong>hoàn toàn mới lớn hơn giá trị của bản thân sức lao động</strong>.
             </p>
-            <div className="p-3 bg-[#FAF7F0] dark:bg-[#252420] rounded-lg border border-[#DFD7CA] dark:border-[#383530] text-center font-serif text-sm">
+            <div className="p-3 bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)] rounded-lg border border-[var(--border-color)] dark:border-[var(--border-color)] text-center font-serif text-sm">
               <span className="text-stone-500">Công thức giá trị mới do lao động sống sáng tạo ra:</span>
               <div className="text-base font-bold text-[#682626] dark:text-[#C2A267] mt-1">
                 Giá trị mới = v (bù đắp sức lao động) + m (giá trị thặng dư)

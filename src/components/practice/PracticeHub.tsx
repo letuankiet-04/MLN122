@@ -35,13 +35,13 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
     <div className="space-y-6">
       {/* Sub-tab Navigation */}
       <div className="max-w-4xl mx-auto px-4 pt-4">
-        <div className="flex border-b border-[#DFD7CA] dark:border-[#383530] gap-6 text-sm font-semibold">
+        <div className="p-1.5 rounded-2xl bg-[var(--bg-surface)]/80 dark:bg-[var(--bg-page)]/80 backdrop-blur-md border border-[var(--border-color)] dark:border-[var(--border-color)] shadow-sm flex flex-wrap gap-1.5">
           <button
             onClick={() => setActiveSubTab('flashcards')}
-            className={`pb-3 transition-colors flex items-center gap-2 ${
+            className={`px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition-all duration-200 ${
               activeSubTab === 'flashcards'
-                ? 'border-b-2 border-[#682626] dark:border-[#C2A267] text-[#682626] dark:text-[#C2A267]'
-                : 'text-stone-500 hover:text-stone-900 dark:hover:text-stone-100'
+                ? 'bg-[#682626] text-amber-50 shadow-md shadow-[#682626]/20 ring-1 ring-[#8A6328]/40 dark:bg-[#C2A267] dark:text-[#1B1A18] dark:shadow-[#C2A267]/20 font-bold scale-[1.02]'
+                : 'text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-[var(--bg-subtle)]/70 dark:hover:bg-[var(--bg-subtle)]'
             }`}
           >
             <Brain className="w-4 h-4" />
@@ -50,10 +50,10 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
 
           <button
             onClick={() => setActiveSubTab('quiz')}
-            className={`pb-3 transition-colors flex items-center gap-2 ${
+            className={`px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition-all duration-200 ${
               activeSubTab === 'quiz'
-                ? 'border-b-2 border-[#682626] dark:border-[#C2A267] text-[#682626] dark:text-[#C2A267]'
-                : 'text-stone-500 hover:text-stone-900 dark:hover:text-stone-100'
+                ? 'bg-[#682626] text-amber-50 shadow-md shadow-[#682626]/20 ring-1 ring-[#8A6328]/40 dark:bg-[#C2A267] dark:text-[#1B1A18] dark:shadow-[#C2A267]/20 font-bold scale-[1.02]'
+                : 'text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-[var(--bg-subtle)]/70 dark:hover:bg-[var(--bg-subtle)]'
             }`}
           >
             <Award className="w-4 h-4" />
@@ -62,10 +62,10 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
 
           <button
             onClick={() => setActiveSubTab('recall')}
-            className={`pb-3 transition-colors flex items-center gap-2 ${
+            className={`px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition-all duration-200 ${
               activeSubTab === 'recall'
-                ? 'border-b-2 border-[#682626] dark:border-[#C2A267] text-[#682626] dark:text-[#C2A267]'
-                : 'text-stone-500 hover:text-stone-900 dark:hover:text-stone-100'
+                ? 'bg-[#682626] text-amber-50 shadow-md shadow-[#682626]/20 ring-1 ring-[#8A6328]/40 dark:bg-[#C2A267] dark:text-[#1B1A18] dark:shadow-[#C2A267]/20 font-bold scale-[1.02]'
+                : 'text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-[var(--bg-subtle)]/70 dark:hover:bg-[var(--bg-subtle)]'
             }`}
           >
             <Edit3 className="w-4 h-4" />
@@ -74,10 +74,10 @@ export const PracticeHub: React.FC<PracticeHubProps> = ({
 
           <button
             onClick={() => setActiveSubTab('glossary')}
-            className={`pb-3 transition-colors flex items-center gap-2 ${
+            className={`px-4 py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition-all duration-200 ${
               activeSubTab === 'glossary'
-                ? 'border-b-2 border-[#682626] dark:border-[#C2A267] text-[#682626] dark:text-[#C2A267]'
-                : 'text-stone-500 hover:text-stone-900 dark:hover:text-stone-100'
+                ? 'bg-[#682626] text-amber-50 shadow-md shadow-[#682626]/20 ring-1 ring-[#8A6328]/40 dark:bg-[#C2A267] dark:text-[#1B1A18] dark:shadow-[#C2A267]/20 font-bold scale-[1.02]'
+                : 'text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-[var(--bg-subtle)]/70 dark:hover:bg-[var(--bg-subtle)]'
             }`}
           >
             <Bookmark className="w-4 h-4" />

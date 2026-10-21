@@ -46,7 +46,7 @@ export const ActiveRecallModule: React.FC<ActiveRecallModuleProps> = ({
   return (
     <div className="max-w-4xl mx-auto px-4 py-8 space-y-6">
       {/* Header */}
-      <div className="border-b border-[#DFD7CA] dark:border-[#383530] pb-5">
+      <div className="border-b border-[var(--border-color)] dark:border-[var(--border-color)] pb-5">
         <span className="text-xs uppercase tracking-wider font-semibold text-[#8A6328] dark:text-[#C2A267]">
           Phương pháp học chủ động (Active Recall)
         </span>
@@ -59,7 +59,7 @@ export const ActiveRecallModule: React.FC<ActiveRecallModuleProps> = ({
       </div>
 
       {/* Item Card */}
-      <div className="p-6 sm:p-8 bg-[#FAF7F0] dark:bg-[#23221F] rounded-2xl border border-[#DFD7CA] dark:border-[#383530] shadow-sm space-y-6">
+      <div className="p-6 sm:p-8 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-2xl border border-[var(--border-color)] dark:border-[var(--border-color)] shadow-sm space-y-6">
         <div className="flex items-center justify-between text-xs text-stone-500">
           <span>Câu hỏi {currentIndex + 1} / {ACTIVE_RECALL_ITEMS.length}</span>
           <span className="text-stone-700 dark:text-stone-300 font-semibold">{currentItem.context}</span>
@@ -83,7 +83,7 @@ export const ActiveRecallModule: React.FC<ActiveRecallModuleProps> = ({
             disabled={isRevealed}
             placeholder="Hãy tự trình bày lập luận theo suy nghĩ của bạn: bắt đầu từ đâu, cơ chế ra sao, kết luận thế nào..."
             rows={5}
-            className="w-full p-4 rounded-xl border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0]/60 dark:bg-[#282723] text-stone-900 dark:text-stone-100 text-xs sm:text-sm leading-relaxed focus:outline-hidden focus:ring-2 focus:ring-[#682626] dark:focus:ring-[#C2A267]"
+            className="w-full p-4 rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)]/60 dark:bg-[var(--bg-surface)] text-stone-900 dark:text-stone-100 text-xs sm:text-sm leading-relaxed focus:outline-hidden focus:ring-2 focus:ring-[#682626] dark:focus:ring-[#C2A267]"
           />
         </div>
 
@@ -100,7 +100,7 @@ export const ActiveRecallModule: React.FC<ActiveRecallModuleProps> = ({
           </div>
         ) : (
           /* Revealed Model Answer and Rubric */
-          <div className="space-y-6 pt-4 border-t border-[#DFD7CA] dark:border-[#383530] animate-in fade-in duration-200">
+          <div className="space-y-6 pt-4 border-t border-[var(--border-color)] dark:border-[var(--border-color)] animate-in fade-in duration-200">
             {/* Model Answer Box */}
             <div className="p-5 rounded-xl border border-[#682626]/25 dark:border-[#C2A267]/35 bg-[#682626]/5 dark:bg-[#C2A267]/10 space-y-2">
               <span className="text-xs uppercase tracking-wider font-bold text-[#682626] dark:text-[#C2A267] block">
@@ -120,7 +120,7 @@ export const ActiveRecallModule: React.FC<ActiveRecallModuleProps> = ({
                 {currentItem.criteria.map((cr, i) => (
                   <div
                     key={i}
-                    className="p-3 bg-[#EFE8DD]/70 dark:bg-[#2A2824] rounded-lg border border-[#DFD7CA] dark:border-[#383530] flex items-start gap-2 text-xs text-stone-700 dark:text-stone-300"
+                    className="p-3 bg-[var(--bg-subtle)]/70 dark:bg-[var(--bg-subtle)] rounded-lg border border-[var(--border-color)] dark:border-[var(--border-color)] flex items-start gap-2 text-xs text-stone-700 dark:text-stone-300"
                   >
                     <Check className="w-4 h-4 text-[#2D5A34] dark:text-[#88B88E] shrink-0 mt-0.5" />
                     <span>{cr}</span>
@@ -130,7 +130,7 @@ export const ActiveRecallModule: React.FC<ActiveRecallModuleProps> = ({
             </div>
 
             {/* Self Rating Bar */}
-            <div className="p-4 bg-[#EFE8DD]/60 dark:bg-[#2A2824]/80 rounded-xl border border-[#DFD7CA] dark:border-[#383530] space-y-3">
+            <div className="p-4 bg-[var(--bg-subtle)]/60 dark:bg-[var(--bg-subtle)]/80 rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] space-y-3">
               <span className="text-xs font-semibold text-stone-800 dark:text-stone-200 block text-center">
                 Bạn tự đánh giá mức độ hiểu của mình sau khi đối chiếu:
               </span>
@@ -140,7 +140,7 @@ export const ActiveRecallModule: React.FC<ActiveRecallModuleProps> = ({
                   className={`px-4 py-2 rounded-lg text-xs font-semibold border transition-all ${
                     selfRating === 'poor'
                       ? 'bg-[#8A3333] text-white border-[#8A3333]'
-                      : 'bg-[#FAF7F0] dark:bg-[#252420] border-[#DFD7CA] dark:border-[#383530] text-stone-700 dark:text-stone-300 hover:bg-[#8A3333]/10'
+                      : 'bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)] border-[var(--border-color)] dark:border-[var(--border-color)] text-stone-700 dark:text-stone-300 hover:bg-[#8A3333]/10'
                   }`}
                 >
                   Còn thiếu sót nhiều (Cần đọc lại)
@@ -150,7 +150,7 @@ export const ActiveRecallModule: React.FC<ActiveRecallModuleProps> = ({
                   className={`px-4 py-2 rounded-lg text-xs font-semibold border transition-all ${
                     selfRating === 'medium'
                       ? 'bg-[#8A6328] text-white border-[#8A6328]'
-                      : 'bg-[#FAF7F0] dark:bg-[#252420] border-[#DFD7CA] dark:border-[#383530] text-stone-700 dark:text-stone-300 hover:bg-[#8A6328]/10'
+                      : 'bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)] border-[var(--border-color)] dark:border-[var(--border-color)] text-stone-700 dark:text-stone-300 hover:bg-[#8A6328]/10'
                   }`}
                 >
                   Hiểu được 60 - 70% ý chính
@@ -160,7 +160,7 @@ export const ActiveRecallModule: React.FC<ActiveRecallModuleProps> = ({
                   className={`px-4 py-2 rounded-lg text-xs font-semibold border transition-all ${
                     selfRating === 'good'
                       ? 'bg-[#2D5A34] text-white border-[#2D5A34]'
-                      : 'bg-[#FAF7F0] dark:bg-[#252420] border-[#DFD7CA] dark:border-[#383530] text-stone-700 dark:text-stone-300 hover:bg-[#2D5A34]/10'
+                      : 'bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)] border-[var(--border-color)] dark:border-[var(--border-color)] text-stone-700 dark:text-stone-300 hover:bg-[#2D5A34]/10'
                   }`}
                 >
                   Hiểu rất vững và đầy đủ

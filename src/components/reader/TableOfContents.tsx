@@ -24,9 +24,9 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
   const progressPercent = Math.round((completedCount / totalSections) * 100);
 
   return (
-    <aside className="w-full h-full flex flex-col bg-[#EFE9DF]/80 dark:bg-[#1F1E1B]/80 border-r border-[#DFD7CA] dark:border-[#383530]">
+    <aside className="w-full h-full flex flex-col bg-[var(--bg-sidebar)]/80 dark:bg-[var(--bg-sidebar)]/80 border-r border-[var(--border-color)] dark:border-[var(--border-color)]">
       {/* Book & Chapter Header */}
-      <div className="p-4 border-b border-[#DFD7CA] dark:border-[#383530]">
+      <div className="p-4 border-b border-[var(--border-color)] dark:border-[var(--border-color)]">
         <div className="text-[11px] uppercase tracking-wider font-semibold text-[#8A6328] dark:text-[#C2A267]">
           {CHAPTER_INFO.course}
         </div>
@@ -42,7 +42,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
               {completedCount}/{totalSections} bài ({progressPercent}%)
             </span>
           </div>
-          <div className="h-1.5 w-full bg-[#DFD7CA] dark:bg-[#33302B] rounded-full overflow-hidden">
+          <div className="h-1.5 w-full bg-[var(--border-color)] dark:bg-[var(--border-color)] rounded-full overflow-hidden">
             <div
               style={{ width: `${progressPercent}%` }}
               className="h-full bg-[#682626] dark:bg-[#C2A267] transition-all duration-300"
@@ -63,8 +63,8 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
               key={sec.id}
               className={`group flex items-start justify-between p-2.5 rounded-lg text-xs transition-all ${
                 isActive
-                  ? 'bg-[#FAF7F0] dark:bg-[#282723] text-stone-900 dark:text-stone-100 font-semibold shadow-xs border border-[#DFD7CA] dark:border-[#383530]'
-                  : 'text-stone-700 dark:text-stone-300 hover:bg-[#FAF7F0]/60 dark:hover:bg-[#252420]/60'
+                  ? 'bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] text-stone-900 dark:text-stone-100 font-semibold shadow-xs border border-[var(--border-color)] dark:border-[var(--border-color)]'
+                  : 'text-stone-700 dark:text-stone-300 hover:bg-[var(--bg-surface)]/60 dark:hover:bg-[var(--bg-subtle)]/60'
               }`}
             >
               <button

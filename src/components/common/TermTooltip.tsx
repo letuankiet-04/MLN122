@@ -128,10 +128,10 @@ export const TermTooltip: React.FC<TermTooltipProps> = ({
             left: `${coords.left}px`,
             transform: coords.placeAbove ? 'translateY(-100%)' : 'none',
           }}
-          className="fixed z-50 w-80 max-w-[calc(100vw-32px)] p-4 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530] shadow-xl animate-in fade-in zoom-in-95 duration-150 text-left font-sans text-xs space-y-2.5 backdrop-blur-xs select-text"
+          className="fixed z-50 w-80 max-w-[calc(100vw-32px)] p-4 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] shadow-xl animate-in fade-in zoom-in-95 duration-150 text-left font-sans text-xs space-y-2.5 backdrop-blur-xs select-text"
         >
           {/* Header */}
-          <div className="flex items-start justify-between gap-2 border-b border-[#DFD7CA] dark:border-[#383530] pb-2">
+          <div className="flex items-start justify-between gap-2 border-b border-[var(--border-color)] dark:border-[var(--border-color)] pb-2">
             <div>
               <div className="flex items-center gap-1.5">
                 <Bookmark className="w-3.5 h-3.5 text-[#682626] dark:text-[#C2A267] fill-current" />
@@ -156,7 +156,7 @@ export const TermTooltip: React.FC<TermTooltipProps> = ({
           </div>
 
           {/* Academic Definition */}
-          <p className="font-serif text-xs text-stone-800 dark:text-stone-200 leading-relaxed italic bg-[#EFE8DD]/70 dark:bg-[#2C2A26] p-2.5 rounded-lg border border-[#DFD7CA] dark:border-[#383530]">
+          <p className="font-serif text-xs text-stone-800 dark:text-stone-200 leading-relaxed italic bg-[var(--bg-subtle)]/70 dark:bg-[var(--bg-subtle)] p-2.5 rounded-lg border border-[var(--border-color)] dark:border-[var(--border-color)]">
             &quot;{term.definition}&quot;
           </p>
 
@@ -176,7 +176,7 @@ export const TermTooltip: React.FC<TermTooltipProps> = ({
 
           {/* Direct link to related section */}
           {onNavigateToSection && term.relatedSectionId && (
-            <div className="pt-2 border-t border-[#DFD7CA] dark:border-[#383530] flex justify-between items-center">
+            <div className="pt-2 border-t border-[var(--border-color)] dark:border-[var(--border-color)] flex justify-between items-center">
               <span className="text-[10px] text-stone-500 dark:text-stone-400">
                 Mục {term.relatedSectionId} trong sách
               </span>

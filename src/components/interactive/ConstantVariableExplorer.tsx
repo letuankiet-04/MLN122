@@ -40,7 +40,7 @@ export const ConstantVariableExplorer: React.FC = () => {
   const curr = partDetails[activePart];
 
   return (
-    <div className="my-8 p-6 bg-[#FAF6EE] dark:bg-[#1E1D1A] rounded-xl border border-[#E2DACD] dark:border-[#383632] shadow-xs">
+    <div className="my-8 p-6 bg-[var(--bg-surface)] dark:bg-[var(--bg-page)] rounded-xl border border-[#E2DACD] dark:border-[#383632] shadow-xs">
       <div className="border-b border-[#E2DACD] dark:border-[#383632] pb-4">
         <span className="text-xs uppercase tracking-wider font-semibold text-[#A67C37] dark:text-[#C99E52]">
           Cơ cấu giá trị hàng hóa
@@ -96,7 +96,7 @@ export const ConstantVariableExplorer: React.FC = () => {
       </div>
 
       {/* Inspected Component Detail Card */}
-      <div className="p-5 bg-[#F4EFE6]/80 dark:bg-stone-800/40 rounded-xl border border-[#DFD5C4] dark:border-stone-700">
+      <div className="p-5 bg-[var(--bg-page)]/80 dark:bg-stone-800/40 rounded-xl border border-[#DFD5C4] dark:border-stone-700">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
           <div className="flex items-center gap-2">
             <span className={`w-3.5 h-3.5 rounded-full ${curr.color}`} />
@@ -108,11 +108,11 @@ export const ConstantVariableExplorer: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-          <div className="p-3 bg-[#FAF6EE] dark:bg-stone-900 rounded-lg border border-[#E2DACD] dark:border-stone-800">
+          <div className="p-3 bg-[var(--bg-surface)] dark:bg-stone-900 rounded-lg border border-[#E2DACD] dark:border-stone-800">
             <span className="text-[11px] text-stone-400 block mb-1">Hình thái tồn tại</span>
             <p className="text-stone-700 dark:text-stone-300">{curr.nature}</p>
           </div>
-          <div className="p-3 bg-[#FAF6EE] dark:bg-stone-900 rounded-lg border border-[#E2DACD] dark:border-stone-800">
+          <div className="p-3 bg-[var(--bg-surface)] dark:bg-stone-900 rounded-lg border border-[#E2DACD] dark:border-stone-800">
             <span className="text-[11px] text-stone-400 block mb-1">Vai trò trong sản xuất giá trị thặng dư</span>
             <p className="text-stone-700 dark:text-stone-300">{curr.role}</p>
           </div>

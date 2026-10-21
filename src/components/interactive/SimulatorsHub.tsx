@@ -32,7 +32,7 @@ export const SimulatorsHub: React.FC<SimulatorsHubProps> = ({ onNavigateToSectio
   return (
     <div className="max-w-5xl mx-auto px-4 py-8 space-y-6">
       {/* Header */}
-      <div className="border-b border-[#DFD7CA] dark:border-[#383530] pb-5">
+      <div className="border-b border-[var(--border-color)] dark:border-[var(--border-color)] pb-5">
         <span className="text-xs uppercase tracking-wider font-semibold text-[#8A6328] dark:text-[#C2A267]">
           Phòng thí nghiệm kinh tế chính trị tương tác
         </span>
@@ -45,7 +45,7 @@ export const SimulatorsHub: React.FC<SimulatorsHubProps> = ({ onNavigateToSectio
       </div>
 
       {/* Tabs Bar */}
-      <div className="flex flex-wrap gap-2">
+      <div className="p-1.5 rounded-2xl bg-[var(--bg-surface)]/80 dark:bg-[var(--bg-page)]/80 backdrop-blur-md border border-[var(--border-color)] dark:border-[var(--border-color)] shadow-sm flex flex-wrap gap-1.5">
         {tabs.map((t) => {
           const Icon = t.icon;
           const isActive = activeSim === t.id;
@@ -54,13 +54,13 @@ export const SimulatorsHub: React.FC<SimulatorsHubProps> = ({ onNavigateToSectio
             <button
               key={t.id}
               onClick={() => setActiveSim(t.id as any)}
-              className={`px-3.5 py-2 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all whitespace-nowrap ${
+              className={`px-3 py-2 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all duration-200 whitespace-nowrap ${
                 isActive
-                  ? 'bg-[#682626] text-[#FAF7F0] shadow-xs dark:bg-[#C2A267] dark:text-[#1B1A18]'
-                  : 'bg-[#FAF7F0] dark:bg-[#23221F] border border-[#DFD7CA] dark:border-[#383530] text-stone-700 dark:text-stone-300 hover:bg-[#EFE8DD]'
+                  ? 'bg-[#682626] text-amber-50 shadow-md shadow-[#682626]/20 ring-1 ring-[#8A6328]/40 dark:bg-[#C2A267] dark:text-[#1B1A18] dark:shadow-[#C2A267]/20 font-bold scale-[1.02]'
+                  : 'text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 hover:bg-[var(--bg-subtle)]/70 dark:hover:bg-[var(--bg-subtle)]'
               }`}
             >
-              <Icon className="w-3.5 h-3.5" />
+              <Icon className={`w-3.5 h-3.5 transition-transform duration-200 ${isActive ? 'scale-110 text-amber-300 dark:text-[#1B1A18]' : ''}`} />
               <span>{t.label}</span>
             </button>
           );

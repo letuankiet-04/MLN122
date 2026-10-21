@@ -8,7 +8,7 @@ export const SurplusValueMethodsSimulator: React.FC = () => {
   const [isRelativeOptimized, setIsRelativeOptimized] = useState<boolean>(true);
 
   return (
-    <div className="my-8 p-6 bg-[#FAF6EE] dark:bg-[#1E1D1A] rounded-xl border border-[#E2DACD] dark:border-[#383632] shadow-xs">
+    <div className="my-8 p-6 bg-[var(--bg-surface)] dark:bg-[var(--bg-page)] rounded-xl border border-[#E2DACD] dark:border-[#383632] shadow-xs">
       <div className="border-b border-[#E2DACD] dark:border-[#383632] pb-4">
         <span className="text-xs uppercase tracking-wider font-semibold text-[#A67C37] dark:text-[#C99E52]">
           Mô phỏng cơ chế bóc lột
@@ -28,7 +28,7 @@ export const SurplusValueMethodsSimulator: React.FC = () => {
           className={`flex-1 py-2 px-3 text-xs font-semibold rounded-lg border transition-all ${
             activeMethod === 'absolute'
               ? 'border-[#742424] dark:border-[#C99E52] bg-[#742424]/10 dark:bg-[#C99E52]/15 text-[#742424] dark:text-[#C99E52]'
-              : 'border-[#E2DACD] dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-[#F4EFE6]'
+              : 'border-[#E2DACD] dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-[var(--bg-page)]'
           }`}
         >
           1. Thặng dư Tuyệt đối (Kéo dài giờ làm)
@@ -38,7 +38,7 @@ export const SurplusValueMethodsSimulator: React.FC = () => {
           className={`flex-1 py-2 px-3 text-xs font-semibold rounded-lg border transition-all ${
             activeMethod === 'relative'
               ? 'border-[#742424] dark:border-[#C99E52] bg-[#742424]/10 dark:bg-[#C99E52]/15 text-[#742424] dark:text-[#C99E52]'
-              : 'border-[#E2DACD] dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-[#F4EFE6]'
+              : 'border-[#E2DACD] dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-[var(--bg-page)]'
           }`}
         >
           2. Thặng dư Tương đối (Tăng NSLĐ)
@@ -48,7 +48,7 @@ export const SurplusValueMethodsSimulator: React.FC = () => {
           className={`flex-1 py-2 px-3 text-xs font-semibold rounded-lg border transition-all ${
             activeMethod === 'extraordinary'
               ? 'border-[#742424] dark:border-[#C99E52] bg-[#742424]/10 dark:bg-[#C99E52]/15 text-[#742424] dark:text-[#C99E52]'
-              : 'border-[#E2DACD] dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-[#F4EFE6]'
+              : 'border-[#E2DACD] dark:border-stone-700 text-stone-600 dark:text-stone-400 hover:bg-[var(--bg-page)]'
           }`}
         >
           3. Thặng dư Siêu ngạch (Kỹ thuật cá biệt)
@@ -111,7 +111,7 @@ export const SurplusValueMethodsSimulator: React.FC = () => {
             )}
           </div>
 
-          <div className="p-4 bg-[#F4EFE6]/80 dark:bg-stone-800/40 rounded-xl border border-[#DFD5C4] dark:border-stone-700 text-xs text-stone-700 dark:text-stone-300 space-y-2">
+          <div className="p-4 bg-[var(--bg-page)]/80 dark:bg-stone-800/40 rounded-xl border border-[#DFD5C4] dark:border-stone-700 text-xs text-stone-700 dark:text-stone-300 space-y-2">
             <h4 className="font-serif font-bold text-stone-900 dark:text-stone-100">
               Nhận định học thuật quan trọng:
             </h4>

@@ -48,8 +48,8 @@ export const SurplusValueCalculator: React.FC = () => {
   };
 
   return (
-    <div className="my-8 p-6 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530] shadow-xs">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#DFD7CA] dark:border-[#383530] pb-4">
+    <div className="my-8 p-6 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] shadow-xs">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[var(--border-color)] dark:border-[var(--border-color)] pb-4">
         <div>
           <span className="text-xs uppercase tracking-wider font-semibold text-[#8A6328] dark:text-[#C2A267]">
             Công cụ học tập & tính toán
@@ -68,19 +68,19 @@ export const SurplusValueCalculator: React.FC = () => {
           <span className="text-[11px] text-stone-500 mr-1">Mẫu giáo trình:</span>
           <button
             onClick={() => loadPreset('cotton')}
-            className="px-2.5 py-1 text-xs rounded bg-[#EFE8DD] dark:bg-[#2A2824] hover:bg-[#E8E0D2] text-stone-700 dark:text-stone-300"
+            className="px-2.5 py-1 text-xs rounded bg-[var(--bg-subtle)] dark:bg-[var(--bg-subtle)] hover:bg-[var(--bg-subtle)] text-stone-700 dark:text-stone-300"
           >
             Kéo sợi (100%)
           </button>
           <button
             onClick={() => loadPreset('absolute')}
-            className="px-2.5 py-1 text-xs rounded bg-[#EFE8DD] dark:bg-[#2A2824] hover:bg-[#E8E0D2] text-stone-700 dark:text-stone-300"
+            className="px-2.5 py-1 text-xs rounded bg-[var(--bg-subtle)] dark:bg-[var(--bg-subtle)] hover:bg-[var(--bg-subtle)] text-stone-700 dark:text-stone-300"
           >
             Tuyệt đối (150%)
           </button>
           <button
             onClick={() => loadPreset('relative')}
-            className="px-2.5 py-1 text-xs rounded bg-[#EFE8DD] dark:bg-[#2A2824] hover:bg-[#E8E0D2] text-stone-700 dark:text-stone-300"
+            className="px-2.5 py-1 text-xs rounded bg-[var(--bg-subtle)] dark:bg-[var(--bg-subtle)] hover:bg-[var(--bg-subtle)] text-stone-700 dark:text-stone-300"
           >
             Tương đối (300%)
           </button>
@@ -90,7 +90,7 @@ export const SurplusValueCalculator: React.FC = () => {
       {/* Input Form Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
         {/* Method 1 Inputs: By Value */}
-        <div className="p-4 bg-[#EFE8DD]/50 dark:bg-[#2A2824]/40 rounded-xl border border-[#DFD7CA] dark:border-[#383530]">
+        <div className="p-4 bg-[var(--bg-subtle)]/50 dark:bg-[var(--bg-subtle)]/40 rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)]">
           <div className="flex items-center justify-between mb-3">
             <h4 className="font-serif font-bold text-xs text-stone-900 dark:text-stone-100">
               Phương pháp 1: Tính theo Giá trị (m & v)
@@ -109,7 +109,7 @@ export const SurplusValueCalculator: React.FC = () => {
                 step="1"
                 value={m}
                 onChange={(e) => setM(Math.max(0, Number(e.target.value)))}
-                className="w-full px-3 py-1.5 rounded-lg border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#23221F] text-stone-900 dark:text-stone-100 font-mono text-sm"
+                className="w-full px-3 py-1.5 rounded-lg border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] text-stone-900 dark:text-stone-100 font-mono text-sm"
               />
             </div>
 
@@ -123,14 +123,14 @@ export const SurplusValueCalculator: React.FC = () => {
                 step="1"
                 value={v}
                 onChange={(e) => setV(Math.max(1, Number(e.target.value)))}
-                className="w-full px-3 py-1.5 rounded-lg border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#23221F] text-stone-900 dark:text-stone-100 font-mono text-sm"
+                className="w-full px-3 py-1.5 rounded-lg border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] text-stone-900 dark:text-stone-100 font-mono text-sm"
               />
             </div>
           </div>
         </div>
 
         {/* Method 2 Inputs: By Time */}
-        <div className="p-4 bg-[#EFE8DD]/50 dark:bg-[#2A2824]/40 rounded-xl border border-[#DFD7CA] dark:border-[#383530]">
+        <div className="p-4 bg-[var(--bg-subtle)]/50 dark:bg-[var(--bg-subtle)]/40 rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)]">
           <div className="flex items-center justify-between mb-3">
             <h4 className="font-serif font-bold text-xs text-stone-900 dark:text-stone-100">
               Phương pháp 2: Tính theo Thời gian (t & t′)
@@ -149,7 +149,7 @@ export const SurplusValueCalculator: React.FC = () => {
                 step="0.5"
                 value={t}
                 onChange={(e) => setT(Math.max(0.1, Number(e.target.value)))}
-                className="w-full px-3 py-1.5 rounded-lg border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#23221F] text-stone-900 dark:text-stone-100 font-mono text-sm"
+                className="w-full px-3 py-1.5 rounded-lg border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] text-stone-900 dark:text-stone-100 font-mono text-sm"
               />
             </div>
 
@@ -163,7 +163,7 @@ export const SurplusValueCalculator: React.FC = () => {
                 step="0.5"
                 value={tPrime}
                 onChange={(e) => setTPrime(Math.max(0, Number(e.target.value)))}
-                className="w-full px-3 py-1.5 rounded-lg border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#23221F] text-stone-900 dark:text-stone-100 font-mono text-sm"
+                className="w-full px-3 py-1.5 rounded-lg border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] text-stone-900 dark:text-stone-100 font-mono text-sm"
               />
             </div>
           </div>
@@ -171,7 +171,7 @@ export const SurplusValueCalculator: React.FC = () => {
       </div>
 
       {/* Aggregate V input */}
-      <div className="p-4 bg-[#EFE8DD]/40 dark:bg-[#2A2824]/30 rounded-xl border border-[#DFD7CA] dark:border-[#383530] mb-6">
+      <div className="p-4 bg-[var(--bg-subtle)]/40 dark:bg-[var(--bg-subtle)]/30 rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] mb-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
           <div>
             <label className="font-semibold text-stone-900 dark:text-stone-100 block">
@@ -187,7 +187,7 @@ export const SurplusValueCalculator: React.FC = () => {
             step="100"
             value={VTotal}
             onChange={(e) => setVTotal(Math.max(0, Number(e.target.value)))}
-            className="w-48 px-3 py-1.5 rounded-lg border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#23221F] text-stone-900 dark:text-stone-100 font-mono text-sm"
+            className="w-48 px-3 py-1.5 rounded-lg border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] text-stone-900 dark:text-stone-100 font-mono text-sm"
           />
         </div>
       </div>
@@ -195,7 +195,7 @@ export const SurplusValueCalculator: React.FC = () => {
       {/* Results Deck */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Result 1 */}
-        <div className="p-4 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530]">
+        <div className="p-4 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)]">
           <span className="text-[11px] text-stone-500 block">m′ theo Giá trị (m/v)</span>
           <div className="text-2xl font-serif font-bold text-[#682626] dark:text-[#C2A267] my-1 tabular-nums">
             {mRateByValue !== null ? `${mRateByValue.toFixed(1)}%` : 'Lỗi (v = 0)'}
@@ -206,7 +206,7 @@ export const SurplusValueCalculator: React.FC = () => {
         </div>
 
         {/* Result 2 */}
-        <div className="p-4 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530]">
+        <div className="p-4 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)]">
           <span className="text-[11px] text-stone-500 block">m′ theo Thời gian (t′/t)</span>
           <div className="text-2xl font-serif font-bold text-[#682626] dark:text-[#C2A267] my-1 tabular-nums">
             {mRateByTime !== null ? `${mRateByTime.toFixed(1)}%` : 'Lỗi (t = 0)'}
@@ -217,7 +217,7 @@ export const SurplusValueCalculator: React.FC = () => {
         </div>
 
         {/* Result 3 */}
-        <div className="p-4 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530]">
+        <div className="p-4 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)]">
           <span className="text-[11px] text-stone-500 block">Khối lượng thặng dư (M)</span>
           <div className="text-2xl font-serif font-bold text-[#8A6328] dark:text-[#C2A267] my-1 tabular-nums">
             {massM.toLocaleString('en-US', { maximumFractionDigits: 1 })} USD

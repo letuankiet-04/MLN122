@@ -89,9 +89,9 @@ export const MindMapExplorer: React.FC<MindMapExplorerProps> = ({ onNavigateToSe
   };
 
   return (
-    <div className="my-8 p-6 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530] shadow-xs">
+    <div className="my-8 p-6 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] shadow-xs">
       {/* Header and Controls */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#DFD7CA] dark:border-[#383530] pb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[var(--border-color)] dark:border-[var(--border-color)] pb-4">
         <div>
           <span className="text-xs uppercase tracking-wider font-semibold text-[#8A6328] dark:text-[#C2A267]">
             Bản đồ tri thức tương tác
@@ -114,31 +114,31 @@ export const MindMapExplorer: React.FC<MindMapExplorerProps> = ({ onNavigateToSe
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Lọc nhánh bản đồ..."
-              className="pl-8 pr-3 py-1 text-xs rounded-md border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#252420] text-stone-800 dark:text-stone-200 w-40 focus:w-52 transition-all"
+              className="pl-8 pr-3 py-1 text-xs rounded-md border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)] text-stone-800 dark:text-stone-200 w-40 focus:w-52 transition-all"
             />
           </div>
 
-          <div className="flex items-center border border-[#DFD7CA] dark:border-[#383530] rounded-md overflow-hidden bg-[#FAF7F0] dark:bg-[#252420]">
+          <div className="flex items-center border border-[var(--border-color)] dark:border-[var(--border-color)] rounded-md overflow-hidden bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)]">
             <button
               onClick={() => setZoom(z => Math.max(0.7, z - 0.1))}
-              className="p-1.5 hover:bg-[#EFE8DD] dark:hover:bg-[#2A2824] text-stone-600 dark:text-stone-300"
+              className="p-1.5 hover:bg-[var(--bg-subtle)] dark:hover:bg-[var(--bg-subtle)] text-stone-600 dark:text-stone-300"
               title="Thu nhỏ"
             >
               <ZoomOut className="w-3.5 h-3.5" />
             </button>
-            <span className="px-2 text-[11px] font-mono text-stone-600 dark:text-stone-400 border-x border-[#DFD7CA] dark:border-[#383530]">
+            <span className="px-2 text-[11px] font-mono text-stone-600 dark:text-stone-400 border-x border-[var(--border-color)] dark:border-[var(--border-color)]">
               {Math.round(zoom * 100)}%
             </span>
             <button
               onClick={() => setZoom(z => Math.min(1.4, z + 0.1))}
-              className="p-1.5 hover:bg-[#EFE8DD] dark:hover:bg-[#2A2824] text-stone-600 dark:text-stone-300"
+              className="p-1.5 hover:bg-[var(--bg-subtle)] dark:hover:bg-[var(--bg-subtle)] text-stone-600 dark:text-stone-300"
               title="Phóng to"
             >
               <ZoomIn className="w-3.5 h-3.5" />
             </button>
             <button
               onClick={() => setZoom(1)}
-              className="p-1.5 hover:bg-[#EFE8DD] dark:hover:bg-[#2A2824] text-stone-600 dark:text-stone-300"
+              className="p-1.5 hover:bg-[var(--bg-subtle)] dark:hover:bg-[var(--bg-subtle)] text-stone-600 dark:text-stone-300"
               title="Khôi phục zoom"
             >
               <RotateCcw className="w-3.5 h-3.5" />
@@ -148,7 +148,7 @@ export const MindMapExplorer: React.FC<MindMapExplorerProps> = ({ onNavigateToSe
       </div>
 
       {/* Main Interactive Visual Canvas */}
-      <div className="my-6 overflow-x-auto p-4 bg-[#EFE8DD]/40 dark:bg-[#2A2824]/40 rounded-xl border border-[#DFD7CA] dark:border-[#383530] min-h-[420px]">
+      <div className="my-6 overflow-x-auto p-4 bg-[var(--bg-subtle)]/40 dark:bg-[var(--bg-subtle)]/40 rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] min-h-[420px]">
         <div
           style={{ transform: `scale(${zoom})`, transformOrigin: 'top left' }}
           className="transition-transform duration-150 min-w-[760px] space-y-6"
@@ -174,8 +174,8 @@ export const MindMapExplorer: React.FC<MindMapExplorerProps> = ({ onNavigateToSe
                   onClick={() => setSelectedNode(branch)}
                   className={`cursor-pointer p-3 rounded-xl border text-left transition-all ${
                     selectedNode?.id === branch.id
-                      ? 'border-[#682626] dark:border-[#C2A267] bg-[#FAF7F0] dark:bg-[#252420] shadow-xs'
-                      : 'border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0]/80 dark:bg-[#23221F]/80 hover:border-[#DFD7CA]'
+                      ? 'border-[#682626] dark:border-[#C2A267] bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)] shadow-xs'
+                      : 'border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)]/80 dark:bg-[var(--bg-surface)]/80 hover:border-[var(--border-color)]'
                   }`}
                 >
                   <div className="font-serif font-bold text-xs text-stone-900 dark:text-stone-100 flex items-center justify-between">
@@ -186,7 +186,7 @@ export const MindMapExplorer: React.FC<MindMapExplorerProps> = ({ onNavigateToSe
                 </div>
 
                 {/* Sub Nodes */}
-                <div className="space-y-2 pl-3 border-l-2 border-[#DFD7CA] dark:border-[#383530]">
+                <div className="space-y-2 pl-3 border-l-2 border-[var(--border-color)] dark:border-[var(--border-color)]">
                   {branch.children?.filter(filterMatches).map((sub) => (
                     <div
                       key={sub.id}
@@ -194,7 +194,7 @@ export const MindMapExplorer: React.FC<MindMapExplorerProps> = ({ onNavigateToSe
                       className={`cursor-pointer p-2.5 rounded-lg border text-xs transition-all ${
                         selectedNode?.id === sub.id
                           ? 'border-[#8A6328] dark:border-[#C2A267] bg-[#8A6328]/10 text-stone-900 dark:text-stone-100 font-semibold'
-                          : 'border-[#DFD7CA]/70 dark:border-[#383530]/80 bg-[#FAF7F0]/60 dark:bg-[#252420]/60 text-stone-700 dark:text-stone-300 hover:bg-[#FAF7F0] dark:hover:bg-[#2A2824]'
+                          : 'border-[var(--border-color)]/70 dark:border-[var(--border-color)]/80 bg-[var(--bg-surface)]/60 dark:bg-[var(--bg-subtle)]/60 text-stone-700 dark:text-stone-300 hover:bg-[var(--bg-surface)] dark:hover:bg-[var(--bg-subtle)]'
                       }`}
                     >
                       <div className="font-serif text-[11px] font-bold">{sub.title}</div>
@@ -210,7 +210,7 @@ export const MindMapExplorer: React.FC<MindMapExplorerProps> = ({ onNavigateToSe
 
       {/* Selected Node Details & Direct Navigation */}
       {selectedNode && (
-        <div className="p-4 bg-[#EFE8DD]/70 dark:bg-[#2A2824]/60 rounded-xl border border-[#DFD7CA] dark:border-[#383530] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="p-4 bg-[var(--bg-subtle)]/70 dark:bg-[var(--bg-subtle)]/60 rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <span className="text-[10px] uppercase tracking-wider text-stone-400 block">Đang chọn nhánh kiến thức</span>
             <h4 className="font-serif font-bold text-sm text-stone-900 dark:text-stone-100">

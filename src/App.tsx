@@ -4,6 +4,7 @@ import {
   Layers, 
   Award, 
   FileText, 
+  StickyNote,
   TrendingUp, 
   PanelLeftClose, 
   PanelLeft, 
@@ -118,21 +119,12 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const themeBgClass =
-    readerSettings.theme === 'dark'
-      ? 'bg-[#1B1A18] text-[#DCD6CA]'
-      : readerSettings.theme === 'sepia'
-      ? 'bg-[#EAE0CE] text-[#342A22]'
-      : readerSettings.theme === 'focus'
-      ? 'bg-[#F5F2EB] text-[#262320]'
-      : 'bg-[#F2ECE1] text-[#2C2723]';
-
   const eyeCareClass = readerSettings.eyeCareMode ? 'eye-care-filter' : '';
 
   return (
     <div
       data-theme={readerSettings.theme}
-      className={`min-h-screen flex flex-col font-sans transition-colors duration-200 ${themeBgClass} ${eyeCareClass}`}
+      className={`min-h-screen flex flex-col bg-[var(--bg-page)] text-[var(--text-primary)] font-sans transition-colors duration-200 ${eyeCareClass}`}
     >
       {/* Top Bar Navigation */}
       <Header
@@ -142,6 +134,7 @@ export default function App() {
         onOpenSettings={() => setIsSettingsOpen(true)}
         streakCount={streakCount}
         readerSettings={readerSettings}
+        onToggleTheme={(nextTheme) => setReaderSettings(prev => ({ ...prev, theme: nextTheme }))}
       />
 
       {/* Main Workspace Area */}
@@ -170,7 +163,7 @@ export default function App() {
                 isLeftSidebarOpen ? 'w-72 sm:w-80' : 'w-0'
               } overflow-hidden hidden md:block`}
             >
-              <div className="w-72 sm:w-80 h-[calc(100vh-3.75rem)] sticky top-15">
+              <div className="w-72 sm:w-80 h-[calc(100vh-4rem)] sticky top-16">
                 <TableOfContents
                   currentSectionId={currentSectionId}
                   onSelectSection={handleNavigateToSection}
@@ -186,7 +179,7 @@ export default function App() {
             <div className="hidden md:block sticky top-20 z-20 h-0">
               <button
                 onClick={() => setIsLeftSidebarOpen(prev => !prev)}
-                className="p-1.5 rounded-r-md border border-l-0 border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#252420] text-stone-600 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-200 shadow-xs transition-colors"
+                className="p-1.5 rounded-r-md border border-l-0 border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)] text-stone-600 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-200 shadow-xs transition-colors"
                 title={isLeftSidebarOpen ? 'Thu gọn mục lục' : 'Mở rộng mục lục'}
               >
                 {isLeftSidebarOpen ? <PanelLeftClose className="w-4 h-4" /> : <PanelLeft className="w-4 h-4" />}
@@ -194,9 +187,9 @@ export default function App() {
             </div>
 
             {/* Center: Textbook Content Reader */}
-            <div className="flex-1 overflow-y-auto min-h-[calc(100vh-3.75rem)]">
+            <div className="flex-1 overflow-y-auto min-h-[calc(100vh-4rem)]">
               {/* Mobile Table of Contents Quick Drawer Selector */}
-              <div className="md:hidden px-4 py-3 bg-[#EFE9DF]/90 dark:bg-[#201F1B]/90 border-b border-[#DFD7CA] dark:border-[#383530] flex items-center justify-between">
+              <div className="md:hidden px-4 py-3 bg-[var(--bg-sidebar)]/90 dark:bg-[#201F1B]/90 border-b border-[var(--border-color)] dark:border-[var(--border-color)] flex items-center justify-between">
                 <div className="text-xs">
                   <span className="text-stone-500 dark:text-stone-400 block text-[10px]">Đang đọc</span>
                   <span className="font-serif font-bold text-stone-900 dark:text-stone-100 truncate max-w-[220px]">
@@ -206,7 +199,7 @@ export default function App() {
                 <select
                   value={currentSectionId}
                   onChange={(e) => handleNavigateToSection(e.target.value)}
-                  className="text-xs p-1.5 rounded border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#252420] text-stone-800 dark:text-stone-200"
+                  className="text-xs p-1.5 rounded border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)] text-stone-800 dark:text-stone-200"
                 >
                   {CHAPTER_SECTIONS.map(s => (
                     <option key={s.id} value={s.id}>
@@ -239,7 +232,7 @@ export default function App() {
             <div className="hidden lg:block sticky top-20 z-20 h-0">
               <button
                 onClick={() => setIsRightSidebarOpen(prev => !prev)}
-                className="p-1.5 rounded-l-md border border-r-0 border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#252420] text-stone-600 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-200 shadow-xs transition-colors"
+                className="p-1.5 rounded-l-md border border-r-0 border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)] text-stone-600 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-200 shadow-xs transition-colors"
                 title={isRightSidebarOpen ? 'Thu gọn sổ tay bên phải' : 'Mở sổ tay bên phải'}
               >
                 {isRightSidebarOpen ? <PanelRightClose className="w-4 h-4" /> : <PanelRight className="w-4 h-4" />}
@@ -252,7 +245,7 @@ export default function App() {
                 isRightSidebarOpen ? 'w-80' : 'w-0'
               } overflow-hidden hidden lg:block`}
             >
-              <div className="w-80 h-[calc(100vh-3.75rem)] sticky top-15">
+              <div className="w-80 h-[calc(100vh-4rem)] sticky top-16">
                 <StudyCompanion
                   currentSectionId={currentSectionId}
                   notes={notes}
@@ -323,7 +316,7 @@ export default function App() {
       </main>
 
       {/* Mobile Bottom Navigation Bar (≤ 15% mobile viewport) */}
-      <nav className="md:hidden sticky bottom-0 z-40 bg-[#FAF7F0] dark:bg-[#23221F] border-t border-[#DFD7CA] dark:border-[#383530] px-2 py-1.5 flex items-center justify-around text-[10px]">
+      <nav className="xl:hidden sticky bottom-0 z-40 bg-[var(--bg-surface)] border-t border-[var(--border-color)] px-1 sm:px-4 py-1.5 flex items-center justify-around text-[10px] shadow-[0_-4px_18px_rgba(52,39,28,0.06)]" aria-label="Điều hướng nhanh">
         <button
           onClick={() => setCurrentTab('reader')}
           className={`flex flex-col items-center gap-0.5 p-1 ${
@@ -359,6 +352,15 @@ export default function App() {
         >
           <Award className="w-4 h-4" />
           <span>Ôn luyện</span>
+        </button>
+        <button
+          onClick={() => setCurrentTab('notes')}
+          className={`flex flex-col items-center gap-0.5 p-1 ${
+            currentTab === 'notes' ? 'text-[#682626] dark:text-[#C2A267] font-bold' : 'text-stone-500 dark:text-stone-400'
+          }`}
+        >
+          <StickyNote className="w-4 h-4" />
+          <span>Sổ tay</span>
         </button>
         <button
           onClick={() => setCurrentTab('dashboard')}

@@ -50,7 +50,7 @@ export const LearningBlock: React.FC<LearningBlockProps> = ({
 
   if (type === 'proposition') {
     return (
-      <div className="my-6 p-5 rounded-xl border border-[#DFD7CA] dark:border-[#383530] bg-[#EFE8DD]/70 dark:bg-[#252420]">
+      <div className="my-6 p-5 rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-subtle)]/70 dark:bg-[var(--bg-subtle)]">
         {title && (
           <h4 className="font-serif font-bold text-sm text-[#682626] dark:text-[#C2A267] mb-2">
             {title}
@@ -79,7 +79,7 @@ export const LearningBlock: React.FC<LearningBlockProps> = ({
 
   if (type === 'example') {
     return (
-      <div className="my-6 p-5 rounded-xl border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#23221F] shadow-xs">
+      <div className="my-6 p-5 rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] shadow-xs">
         <div className="flex items-center gap-2 text-xs font-bold text-stone-900 dark:text-stone-100 uppercase tracking-wide mb-2.5">
           <BookOpen className="w-4 h-4 text-[#967338] dark:text-[#C2A267]" />
           <span>{title || 'Ví dụ minh họa chi tiết'}</span>
@@ -107,7 +107,7 @@ export const LearningBlock: React.FC<LearningBlockProps> = ({
 
   if (type === 'formula') {
     return (
-      <div className="my-6 p-4 rounded-xl border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#23221F] text-center shadow-xs">
+      <div className="my-6 p-4 rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] text-center shadow-xs">
         {title && <span className="text-xs font-semibold text-stone-500 block mb-1">{title}</span>}
         {math && <Formula math={math} block />}
         {content && <p className="text-xs text-stone-600 dark:text-stone-400 mt-2">{content}</p>}
@@ -117,25 +117,25 @@ export const LearningBlock: React.FC<LearningBlockProps> = ({
 
   if (type === 'table' && tableData) {
     return (
-      <div className="my-6 rounded-xl border border-[#DFD7CA] dark:border-[#383530] overflow-hidden shadow-xs">
+      <div className="my-6 rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] overflow-hidden shadow-xs">
         {title && (
-          <div className="px-4 py-3 bg-[#EFE8DD] dark:bg-[#2A2824] border-b border-[#DFD7CA] dark:border-[#383530] font-serif font-bold text-xs sm:text-sm text-stone-900 dark:text-stone-100 flex items-center gap-2">
+          <div className="px-4 py-3 bg-[var(--bg-subtle)] dark:bg-[var(--bg-subtle)] border-b border-[var(--border-color)] dark:border-[var(--border-color)] font-serif font-bold text-xs sm:text-sm text-stone-900 dark:text-stone-100 flex items-center gap-2">
             <Table className="w-4 h-4 text-[#682626] dark:text-[#C2A267]" />
             <span>{title}</span>
           </div>
         )}
         <div className="overflow-x-auto">
           <table className="w-full text-xs text-left">
-            <thead className="bg-[#EAE4D7] dark:bg-[#252320] text-stone-700 dark:text-stone-300 uppercase tracking-wider font-semibold border-b border-[#DFD7CA] dark:border-[#383530]">
+            <thead className="bg-[var(--bg-sidebar)] dark:bg-[#252320] text-stone-700 dark:text-stone-300 uppercase tracking-wider font-semibold border-b border-[var(--border-color)] dark:border-[var(--border-color)]">
               <tr>
                 {tableData.headers.map((h, i) => (
                   <th key={i} className="px-4 py-3 whitespace-nowrap">{h}</th>
                 ))}
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#DFD7CA]/60 dark:divide-[#383530]/60 bg-[#FAF7F0] dark:bg-[#23221F]">
+            <tbody className="divide-y divide-[var(--border-color)]/60 dark:divide-[var(--border-color)]/60 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)]">
               {tableData.rows.map((row, rIdx) => (
-                <tr key={rIdx} className="hover:bg-[#EFE8DD]/50 dark:hover:bg-[#2A2824]/50 transition-colors">
+                <tr key={rIdx} className="hover:bg-[var(--bg-subtle)]/50 dark:hover:bg-[var(--bg-subtle)]/50 transition-colors">
                   {row.map((cell, cIdx) => (
                     <td key={cIdx} className={`px-4 py-3 leading-relaxed text-stone-700 dark:text-stone-300 ${cIdx === 0 ? 'font-semibold text-stone-900 dark:text-stone-100' : ''}`}>
                       <AnnotatedText text={cell} onNavigateToSection={onNavigateToSection} />

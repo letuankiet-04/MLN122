@@ -213,10 +213,10 @@ export const VideoKnowledgePlayerModal: React.FC<VideoKnowledgePlayerModalProps>
     <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
       <div 
         ref={containerRef}
-        className="relative w-full max-w-6xl max-h-[95vh] bg-[#FAF7F0] dark:bg-[#1E1D1A] rounded-2xl border border-[#DFD7CA] dark:border-[#383530] shadow-2xl overflow-hidden flex flex-col font-sans"
+        className="relative w-full max-w-6xl max-h-[95vh] bg-[var(--bg-surface)] dark:bg-[var(--bg-page)] rounded-2xl border border-[var(--border-color)] dark:border-[var(--border-color)] shadow-2xl overflow-hidden flex flex-col font-sans"
       >
         {/* Top Header Bar */}
-        <div className="px-4 sm:px-6 py-3 border-b border-[#DFD7CA] dark:border-[#383530] bg-[#F2ECE1] dark:bg-[#252420] flex items-center justify-between gap-4 shrink-0">
+        <div className="px-4 sm:px-6 py-3 border-b border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-page)] dark:bg-[var(--bg-subtle)] flex items-center justify-between gap-4 shrink-0">
           <div className="flex items-center gap-3 min-w-0">
             <span className="px-2.5 py-1 rounded-md bg-[#682626] text-[#FAF7F0] dark:bg-[#C2A267] dark:text-[#1B1A18] text-xs font-bold uppercase tracking-wider shrink-0 shadow-xs">
               Mục {video.sectionNumber}
@@ -233,8 +233,8 @@ export const VideoKnowledgePlayerModal: React.FC<VideoKnowledgePlayerModalProps>
 
           <div className="flex items-center gap-2 shrink-0">
             {/* Mode switch for study preference */}
-            <div className="hidden lg:flex items-center gap-1.5 p-1 rounded-lg bg-[#EFE8DD] dark:bg-[#2C2A26] border border-[#DFD7CA] dark:border-[#383530] text-xs font-medium">
-              <span className="px-2 py-0.5 rounded bg-[#FAF7F0] dark:bg-[#1E1D1A] text-[#682626] dark:text-[#C2A267] font-semibold shadow-xs">
+            <div className="hidden lg:flex items-center gap-1.5 p-1 rounded-lg bg-[var(--bg-subtle)] dark:bg-[var(--bg-subtle)] border border-[var(--border-color)] dark:border-[var(--border-color)] text-xs font-medium">
+              <span className="px-2 py-0.5 rounded bg-[var(--bg-surface)] dark:bg-[var(--bg-page)] text-[#682626] dark:text-[#C2A267] font-semibold shadow-xs">
                 🎬 Xem video ({video.formattedDuration})
               </span>
               {onNavigateToSection && (
@@ -269,7 +269,7 @@ export const VideoKnowledgePlayerModal: React.FC<VideoKnowledgePlayerModalProps>
                 if ('speechSynthesis' in window) window.speechSynthesis?.cancel();
                 onClose();
               }}
-              className="p-1.5 rounded-lg text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-white hover:bg-[#EFE8DD] dark:hover:bg-[#2C2A26] transition-colors"
+              className="p-1.5 rounded-lg text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-white hover:bg-[var(--bg-subtle)] dark:hover:bg-[var(--bg-subtle)] transition-colors"
               title="Đóng modal (Phím Esc)"
             >
               <X className="w-5 h-5" />
@@ -280,10 +280,10 @@ export const VideoKnowledgePlayerModal: React.FC<VideoKnowledgePlayerModalProps>
         {/* Modal Body: Left column (Player + Transcript/Quiz) & Right column (Takeaways/Formulas) */}
         <div className="flex-1 overflow-y-auto flex flex-col lg:flex-row">
           {/* Main Left Column: Video display, Controls, Interactive Tabs */}
-          <div className="flex-1 p-3 sm:p-5 flex flex-col space-y-4 border-b lg:border-b-0 lg:border-r border-[#DFD7CA] dark:border-[#383530]">
+          <div className="flex-1 p-3 sm:p-5 flex flex-col space-y-4 border-b lg:border-b-0 lg:border-r border-[var(--border-color)] dark:border-[var(--border-color)]">
             
             {/* View Mode Selector: Explainer vs YouTube Video */}
-            <div className="flex flex-wrap items-center justify-between gap-2 bg-[#EFE8DD] dark:bg-[#252420] p-1.5 rounded-xl border border-[#DFD7CA] dark:border-[#383530] text-xs">
+            <div className="flex flex-wrap items-center justify-between gap-2 bg-[var(--bg-subtle)] dark:bg-[var(--bg-subtle)] p-1.5 rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] text-xs">
               <div className="flex items-center gap-1">
                 <button
                   onClick={() => {
@@ -292,7 +292,7 @@ export const VideoKnowledgePlayerModal: React.FC<VideoKnowledgePlayerModalProps>
                   }}
                   className={`flex items-center gap-1.5 px-3 py-1 rounded-lg font-medium transition-all ${
                     videoMode === 'explainer'
-                      ? 'bg-[#FAF7F0] dark:bg-[#1E1D1A] text-[#682626] dark:text-[#C2A267] font-bold shadow-xs'
+                      ? 'bg-[var(--bg-surface)] dark:bg-[var(--bg-page)] text-[#682626] dark:text-[#C2A267] font-bold shadow-xs'
                       : 'text-stone-600 dark:text-stone-400 hover:text-stone-900'
                   }`}
                 >
@@ -308,7 +308,7 @@ export const VideoKnowledgePlayerModal: React.FC<VideoKnowledgePlayerModalProps>
                   }}
                   className={`flex items-center gap-1.5 px-3 py-1 rounded-lg font-medium transition-all ${
                     videoMode === 'youtube'
-                      ? 'bg-[#FAF7F0] dark:bg-[#1E1D1A] text-[#682626] dark:text-[#C2A267] font-bold shadow-xs'
+                      ? 'bg-[var(--bg-surface)] dark:bg-[var(--bg-page)] text-[#682626] dark:text-[#C2A267] font-bold shadow-xs'
                       : 'text-stone-600 dark:text-stone-400 hover:text-stone-900'
                   }`}
                 >
@@ -330,7 +330,7 @@ export const VideoKnowledgePlayerModal: React.FC<VideoKnowledgePlayerModalProps>
 
             {/* Custom YouTube URL input row */}
             {videoMode === 'youtube' && showUrlInput && (
-              <div className="flex items-center gap-2 p-2 rounded-lg bg-[#FAF7F0] dark:bg-[#23221F] border border-[#DFD7CA] dark:border-[#383530] text-xs">
+              <div className="flex items-center gap-2 p-2 rounded-lg bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] border border-[var(--border-color)] dark:border-[var(--border-color)] text-xs">
                 <input
                   type="text"
                   placeholder="Dán link YouTube bài giảng của trường (ví dụ: https://www.youtube.com/watch?v=...)"
@@ -373,7 +373,7 @@ export const VideoKnowledgePlayerModal: React.FC<VideoKnowledgePlayerModalProps>
 
             {/* Video Player Control Bar (Visible in Explainer mode) */}
             {videoMode === 'explainer' && (
-              <div className="p-3 bg-[#F2ECE1] dark:bg-[#252420] rounded-xl border border-[#DFD7CA] dark:border-[#383530] space-y-2">
+              <div className="p-3 bg-[var(--bg-page)] dark:bg-[var(--bg-subtle)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] space-y-2">
                 {/* Scrubbing Bar */}
                 <div className="flex items-center gap-3">
                   <span className="text-xs font-mono font-medium text-stone-600 dark:text-stone-400 w-11 text-right">
@@ -420,7 +420,7 @@ export const VideoKnowledgePlayerModal: React.FC<VideoKnowledgePlayerModalProps>
                     {/* Replay 5s */}
                     <button
                       onClick={() => setCurrentTime(Math.max(0, currentTime - 5))}
-                      className="p-1.5 rounded-lg hover:bg-[#DFD7CA] dark:hover:bg-[#383530] transition-colors"
+                      className="p-1.5 rounded-lg hover:bg-[var(--border-color)] dark:hover:bg-[var(--border-color)] transition-colors"
                       title="Lùi 5 giây"
                     >
                       <RotateCcw className="w-4 h-4" />
@@ -429,7 +429,7 @@ export const VideoKnowledgePlayerModal: React.FC<VideoKnowledgePlayerModalProps>
                     {/* Forward 5s */}
                     <button
                       onClick={() => setCurrentTime(Math.min(video.durationSeconds, currentTime + 5))}
-                      className="p-1.5 rounded-lg hover:bg-[#DFD7CA] dark:hover:bg-[#383530] transition-colors"
+                      className="p-1.5 rounded-lg hover:bg-[var(--border-color)] dark:hover:bg-[var(--border-color)] transition-colors"
                       title="Tua 5 giây"
                     >
                       <FastForward className="w-4 h-4" />
@@ -439,7 +439,7 @@ export const VideoKnowledgePlayerModal: React.FC<VideoKnowledgePlayerModalProps>
                     <div className="flex items-center gap-1 pl-1">
                       <button
                         onClick={() => setIsMuted(!isMuted)}
-                        className="p-1.5 rounded-lg hover:bg-[#DFD7CA] dark:hover:bg-[#383530] transition-colors"
+                        className="p-1.5 rounded-lg hover:bg-[var(--border-color)] dark:hover:bg-[var(--border-color)] transition-colors"
                         title={isMuted ? 'Bật âm' : 'Tắt âm'}
                       >
                         {isMuted || volume === 0 ? (
@@ -470,7 +470,7 @@ export const VideoKnowledgePlayerModal: React.FC<VideoKnowledgePlayerModalProps>
                       className={`flex items-center gap-1 px-2 py-1 rounded-lg border text-[11px] transition-colors ${
                         enableVoiceNarration
                           ? 'border-[#8A6328] bg-[#8A6328]/15 text-[#682626] dark:text-[#C2A267] font-semibold'
-                          : 'border-[#DFD7CA] dark:border-[#383530] text-stone-600 dark:text-stone-400'
+                          : 'border-[var(--border-color)] dark:border-[var(--border-color)] text-stone-600 dark:text-stone-400'
                       }`}
                       title="Đọc thuyết minh tiếng Việt tự động"
                     >
@@ -484,7 +484,7 @@ export const VideoKnowledgePlayerModal: React.FC<VideoKnowledgePlayerModalProps>
                       className={`flex items-center gap-1 px-2 py-1 rounded-lg border text-[11px] transition-colors ${
                         showSubtitles
                           ? 'border-[#8A6328] bg-[#8A6328]/15 text-[#682626] dark:text-[#C2A267] font-semibold'
-                          : 'border-[#DFD7CA] dark:border-[#383530] text-stone-600 dark:text-stone-400'
+                          : 'border-[var(--border-color)] dark:border-[var(--border-color)] text-stone-600 dark:text-stone-400'
                       }`}
                       title="Bật/Tắt phụ đề tiếng Việt"
                     >
@@ -496,7 +496,7 @@ export const VideoKnowledgePlayerModal: React.FC<VideoKnowledgePlayerModalProps>
                     <select
                       value={playbackRate}
                       onChange={(e) => setPlaybackRate(parseFloat(e.target.value))}
-                      className="px-1.5 py-1 rounded-lg border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#1E1D1A] text-stone-800 dark:text-stone-200 text-xs font-mono font-medium focus:outline-none"
+                      className="px-1.5 py-1 rounded-lg border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-page)] text-stone-800 dark:text-stone-200 text-xs font-mono font-medium focus:outline-none"
                       title="Tốc độ phát"
                     >
                       <option value={0.75}>0.75x</option>
@@ -509,7 +509,7 @@ export const VideoKnowledgePlayerModal: React.FC<VideoKnowledgePlayerModalProps>
                     {/* Fullscreen Toggle */}
                     <button
                       onClick={toggleFullscreen}
-                      className="p-1.5 rounded-lg hover:bg-[#DFD7CA] dark:hover:bg-[#383530] transition-colors"
+                      className="p-1.5 rounded-lg hover:bg-[var(--border-color)] dark:hover:bg-[var(--border-color)] transition-colors"
                       title="Toàn màn hình"
                     >
                       {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
@@ -521,12 +521,12 @@ export const VideoKnowledgePlayerModal: React.FC<VideoKnowledgePlayerModalProps>
 
             {/* Bottom Tabs: Interactive Transcript vs Quick Quiz */}
             <div className="pt-2 flex-1 flex flex-col min-h-[220px]">
-              <div className="flex items-center gap-2 border-b border-[#DFD7CA] dark:border-[#383530] pb-2 text-xs font-semibold">
+              <div className="flex items-center gap-2 border-b border-[var(--border-color)] dark:border-[var(--border-color)] pb-2 text-xs font-semibold">
                 <button
                   onClick={() => setActiveTab('transcript')}
                   className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-colors ${
                     activeTab === 'transcript'
-                      ? 'bg-[#FAF7F0] dark:bg-[#252420] text-[#682626] dark:text-[#C2A267] border border-[#DFD7CA] dark:border-[#383530] font-bold'
+                      ? 'bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)] text-[#682626] dark:text-[#C2A267] border border-[var(--border-color)] dark:border-[var(--border-color)] font-bold'
                       : 'text-stone-500 hover:text-stone-900 dark:hover:text-stone-200'
                   }`}
                 >
@@ -538,7 +538,7 @@ export const VideoKnowledgePlayerModal: React.FC<VideoKnowledgePlayerModalProps>
                   onClick={() => setActiveTab('quiz')}
                   className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-colors ${
                     activeTab === 'quiz'
-                      ? 'bg-[#FAF7F0] dark:bg-[#252420] text-[#682626] dark:text-[#C2A267] border border-[#DFD7CA] dark:border-[#383530] font-bold'
+                      ? 'bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)] text-[#682626] dark:text-[#C2A267] border border-[var(--border-color)] dark:border-[var(--border-color)] font-bold'
                       : 'text-stone-500 hover:text-stone-900 dark:hover:text-stone-200'
                   }`}
                 >
@@ -565,8 +565,8 @@ export const VideoKnowledgePlayerModal: React.FC<VideoKnowledgePlayerModalProps>
                         onClick={() => handleJumpToTime(item.time)}
                         className={`p-2.5 rounded-lg text-xs flex items-start gap-3 cursor-pointer transition-colors border ${
                           isActive
-                            ? 'bg-[#EFE8DD] dark:bg-[#2C2A26] border-[#8A6328]/40 ring-1 ring-[#8A6328]/30 font-medium text-stone-900 dark:text-stone-100'
-                            : 'bg-transparent border-transparent hover:bg-[#FAF7F0] dark:hover:bg-[#23221F] text-stone-600 dark:text-stone-400'
+                            ? 'bg-[var(--bg-subtle)] dark:bg-[var(--bg-subtle)] border-[#8A6328]/40 ring-1 ring-[#8A6328]/30 font-medium text-stone-900 dark:text-stone-100'
+                            : 'bg-transparent border-transparent hover:bg-[var(--bg-surface)] dark:hover:bg-[var(--bg-surface)] text-stone-600 dark:text-stone-400'
                         }`}
                       >
                         <span className="font-mono text-[11px] font-bold text-[#8A6328] dark:text-[#C2A267] shrink-0 pt-0.5">
@@ -592,7 +592,7 @@ export const VideoKnowledgePlayerModal: React.FC<VideoKnowledgePlayerModalProps>
                     return (
                       <div
                         key={q.id}
-                        className="p-3.5 rounded-xl border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#23221F] space-y-2.5"
+                        className="p-3.5 rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] space-y-2.5"
                       >
                         <div className="flex items-start justify-between gap-2">
                           <span className="font-semibold text-stone-900 dark:text-stone-100">
@@ -613,14 +613,14 @@ export const VideoKnowledgePlayerModal: React.FC<VideoKnowledgePlayerModalProps>
                         {/* Options */}
                         <div className="space-y-1.5">
                           {q.options.map((opt, optIdx) => {
-                            let optionClass = 'border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#1E1D1A] text-stone-700 dark:text-stone-300 hover:bg-[#EFE8DD] dark:hover:bg-[#2C2A26]';
+                            let optionClass = 'border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-page)] text-stone-700 dark:text-stone-300 hover:bg-[var(--bg-subtle)] dark:hover:bg-[var(--bg-subtle)]';
                             if (isSubmitted) {
                               if (optIdx === q.correctIndex) {
                                 optionClass = 'border-[#2D5A34] bg-[#EDF3EC] dark:bg-[#1E2820] text-[#25462A] dark:text-[#88B88E] font-semibold';
                               } else if (optIdx === selectedIdx) {
                                 optionClass = 'border-[#7A2727] bg-[#FBEAE9] dark:bg-[#341C1C] text-[#7A2727] dark:text-[#F87171]';
                               } else {
-                                optionClass = 'border-[#DFD7CA] dark:border-[#383530] opacity-50';
+                                optionClass = 'border-[var(--border-color)] dark:border-[var(--border-color)] opacity-50';
                               }
                             }
 
@@ -682,11 +682,11 @@ export const VideoKnowledgePlayerModal: React.FC<VideoKnowledgePlayerModalProps>
             </div>
 
             {/* Box 2: Sơ đồ hoặc Công thức liên quan */}
-            <div className="p-3.5 rounded-xl border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#252420] space-y-2">
+            <div className="p-3.5 rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)] space-y-2">
               <span className="font-semibold text-stone-900 dark:text-stone-100 uppercase tracking-wider text-[11px] block">
                 {video.formulaDiagram.title}
               </span>
-              <div className="p-2 rounded bg-[#EFE8DD] dark:bg-[#1A1916] font-mono text-[11px] text-[#682626] dark:text-[#E2B765] whitespace-pre-wrap break-words border border-[#DFD7CA] dark:border-[#383530]">
+              <div className="p-2 rounded bg-[var(--bg-subtle)] dark:bg-[#1A1916] font-mono text-[11px] text-[#682626] dark:text-[#E2B765] whitespace-pre-wrap break-words border border-[var(--border-color)] dark:border-[var(--border-color)]">
                 {video.formulaDiagram.code}
               </div>
               <p className="text-[11px] text-stone-600 dark:text-stone-400 leading-relaxed italic">
@@ -703,7 +703,7 @@ export const VideoKnowledgePlayerModal: React.FC<VideoKnowledgePlayerModalProps>
                 {video.keyTerms.map((term, i) => (
                   <span
                     key={i}
-                    className="px-2.5 py-1 rounded-md bg-[#FAF7F0] dark:bg-[#2A2824] border border-[#DFD7CA] dark:border-[#383530] text-[11px] font-medium text-stone-800 dark:text-stone-200"
+                    className="px-2.5 py-1 rounded-md bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)] border border-[var(--border-color)] dark:border-[var(--border-color)] text-[11px] font-medium text-stone-800 dark:text-stone-200"
                   >
                     #{term}
                   </span>
@@ -713,7 +713,7 @@ export const VideoKnowledgePlayerModal: React.FC<VideoKnowledgePlayerModalProps>
 
             {/* Box 4: Danh sách video cùng chuyên đề */}
             {onSelectVideo && (
-              <div className="pt-2 border-t border-[#DFD7CA] dark:border-[#383530] space-y-2">
+              <div className="pt-2 border-t border-[var(--border-color)] dark:border-[var(--border-color)] space-y-2">
                 <span className="text-[11px] font-bold uppercase tracking-wider text-stone-500 flex items-center gap-1">
                   <ListVideo className="w-3.5 h-3.5" />
                   Các video khác trong chương
@@ -726,7 +726,7 @@ export const VideoKnowledgePlayerModal: React.FC<VideoKnowledgePlayerModalProps>
                       className={`w-full text-left p-2 rounded-lg border text-xs transition-colors flex items-center justify-between gap-2 ${
                         v.id === video.id
                           ? 'border-[#8A6328] bg-[#8A6328]/10 font-semibold text-[#682626] dark:text-[#C2A267]'
-                          : 'border-transparent hover:border-[#DFD7CA] dark:hover:border-[#383530] hover:bg-[#FAF7F0] dark:hover:bg-[#252420] text-stone-700 dark:text-stone-300'
+                          : 'border-transparent hover:border-[var(--border-color)] dark:hover:border-[var(--border-color)] hover:bg-[var(--bg-surface)] dark:hover:bg-[var(--bg-subtle)] text-stone-700 dark:text-stone-300'
                       }`}
                     >
                       <span className="truncate">{v.thumbnailEmoji} {v.title}</span>

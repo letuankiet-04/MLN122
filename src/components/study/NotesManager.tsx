@@ -89,7 +89,7 @@ export const NotesManager: React.FC<NotesManagerProps> = ({
   return (
     <div className="max-w-4xl mx-auto px-4 py-8 space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#DFD7CA] dark:border-[#383530] pb-5">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--border-color)] dark:border-[var(--border-color)] pb-5">
         <div>
           <span className="text-xs uppercase tracking-wider font-semibold text-[#8A6328] dark:text-[#C2A267]">
             Sổ tay học tập cá nhân
@@ -116,7 +116,7 @@ export const NotesManager: React.FC<NotesManagerProps> = ({
         <select
           value={selectedSectionFilter}
           onChange={(e) => setSelectedSectionFilter(e.target.value)}
-          className="w-full sm:w-auto px-3 py-1.5 text-xs rounded-lg border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#23221F] text-stone-800 dark:text-stone-200"
+          className="w-full sm:w-auto px-3 py-1.5 text-xs rounded-lg border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] text-stone-800 dark:text-stone-200"
         >
           <option value="all">Tất cả các mục giáo trình</option>
           {CHAPTER_SECTIONS.map(s => (
@@ -133,7 +133,7 @@ export const NotesManager: React.FC<NotesManagerProps> = ({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Tìm trong ghi chú & trích dẫn..."
-            className="w-full pl-8 pr-3 py-1.5 text-xs rounded-lg border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#23221F] text-stone-800 dark:text-stone-200"
+            className="w-full pl-8 pr-3 py-1.5 text-xs rounded-lg border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] text-stone-800 dark:text-stone-200"
           />
         </div>
       </div>
@@ -146,7 +146,7 @@ export const NotesManager: React.FC<NotesManagerProps> = ({
         </h3>
 
         {filteredNotes.length === 0 ? (
-          <div className="p-8 text-center text-xs text-stone-400 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530]">
+          <div className="p-8 text-center text-xs text-stone-400 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)]">
             Chưa có ghi chú nào phù hợp. Bạn có thể mở mục giáo trình và thêm ghi chú trong bảng điều khiển bên phải.
           </div>
         ) : (
@@ -154,7 +154,7 @@ export const NotesManager: React.FC<NotesManagerProps> = ({
             {filteredNotes.map((n) => (
               <div
                 key={n.id}
-                className="p-4 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530] shadow-2xs space-y-3 flex flex-col justify-between"
+                className="p-4 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] shadow-2xs space-y-3 flex flex-col justify-between"
               >
                 {editingNoteId === n.id ? (
                   <div className="space-y-2">
@@ -215,7 +215,7 @@ export const NotesManager: React.FC<NotesManagerProps> = ({
                       </p>
                     </div>
 
-                    <div className="flex items-center justify-between text-[11px] text-stone-400 pt-2 border-t border-[#DFD7CA]/60 dark:border-[#383530]/60">
+                    <div className="flex items-center justify-between text-[11px] text-stone-400 pt-2 border-t border-[var(--border-color)]/60 dark:border-[var(--border-color)]/60">
                       <button
                         onClick={() => onNavigateToSection(n.sectionId)}
                         className="hover:text-[#682626] dark:hover:text-[#C2A267] transition-colors flex items-center gap-1"
@@ -234,14 +234,14 @@ export const NotesManager: React.FC<NotesManagerProps> = ({
       </div>
 
       {/* Highlights Section */}
-      <div className="space-y-4 pt-6 border-t border-[#DFD7CA] dark:border-[#383530]">
+      <div className="space-y-4 pt-6 border-t border-[var(--border-color)] dark:border-[var(--border-color)]">
         <h3 className="font-serif font-bold text-base text-stone-900 dark:text-stone-100 flex items-center gap-2">
           <Bookmark className="w-4 h-4 text-[#8A6328] dark:text-[#C2A267]" />
           <span>Đoạn trích dẫn sách giáo khoa ({filteredHighlights.length})</span>
         </h3>
 
         {filteredHighlights.length === 0 ? (
-          <div className="p-8 text-center text-xs text-stone-400 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530]">
+          <div className="p-8 text-center text-xs text-stone-400 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)]">
             Chưa có trích đoạn nào. Khi đọc sách, bạn có thể quét chọn bất kỳ câu chữ nào để đánh dấu màu sắc!
           </div>
         ) : (
@@ -249,7 +249,7 @@ export const NotesManager: React.FC<NotesManagerProps> = ({
             {filteredHighlights.map((h) => (
               <div
                 key={h.id}
-                className="p-4 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530] flex items-start justify-between gap-4"
+                className="p-4 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] flex items-start justify-between gap-4"
               >
                 <div className="space-y-1 text-xs">
                   <blockquote className="font-serif italic text-stone-800 dark:text-stone-200 leading-relaxed border-l-2 border-[#8A6328] dark:border-[#C2A267] pl-3">

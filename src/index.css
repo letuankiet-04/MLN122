@@ -8,25 +8,47 @@
 
 @layer base {
   :root {
-    --bg-page: #F2ECE1;
-    --bg-surface: #FAF7F0;
-    --bg-subtle: #EFE8DD;
-    --border-color: #DFD7CA;
+    --bg-page: #F4EFE7;
+    --bg-surface: #FFFCF6;
+    --bg-subtle: #F0E9DE;
+    --bg-sidebar: #EBE4D8;
+    --border-color: #DED3C3;
     --text-primary: #2C2723;
-    --text-secondary: #6B645C;
+    --text-secondary: #655D54;
     --academic-burgundy: #682626;
-    --academic-gold: #967338;
+    --academic-gold: #8A6328;
   }
 
-  .dark {
-    --bg-page: #1B1A18;
-    --bg-surface: #24221F;
-    --bg-subtle: #2C2A26;
-    --border-color: #383530;
-    --text-primary: #DCD6CA;
-    --text-secondary: #948E84;
-    --academic-burgundy: #B85353;
+  [data-theme="dark"] {
+    --bg-page: #191817;
+    --bg-surface: #252320;
+    --bg-subtle: #302D29;
+    --bg-sidebar: #211F1C;
+    --border-color: #413C36;
+    --text-primary: #EBE5DA;
+    --text-secondary: #B4AA9C;
+    --academic-burgundy: #C2A267;
     --academic-gold: #C2A267;
+  }
+
+  [data-theme="sepia"] {
+    --bg-page: #EDE2CF;
+    --bg-surface: #F8F0E2;
+    --bg-subtle: #E8DCC8;
+    --bg-sidebar: #E5D6BF;
+    --border-color: #D3C1A5;
+    --text-primary: #352B22;
+    --text-secondary: #6B5A49;
+  }
+
+  [data-theme="focus"] {
+    --bg-page: #F7F5EF;
+    --bg-surface: #FFFFFF;
+    --bg-subtle: #F0EEE7;
+    --bg-sidebar: #F1EFE9;
+    --border-color: #E3DFD6;
+    --text-primary: #282723;
+    --text-secondary: #66645D;
   }
 
   html {
@@ -34,6 +56,20 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background: var(--bg-page);
+    color: var(--text-primary);
+  }
+
+  button, a, input, textarea, select {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--academic-gold);
+    outline-offset: 3px;
   }
 }
 
@@ -59,5 +95,44 @@
 /* Eye-care anti-glare soft filter when activated */
 .eye-care-filter {
   filter: sepia(0.06) contrast(0.96) brightness(0.98);
+}
+
+/* 3D Perspective Card Flip Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Subtle Shimmer & Pulse Animation */
+@keyframes gold-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-gold-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(194, 162, 103, 0.25), transparent);
+  background-size: 200% 100%;
+  animation: gold-shimmer 3s infinite linear;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.02); }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2.5s ease-in-out infinite;
 }
 

@@ -55,8 +55,8 @@ export const ContradictionExplorer: React.FC = () => {
   const curr = scenarios[activeScenario];
 
   return (
-    <div className="my-8 p-6 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530] shadow-xs">
-      <div className="border-b border-[#DFD7CA] dark:border-[#383530] pb-4">
+    <div className="my-8 p-6 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] shadow-xs">
+      <div className="border-b border-[var(--border-color)] dark:border-[var(--border-color)] pb-4">
         <span className="text-xs uppercase tracking-wider font-semibold text-[#8A6328] dark:text-[#C2A267]">
           Bài tập tư duy biện chứng
         </span>
@@ -77,7 +77,7 @@ export const ContradictionExplorer: React.FC = () => {
             className={`px-4 py-2 text-xs font-semibold rounded-lg border transition-all text-left flex-1 min-w-[160px] ${
               activeScenario === sc
                 ? 'border-[#682626] dark:border-[#C2A267] bg-[#682626]/10 dark:bg-[#C2A267]/15 text-[#682626] dark:text-[#C2A267]'
-                : 'border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#252420] hover:bg-[#EFE8DD] text-stone-700 dark:text-stone-300'
+                : 'border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)] hover:bg-[var(--bg-subtle)] text-stone-700 dark:text-stone-300'
             }`}
           >
             <div className="font-bold">{scenarios[sc].title.split(':')[0]}</div>
@@ -89,7 +89,7 @@ export const ContradictionExplorer: React.FC = () => {
       </div>
 
       {/* Scenario Interactive Card */}
-      <div className="p-5 bg-[#EFE8DD]/50 dark:bg-[#2A2824]/50 rounded-xl border border-[#DFD7CA] dark:border-[#383530]">
+      <div className="p-5 bg-[var(--bg-subtle)]/50 dark:bg-[var(--bg-subtle)]/50 rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)]">
         <h4 className="font-serif font-bold text-sm text-stone-900 dark:text-stone-100">
           {curr.title}
         </h4>
@@ -101,7 +101,7 @@ export const ContradictionExplorer: React.FC = () => {
         </p>
 
         {/* Check your understanding mini question */}
-        <div className="pt-3 border-t border-[#DFD7CA] dark:border-[#383530]">
+        <div className="pt-3 border-t border-[var(--border-color)] dark:border-[var(--border-color)]">
           <p className="text-xs font-semibold text-stone-900 dark:text-stone-100 mb-2">
             Câu hỏi kiểm tra nhanh: {curr.question}
           </p>
@@ -122,7 +122,7 @@ export const ContradictionExplorer: React.FC = () => {
                         : 'border-[#8A3333] bg-[#8A3333]/10 dark:bg-[#8A3333]/20 text-[#8A3333] dark:text-[#E09B9B]'
                       : showResult && isCorrect
                       ? 'border-emerald-600/50 bg-emerald-50/50 dark:bg-emerald-950/20 text-emerald-800 dark:text-emerald-300'
-                      : 'border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#23221F] hover:bg-[#EFE8DD] text-stone-800 dark:text-stone-200'
+                      : 'border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] hover:bg-[var(--bg-subtle)] text-stone-800 dark:text-stone-200'
                   }`}
                 >
                   <span>{opt}</span>

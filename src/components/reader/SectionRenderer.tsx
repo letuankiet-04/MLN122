@@ -42,6 +42,20 @@ export const SectionRenderer: React.FC<SectionRendererProps> = ({
 }) => {
   const [selectedText, setSelectedText] = useState<string>('');
   const [selectionPosition, setSelectionPosition] = useState<{ x: number; y: number } | null>(null);
+  const [scrollProgress, setScrollProgress] = useState<number>(0);
+
+  // Track window scroll reading progress
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalHeight > 0) {
+        const current = (window.scrollY / totalHeight) * 100;
+        setScrollProgress(Math.min(100, Math.max(0, current)));
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const sectionVideos = getVideosBySectionId(section.id);
   const primaryVideo = sectionVideos.length > 0 ? sectionVideos[0] : KNOWLEDGE_VIDEOS[0];
@@ -110,41 +124,50 @@ export const SectionRenderer: React.FC<SectionRendererProps> = ({
         readerSettings.fontFamily === 'serif' ? 'font-serif' : 'font-sans'
       }`}
     >
+      {/* Sticky Top Reading Progress Bar */}
+      <div className="fixed top-0 left-0 right-0 z-50 h-1 bg-transparent pointer-events-none">
+        <div
+          className="h-full bg-gradient-to-r from-[#682626] via-[#967338] to-[#C2A267] shadow-xs transition-all duration-150 ease-out"
+          style={{ width: `${scrollProgress}%` }}
+        />
+      </div>
+
       {/* Floating Highlight Toolbar */}
       {selectionPosition && selectedText && (
         <div
           style={{
-            top: `${selectionPosition.y + window.scrollY - 44}px`,
+            top: `${selectionPosition.y + window.scrollY - 50}px`,
             left: `${selectionPosition.x}px`,
             transform: 'translateX(-50%)',
           }}
-          className="fixed z-50 flex items-center gap-1.5 p-1 bg-stone-900 text-white rounded-lg shadow-xl animate-in fade-in zoom-in-95 duration-100"
+          className="fixed z-50 flex items-center gap-2 px-3 py-1.5 bg-stone-900/95 backdrop-blur-md text-white rounded-full border border-white/20 shadow-2xl animate-in fade-in zoom-in-95 duration-150"
         >
+          <span className="text-[10px] text-stone-300 font-medium pr-1 border-r border-stone-700">Tô màu:</span>
           <button
             onClick={() => handleApplyHighlight('yellow')}
-            className="w-5 h-5 rounded-full bg-amber-400 hover:scale-110 transition-transform"
-            title="Đánh dấu vàng"
+            className="w-5 h-5 rounded-full bg-amber-400 hover:scale-125 transition-transform shadow-xs"
+            title="Đánh dấu vàng (Ý chính)"
           />
           <button
             onClick={() => handleApplyHighlight('green')}
-            className="w-5 h-5 rounded-full bg-emerald-400 hover:scale-110 transition-transform"
-            title="Đánh dấu xanh lá"
+            className="w-5 h-5 rounded-full bg-emerald-400 hover:scale-125 transition-transform shadow-xs"
+            title="Đánh dấu xanh lá (Khái niệm)"
           />
           <button
             onClick={() => handleApplyHighlight('blue')}
-            className="w-5 h-5 rounded-full bg-sky-400 hover:scale-110 transition-transform"
-            title="Đánh dấu xanh dương"
+            className="w-5 h-5 rounded-full bg-sky-400 hover:scale-125 transition-transform shadow-xs"
+            title="Đánh dấu xanh dương (Luận điểm)"
           />
           <button
             onClick={() => handleApplyHighlight('rose')}
-            className="w-5 h-5 rounded-full bg-rose-400 hover:scale-110 transition-transform"
-            title="Đánh dấu đỏ hồng"
+            className="w-5 h-5 rounded-full bg-rose-400 hover:scale-125 transition-transform shadow-xs"
+            title="Đánh dấu đỏ hồng (Trọng tâm thi cử)"
           />
         </div>
       )}
 
       {/* Section Header */}
-      <header className="pb-6 border-b border-[#DFD7CA] dark:border-[#383530]">
+      <header className="pb-6 border-b border-[var(--border-color)] dark:border-[var(--border-color)]">
         <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-stone-500 mb-2 font-sans">
           <div className="flex items-center gap-2">
             <span className="font-semibold text-[#682626] dark:text-[#C2A267] uppercase tracking-wider">
@@ -163,7 +186,7 @@ export const SectionRenderer: React.FC<SectionRendererProps> = ({
               className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md border text-xs transition-colors ${
                 isBookmarked
                   ? 'border-[#967338]/40 bg-[#967338]/10 text-[#682626] dark:text-[#C2A267]'
-                  : 'border-[#DFD7CA] dark:border-[#383530] text-stone-600 dark:text-stone-400 hover:bg-[#FAF7F0] dark:hover:bg-[#252420]'
+                  : 'border-[var(--border-color)] dark:border-[var(--border-color)] text-stone-600 dark:text-stone-400 hover:bg-[var(--bg-surface)] dark:hover:bg-[var(--bg-subtle)]'
               }`}
             >
               <BookMarked className="w-3.5 h-3.5 fill-current" />
@@ -175,7 +198,7 @@ export const SectionRenderer: React.FC<SectionRendererProps> = ({
               className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md border text-xs transition-colors ${
                 isCompleted
                   ? 'border-[#2D5A34] bg-[#EDF3EC] dark:bg-[#1E2820] text-[#25462A] dark:text-[#88B88E]'
-                  : 'border-[#DFD7CA] dark:border-[#383530] text-stone-600 dark:text-stone-400 hover:bg-[#FAF7F0] dark:hover:bg-[#252420]'
+                  : 'border-[var(--border-color)] dark:border-[var(--border-color)] text-stone-600 dark:text-stone-400 hover:bg-[var(--bg-surface)] dark:hover:bg-[var(--bg-subtle)]'
               }`}
             >
               <CheckCircle2 className="w-3.5 h-3.5" />
@@ -196,7 +219,7 @@ export const SectionRenderer: React.FC<SectionRendererProps> = ({
 
         {/* Learning Objectives Box */}
         {section.objectives && section.objectives.length > 0 && (
-          <div className="mt-5 p-4 rounded-xl border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#23221F] font-sans text-xs">
+          <div className="mt-5 p-4 rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] font-sans text-xs">
             <span className="font-semibold text-stone-900 dark:text-stone-100 uppercase tracking-wider block mb-2">
               Mục tiêu bài học:
             </span>
@@ -209,7 +232,7 @@ export const SectionRenderer: React.FC<SectionRendererProps> = ({
         )}
 
         {/* Learning Mode Switcher Bar */}
-        <div className="mt-5 p-2 rounded-xl bg-[#EFE8DD] dark:bg-[#252420] border border-[#DFD7CA] dark:border-[#383530] flex flex-wrap items-center justify-between gap-2 font-sans text-xs">
+        <div className="mt-5 p-2 rounded-xl bg-[var(--bg-subtle)] dark:bg-[var(--bg-subtle)] border border-[var(--border-color)] dark:border-[var(--border-color)] flex flex-wrap items-center justify-between gap-2 font-sans text-xs">
           <div className="flex items-center gap-2">
             <span className="text-[11px] font-semibold uppercase tracking-wider text-stone-500 pl-1 hidden sm:inline">
               Cách học:
@@ -223,14 +246,14 @@ export const SectionRenderer: React.FC<SectionRendererProps> = ({
               </button>
               <a
                 href="#theory-content"
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#FAF7F0] dark:bg-[#1E1D1A] border border-[#DFD7CA] dark:border-[#383530] text-stone-700 dark:text-stone-300 font-medium hover:bg-white dark:hover:bg-[#2C2A26] transition-colors"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[var(--bg-surface)] dark:bg-[var(--bg-page)] border border-[var(--border-color)] dark:border-[var(--border-color)] text-stone-700 dark:text-stone-300 font-medium hover:bg-white dark:hover:bg-[var(--bg-subtle)] transition-colors"
               >
                 <span>📖 Đọc lý thuyết</span>
               </a>
               {onSwitchToQuiz && (
                 <button
                   onClick={onSwitchToQuiz}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#FAF7F0] dark:bg-[#1E1D1A] border border-[#DFD7CA] dark:border-[#383530] text-stone-700 dark:text-stone-300 font-medium hover:bg-white dark:hover:bg-[#2C2A26] transition-colors"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[var(--bg-surface)] dark:bg-[var(--bg-page)] border border-[var(--border-color)] dark:border-[var(--border-color)] text-stone-700 dark:text-stone-300 font-medium hover:bg-white dark:hover:bg-[var(--bg-subtle)] transition-colors"
                 >
                   <span>✍️ Làm Quiz</span>
                 </button>
@@ -302,11 +325,11 @@ export const SectionRenderer: React.FC<SectionRendererProps> = ({
       </div>
 
       {/* Footer Navigation Bar */}
-      <footer className="pt-8 mt-10 border-t border-[#DFD7CA] dark:border-[#383530] flex flex-col sm:flex-row items-center justify-between gap-4 font-sans text-xs">
+      <footer className="pt-8 mt-10 border-t border-[var(--border-color)] dark:border-[var(--border-color)] flex flex-col sm:flex-row items-center justify-between gap-4 font-sans text-xs">
         {prevSection ? (
           <button
             onClick={() => onNavigateSection(prevSection.id)}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#23221F] hover:bg-[#EFE8DD] dark:hover:bg-[#2C2A26] text-stone-700 dark:text-stone-300 transition-colors w-full sm:w-auto"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] hover:bg-[var(--bg-subtle)] dark:hover:bg-[var(--bg-subtle)] text-stone-700 dark:text-stone-300 transition-colors w-full sm:w-auto"
           >
             <ArrowLeft className="w-4 h-4" />
             <div className="text-left">

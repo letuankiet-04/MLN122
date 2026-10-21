@@ -85,7 +85,7 @@ export const VideoKnowledgeHub: React.FC<VideoKnowledgeHubProps> = ({
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="p-4 rounded-xl border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#23221F] shadow-xs space-y-3">
+      <div className="p-4 rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] shadow-xs space-y-3">
         <div className="flex flex-col sm:flex-row gap-3">
           {/* Search Input */}
           <div className="relative flex-1">
@@ -95,7 +95,7 @@ export const VideoKnowledgeHub: React.FC<VideoKnowledgeHubProps> = ({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Tìm video: tư bản, mâu thuẫn, sức lao động, kéo sợi bông, AI 4.0..."
-              className="w-full pl-9 pr-4 py-2 rounded-lg border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#1E1D1A] text-xs text-stone-800 dark:text-stone-200 focus:outline-none focus:border-[#8A6328]"
+              className="w-full pl-9 pr-4 py-2 rounded-lg border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-page)] text-xs text-stone-800 dark:text-stone-200 focus:outline-none focus:border-[#8A6328]"
             />
           </div>
 
@@ -103,7 +103,7 @@ export const VideoKnowledgeHub: React.FC<VideoKnowledgeHubProps> = ({
           <select
             value={selectedSection}
             onChange={(e) => setSelectedSection(e.target.value)}
-            className="px-3 py-2 rounded-lg border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#1E1D1A] text-xs text-stone-800 dark:text-stone-200 focus:outline-none"
+            className="px-3 py-2 rounded-lg border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-page)] text-xs text-stone-800 dark:text-stone-200 focus:outline-none"
           >
             <option value="all">Tất cả các mục giáo trình</option>
             <option value="3.1">Mục 3.1: Tổng quan lý luận Mác</option>
@@ -116,7 +116,7 @@ export const VideoKnowledgeHub: React.FC<VideoKnowledgeHubProps> = ({
           <select
             value={selectedDifficulty}
             onChange={(e) => setSelectedDifficulty(e.target.value)}
-            className="px-3 py-2 rounded-lg border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#1E1D1A] text-xs text-stone-800 dark:text-stone-200 focus:outline-none"
+            className="px-3 py-2 rounded-lg border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-page)] text-xs text-stone-800 dark:text-stone-200 focus:outline-none"
           >
             <option value="all">Mọi cấp độ</option>
             <option value="Cơ bản">Cơ bản</option>
@@ -131,7 +131,7 @@ export const VideoKnowledgeHub: React.FC<VideoKnowledgeHubProps> = ({
         {filteredVideos.map(video => (
           <div
             key={video.id}
-            className="group rounded-xl border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#23221F] overflow-hidden shadow-xs hover:border-[#8A6328]/60 hover:shadow-md transition-all flex flex-col justify-between"
+            className="group rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] overflow-hidden shadow-xs hover:border-[#8A6328]/60 hover:shadow-md transition-all flex flex-col justify-between"
           >
             <div>
               {/* Card Thumbnail Stage */}
@@ -169,7 +169,7 @@ export const VideoKnowledgeHub: React.FC<VideoKnowledgeHubProps> = ({
                     <span className="font-semibold text-[#8A6328] dark:text-[#C2A267]">
                       {video.badgeText}
                     </span>
-                    <span className="px-1.5 py-0.5 rounded bg-[#EFE8DD] dark:bg-[#2C2A26] font-medium text-stone-600 dark:text-stone-400 text-[10px]">
+                    <span className="px-1.5 py-0.5 rounded bg-[var(--bg-subtle)] dark:bg-[var(--bg-subtle)] font-medium text-stone-600 dark:text-stone-400 text-[10px]">
                       {video.difficulty}
                     </span>
                   </div>
@@ -187,14 +187,14 @@ export const VideoKnowledgeHub: React.FC<VideoKnowledgeHubProps> = ({
                 </div>
 
                 {/* Formula Teaser */}
-                <div className="p-2 rounded-lg bg-[#EFE8DD]/70 dark:bg-[#1E1D1A] border border-[#DFD7CA]/60 dark:border-[#383530]/60 font-mono text-[11px] text-[#682626] dark:text-[#E2B765] truncate">
+                <div className="p-2 rounded-lg bg-[var(--bg-subtle)]/70 dark:bg-[var(--bg-page)] border border-[var(--border-color)]/60 dark:border-[var(--border-color)]/60 font-mono text-[11px] text-[#682626] dark:text-[#E2B765] truncate">
                   {video.formulaDiagram.code.split('\n')[0]}
                 </div>
               </div>
             </div>
 
             {/* Card Footer Actions */}
-            <div className="px-4 py-3 border-t border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#201F1C] flex items-center justify-between gap-2 text-xs">
+            <div className="px-4 py-3 border-t border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[#201F1C] flex items-center justify-between gap-2 text-xs">
               <button
                 onClick={() => onNavigateToSection(video.sectionId)}
                 className="text-[11px] text-stone-500 hover:text-stone-900 dark:hover:text-white flex items-center gap-1"
@@ -216,7 +216,7 @@ export const VideoKnowledgeHub: React.FC<VideoKnowledgeHubProps> = ({
       </div>
 
       {filteredVideos.length === 0 && (
-        <div className="p-12 text-center text-stone-500 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530] space-y-2">
+        <div className="p-12 text-center text-stone-500 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] space-y-2">
           <p className="text-sm font-semibold">Không tìm thấy video phù hợp với từ khóa.</p>
           <p className="text-xs">Hãy thử tìm các từ: "tư bản", "thặng dư", "sức lao động", "kéo sợi", "4.0".</p>
         </div>

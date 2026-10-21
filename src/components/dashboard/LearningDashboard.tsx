@@ -40,7 +40,7 @@ export const LearningDashboard: React.FC<LearningDashboardProps> = ({
   return (
     <div className="max-w-4xl mx-auto px-4 py-8 space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#DFD7CA] dark:border-[#383530] pb-5">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--border-color)] dark:border-[var(--border-color)] pb-5">
         <div>
           <span className="text-xs uppercase tracking-wider font-semibold text-[#8A6328] dark:text-[#C2A267]">
             Bảng điều khiển tiến trình học
@@ -63,7 +63,7 @@ export const LearningDashboard: React.FC<LearningDashboardProps> = ({
       {/* KPI Cards Grid */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Metric 1: Reading completion */}
-        <div className="p-4 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530] shadow-2xs space-y-1">
+        <div className="p-4 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] shadow-2xs space-y-1">
           <span className="text-[11px] text-stone-500 dark:text-stone-400 block">Tiến độ giáo trình</span>
           <div className="text-2xl font-serif font-bold text-[#682626] dark:text-[#C2A267] tabular-nums">
             {progressPercent}%
@@ -74,7 +74,7 @@ export const LearningDashboard: React.FC<LearningDashboardProps> = ({
         </div>
 
         {/* Metric 2: Flashcards */}
-        <div className="p-4 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530] shadow-2xs space-y-1">
+        <div className="p-4 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] shadow-2xs space-y-1">
           <span className="text-[11px] text-stone-500 dark:text-stone-400 block">Thẻ Flashcard đã ôn</span>
           <div className="text-2xl font-serif font-bold text-stone-900 dark:text-stone-100 tabular-nums">
             {reviewedCardsCount} / {totalCards}
@@ -85,7 +85,7 @@ export const LearningDashboard: React.FC<LearningDashboardProps> = ({
         </div>
 
         {/* Metric 3: Quiz accuracy */}
-        <div className="p-4 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530] shadow-2xs space-y-1">
+        <div className="p-4 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] shadow-2xs space-y-1">
           <span className="text-[11px] text-stone-500 dark:text-stone-400 block">Độ chính xác trắc nghiệm</span>
           <div className="text-2xl font-serif font-bold text-[#2D5A34] dark:text-[#88B88E] tabular-nums">
             {averageAccuracy}%
@@ -96,7 +96,7 @@ export const LearningDashboard: React.FC<LearningDashboardProps> = ({
         </div>
 
         {/* Metric 4: Quiz sessions */}
-        <div className="p-4 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530] shadow-2xs space-y-1">
+        <div className="p-4 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] shadow-2xs space-y-1">
           <span className="text-[11px] text-stone-500 dark:text-stone-400 block">Số lần làm bài kiểm tra</span>
           <div className="text-2xl font-serif font-bold text-stone-900 dark:text-stone-100 tabular-nums">
             {totalQuizzes}
@@ -106,7 +106,7 @@ export const LearningDashboard: React.FC<LearningDashboardProps> = ({
       </div>
 
       {/* Chapters Completion Checklist */}
-      <div className="p-6 bg-[#FAF7F0] dark:bg-[#23221F] rounded-2xl border border-[#DFD7CA] dark:border-[#383530] shadow-2xs space-y-4">
+      <div className="p-6 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-2xl border border-[var(--border-color)] dark:border-[var(--border-color)] shadow-2xs space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="font-serif font-bold text-base text-stone-900 dark:text-stone-100 flex items-center gap-2">
             <BookOpen className="w-4 h-4 text-[#682626] dark:text-[#C2A267]" />
@@ -120,7 +120,7 @@ export const LearningDashboard: React.FC<LearningDashboardProps> = ({
           </button>
         </div>
 
-        <div className="divide-y divide-[#DFD7CA]/50 dark:divide-[#383530]/50">
+        <div className="divide-y divide-[var(--border-color)]/50 dark:divide-[var(--border-color)]/50">
           {CHAPTER_SECTIONS.map((sec) => {
             const isDone = completedSections.includes(sec.id);
 
@@ -131,7 +131,7 @@ export const LearningDashboard: React.FC<LearningDashboardProps> = ({
               >
                 <div className="flex items-center gap-3">
                   <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 ${
-                    isDone ? 'bg-[#2D5A34] text-white' : 'border border-[#DFD7CA] dark:border-[#383530] text-stone-400'
+                    isDone ? 'bg-[#2D5A34] text-white' : 'border border-[var(--border-color)] dark:border-[var(--border-color)] text-stone-400'
                   }`}>
                     {isDone ? <CheckCircle className="w-3.5 h-3.5" /> : null}
                   </div>
@@ -147,7 +147,7 @@ export const LearningDashboard: React.FC<LearningDashboardProps> = ({
 
                 <button
                   onClick={() => onNavigateToSection(sec.id)}
-                  className="px-3 py-1 rounded text-[11px] border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#252420] hover:bg-[#EFE8DD] text-stone-700 dark:text-stone-300 whitespace-nowrap shrink-0"
+                  className="px-3 py-1 rounded text-[11px] border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)] hover:bg-[var(--bg-subtle)] text-stone-700 dark:text-stone-300 whitespace-nowrap shrink-0"
                 >
                   {isDone ? 'Đọc lại' : 'Bắt đầu đọc'}
                 </button>
@@ -158,7 +158,7 @@ export const LearningDashboard: React.FC<LearningDashboardProps> = ({
       </div>
 
       {/* Quiz History Table */}
-      <div className="p-6 bg-[#FAF7F0] dark:bg-[#23221F] rounded-2xl border border-[#DFD7CA] dark:border-[#383530] shadow-2xs space-y-4">
+      <div className="p-6 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-2xl border border-[var(--border-color)] dark:border-[var(--border-color)] shadow-2xs space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="font-serif font-bold text-base text-stone-900 dark:text-stone-100 flex items-center gap-2">
             <TrendingUp className="w-4 h-4 text-[#2D5A34] dark:text-[#88B88E]" />
@@ -179,7 +179,7 @@ export const LearningDashboard: React.FC<LearningDashboardProps> = ({
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-xs text-left">
-              <thead className="bg-[#EFE8DD] dark:bg-[#2A2824] text-stone-700 dark:text-stone-300 font-semibold border-b border-[#DFD7CA] dark:border-[#383530]">
+              <thead className="bg-[var(--bg-subtle)] dark:bg-[var(--bg-subtle)] text-stone-700 dark:text-stone-300 font-semibold border-b border-[var(--border-color)] dark:border-[var(--border-color)]">
                 <tr>
                   <th className="py-2.5 px-3">Thời gian</th>
                   <th className="py-2.5 px-3">Chủ đề bài thi</th>
@@ -188,12 +188,12 @@ export const LearningDashboard: React.FC<LearningDashboardProps> = ({
                   <th className="py-2.5 px-3">Thời gian làm</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#DFD7CA]/40 dark:divide-[#383530]/40">
+              <tbody className="divide-y divide-[var(--border-color)]/40 dark:divide-[var(--border-color)]/40">
                 {quizHistory.map((q) => {
                   const pct = Math.round((q.score / q.total) * 100);
 
                   return (
-                    <tr key={q.id} className="hover:bg-[#EFE8DD]/40 dark:hover:bg-[#2A2824]/40">
+                    <tr key={q.id} className="hover:bg-[var(--bg-subtle)]/40 dark:hover:bg-[var(--bg-subtle)]/40">
                       <td className="py-2.5 px-3 text-stone-500 whitespace-nowrap">
                         {new Date(q.timestamp).toLocaleDateString('vi-VN')} {new Date(q.timestamp).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}
                       </td>

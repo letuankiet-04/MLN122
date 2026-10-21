@@ -28,7 +28,7 @@ export const GlossarySheet: React.FC<GlossarySheetProps> = ({
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8 space-y-6">
-      <div className="border-b border-[#DFD7CA] dark:border-[#383530] pb-5">
+      <div className="border-b border-[var(--border-color)] dark:border-[var(--border-color)] pb-5">
         <span className="text-xs uppercase tracking-wider font-semibold text-[#8A6328] dark:text-[#C2A267]">
           Từ điển phạm trù học thuyết
         </span>
@@ -56,7 +56,7 @@ export const GlossarySheet: React.FC<GlossarySheetProps> = ({
               className={`px-3 py-1.5 text-xs rounded-lg transition-colors ${
                 selectedCategory === tab.id
                   ? 'bg-[#682626] text-[#FAF7F0] font-semibold dark:bg-[#C2A267] dark:text-[#1B1A18]'
-                  : 'bg-[#EFE8DD] dark:bg-[#2A2824] text-stone-700 dark:text-stone-300 hover:bg-[#E8E0D2]'
+                  : 'bg-[var(--bg-subtle)] dark:bg-[var(--bg-subtle)] text-stone-700 dark:text-stone-300 hover:bg-[var(--bg-subtle)]'
               }`}
             >
               {tab.label}
@@ -71,7 +71,7 @@ export const GlossarySheet: React.FC<GlossarySheetProps> = ({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Tra cứu thuật ngữ (m, c, v, p)..."
-            className="w-full pl-8 pr-3 py-1.5 text-xs rounded-lg border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#23221F] text-stone-800 dark:text-stone-200"
+            className="w-full pl-8 pr-3 py-1.5 text-xs rounded-lg border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] text-stone-800 dark:text-stone-200"
           />
         </div>
       </div>
@@ -81,10 +81,10 @@ export const GlossarySheet: React.FC<GlossarySheetProps> = ({
         {filteredTerms.map(t => (
           <div
             key={t.id}
-            className={`p-5 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border transition-all space-y-2 flex flex-col justify-between ${
+            className={`p-5 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-xl border transition-all space-y-2 flex flex-col justify-between ${
               selectedTermId === t.id
                 ? 'border-[#682626] dark:border-[#C2A267] ring-2 ring-[#682626]/20 shadow-md'
-                : 'border-[#DFD7CA] dark:border-[#383530] shadow-2xs hover:border-[#682626]/40 dark:hover:border-[#C2A267]/40'
+                : 'border-[var(--border-color)] dark:border-[var(--border-color)] shadow-2xs hover:border-[#682626]/40 dark:hover:border-[#C2A267]/40'
             }`}
           >
             <div>
@@ -104,7 +104,7 @@ export const GlossarySheet: React.FC<GlossarySheetProps> = ({
               </p>
 
               {t.explanation && (
-                <p className="text-[11px] text-stone-500 leading-relaxed mt-2 pt-2 border-t border-[#DFD7CA]/70 dark:border-[#383530]/70">
+                <p className="text-[11px] text-stone-500 leading-relaxed mt-2 pt-2 border-t border-[var(--border-color)]/70 dark:border-[var(--border-color)]/70">
                   {t.explanation}
                 </p>
               )}

@@ -22,8 +22,8 @@ export const CapitalCirculationExplorer: React.FC = () => {
   const currentSteps = mode === 'HTH' ? stepsHTH : stepsTHT;
 
   return (
-    <div className="my-8 p-6 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530] shadow-xs">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[#DFD7CA] dark:border-[#383530]">
+    <div className="my-8 p-6 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] shadow-xs">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-[var(--border-color)] dark:border-[var(--border-color)]">
         <div>
           <span className="text-xs uppercase tracking-wider font-semibold text-[#8A6328] dark:text-[#C2A267]">
             Mô-đun tương tác giáo trình
@@ -34,12 +34,12 @@ export const CapitalCirculationExplorer: React.FC = () => {
         </div>
 
         {/* Segmented control buttons */}
-        <div className="inline-flex p-1 bg-[#EFE8DD] dark:bg-[#2A2824] rounded-lg border border-[#DFD7CA] dark:border-[#383530]">
+        <div className="inline-flex p-1 bg-[var(--bg-subtle)] dark:bg-[var(--bg-subtle)] rounded-lg border border-[var(--border-color)] dark:border-[var(--border-color)]">
           <button
             onClick={() => { setMode('HTH'); setActiveStep(0); }}
             className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all whitespace-nowrap ${
               mode === 'HTH'
-                ? 'bg-[#FAF7F0] dark:bg-[#1B1A18] text-[#682626] dark:text-[#C2A267] shadow-xs'
+                ? 'bg-[var(--bg-surface)] dark:bg-[#1B1A18] text-[#682626] dark:text-[#C2A267] shadow-xs'
                 : 'text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200'
             }`}
           >
@@ -49,7 +49,7 @@ export const CapitalCirculationExplorer: React.FC = () => {
             onClick={() => { setMode('THT'); setActiveStep(0); }}
             className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all whitespace-nowrap ${
               mode === 'THT'
-                ? 'bg-[#FAF7F0] dark:bg-[#1B1A18] text-[#682626] dark:text-[#C2A267] shadow-xs'
+                ? 'bg-[var(--bg-surface)] dark:bg-[#1B1A18] text-[#682626] dark:text-[#C2A267] shadow-xs'
                 : 'text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200'
             }`}
           >
@@ -68,7 +68,7 @@ export const CapitalCirculationExplorer: React.FC = () => {
                 className={`cursor-pointer flex-1 w-full text-center p-4 rounded-xl border transition-all ${
                   activeStep === idx
                     ? 'border-[#682626] dark:border-[#C2A267] bg-[#682626]/5 dark:bg-[#C2A267]/10 shadow-xs'
-                    : 'border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0]/60 dark:bg-[#252420]/60 hover:border-stone-400 dark:hover:border-stone-500'
+                    : 'border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)]/60 dark:bg-[var(--bg-subtle)]/60 hover:border-stone-400 dark:hover:border-stone-500'
                 }`}
               >
                 <div className="text-3xl mb-2">{step.icon}</div>
@@ -90,7 +90,7 @@ export const CapitalCirculationExplorer: React.FC = () => {
         </div>
 
         {/* Selected Step Deep Dive */}
-        <div className="mt-5 p-4 bg-[#EFE8DD]/70 dark:bg-[#2A2824] rounded-lg border border-[#DFD7CA] dark:border-[#383530] flex items-start gap-3">
+        <div className="mt-5 p-4 bg-[var(--bg-subtle)]/70 dark:bg-[var(--bg-subtle)] rounded-lg border border-[var(--border-color)] dark:border-[var(--border-color)] flex items-start gap-3">
           <Info className="w-4 h-4 text-[#8A6328] dark:text-[#C2A267] shrink-0 mt-0.5" />
           <div className="text-xs text-stone-700 dark:text-stone-300">
             <span className="font-semibold text-stone-900 dark:text-stone-100">
@@ -102,26 +102,26 @@ export const CapitalCirculationExplorer: React.FC = () => {
       </div>
 
       {/* Comparison Metrics */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 pt-4 border-t border-[#DFD7CA] dark:border-[#383530] text-xs">
-        <div className="p-3 bg-[#EFE8DD]/60 dark:bg-[#2A2824]/60 rounded-lg">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 pt-4 border-t border-[var(--border-color)] dark:border-[var(--border-color)] text-xs">
+        <div className="p-3 bg-[var(--bg-subtle)]/60 dark:bg-[var(--bg-subtle)]/60 rounded-lg">
           <span className="text-stone-500 dark:text-stone-400 block text-[11px]">Điểm khởi đầu & kết thúc</span>
           <span className="font-semibold text-stone-900 dark:text-stone-100">
             {mode === 'HTH' ? 'Bắt đầu bằng Hàng, kết thúc bằng Hàng' : 'Bắt đầu bằng Tiền, kết thúc bằng Tiền dôi ra'}
           </span>
         </div>
-        <div className="p-3 bg-[#EFE8DD]/60 dark:bg-[#2A2824]/60 rounded-lg">
+        <div className="p-3 bg-[var(--bg-subtle)]/60 dark:bg-[var(--bg-subtle)]/60 rounded-lg">
           <span className="text-stone-500 dark:text-stone-400 block text-[11px]">Mục đích vận động</span>
           <span className="font-semibold text-stone-900 dark:text-stone-100">
             {mode === 'HTH' ? 'Giá trị sử dụng (tiêu dùng cá nhân)' : 'Giá trị & Sự gia tăng giá trị (giá trị thặng dư m)'}
           </span>
         </div>
-        <div className="p-3 bg-[#EFE8DD]/60 dark:bg-[#2A2824]/60 rounded-lg">
+        <div className="p-3 bg-[var(--bg-subtle)]/60 dark:bg-[var(--bg-subtle)]/60 rounded-lg">
           <span className="text-stone-500 dark:text-stone-400 block text-[11px]">Vai trò của tiền tệ</span>
           <span className="font-semibold text-stone-900 dark:text-stone-100">
             {mode === 'HTH' ? 'Chỉ là phương tiện lưu thông trung gian' : 'Là tư bản ứng trước, tự lớn lên trong sản xuất'}
           </span>
         </div>
-        <div className="p-3 bg-[#EFE8DD]/60 dark:bg-[#2A2824]/60 rounded-lg">
+        <div className="p-3 bg-[var(--bg-subtle)]/60 dark:bg-[var(--bg-subtle)]/60 rounded-lg">
           <span className="text-stone-500 dark:text-stone-400 block text-[11px]">Giới hạn của vận động</span>
           <span className="font-semibold text-stone-900 dark:text-stone-100">
             {mode === 'HTH' ? 'Có giới hạn (dừng khi nhận hàng cần)' : 'Không có giới hạn (vận động liên tục để tích lũy)'}
@@ -130,10 +130,10 @@ export const CapitalCirculationExplorer: React.FC = () => {
       </div>
 
       {/* Why Money Becomes Capital Button */}
-      <div className="mt-6 pt-5 border-t border-[#DFD7CA] dark:border-[#383530]">
+      <div className="mt-6 pt-5 border-t border-[var(--border-color)] dark:border-[var(--border-color)]">
         <button
           onClick={() => setShowSecret(prev => !prev)}
-          className="w-full py-2.5 px-4 bg-[#EFE8DD] hover:bg-[#E8E0D2] dark:bg-[#2A2824] dark:hover:bg-[#33302B] text-[#682626] dark:text-[#C2A267] rounded-lg font-serif font-semibold text-sm transition-colors flex items-center justify-center gap-2 border border-[#DFD7CA] dark:border-[#383530]"
+          className="w-full py-2.5 px-4 bg-[var(--bg-subtle)] hover:bg-[var(--bg-subtle)] dark:bg-[var(--bg-subtle)] dark:hover:bg-[var(--border-color)] text-[#682626] dark:text-[#C2A267] rounded-lg font-serif font-semibold text-sm transition-colors flex items-center justify-center gap-2 border border-[var(--border-color)] dark:border-[var(--border-color)]"
         >
           <HelpCircle className="w-4 h-4" />
           <span>{showSecret ? 'Thu gọn phân tích' : 'Khám phá: Vì sao tiền trở thành tư bản?'}</span>

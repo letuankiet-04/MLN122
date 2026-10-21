@@ -41,8 +41,8 @@ export const SurplusValueSimulator: React.FC = () => {
   };
 
   return (
-    <div className="my-8 p-6 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530] shadow-xs">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#DFD7CA] dark:border-[#383530] pb-4">
+    <div className="my-8 p-6 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] shadow-xs">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[var(--border-color)] dark:border-[var(--border-color)] pb-4">
         <div>
           <span className="text-xs uppercase tracking-wider font-semibold text-[#682626] dark:text-[#C2A267]">
             Mô phỏng trọng tâm bài học
@@ -58,13 +58,13 @@ export const SurplusValueSimulator: React.FC = () => {
         <div className="flex items-center gap-2">
           <button
             onClick={() => setIsSandboxOpen(prev => !prev)}
-            className="px-3 py-1.5 text-xs font-semibold rounded-md border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#252420] hover:bg-[#EFE8DD] text-stone-700 dark:text-stone-300 transition-colors"
+            className="px-3 py-1.5 text-xs font-semibold rounded-md border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)] hover:bg-[var(--bg-subtle)] text-stone-700 dark:text-stone-300 transition-colors"
           >
             {isSandboxOpen ? 'Đóng hộp thử nghiệm' : 'Mở hộp thử nghiệm'}
           </button>
           <button
             onClick={handleReset}
-            className="px-3 py-1.5 text-xs font-semibold rounded-md bg-[#EFE8DD] dark:bg-[#2A2824] hover:bg-[#E8E0D2] dark:hover:bg-[#33302B] text-stone-700 dark:text-stone-300 transition-colors flex items-center gap-1.5"
+            className="px-3 py-1.5 text-xs font-semibold rounded-md bg-[var(--bg-subtle)] dark:bg-[var(--bg-subtle)] hover:bg-[var(--bg-subtle)] dark:hover:bg-[var(--border-color)] text-stone-700 dark:text-stone-300 transition-colors flex items-center gap-1.5"
             title="Khôi phục số liệu nguyên bản giáo trình"
           >
             <RotateCcw className="w-3.5 h-3.5" />
@@ -86,7 +86,7 @@ export const SurplusValueSimulator: React.FC = () => {
               className={`px-2.5 py-1 rounded text-xs transition-colors ${
                 timelineStep === 'phase1'
                   ? 'bg-[#8A6328] text-white font-semibold dark:bg-[#C2A267] dark:text-[#1B1A18]'
-                  : 'bg-[#EFE8DD] dark:bg-[#2A2824] text-stone-700 dark:text-stone-300'
+                  : 'bg-[var(--bg-subtle)] dark:bg-[var(--bg-subtle)] text-stone-700 dark:text-stone-300'
               }`}
             >
               4 giờ đầu (Lao động tất yếu)
@@ -96,7 +96,7 @@ export const SurplusValueSimulator: React.FC = () => {
               className={`px-2.5 py-1 rounded text-xs transition-colors ${
                 timelineStep === 'phase2'
                   ? 'bg-[#682626] text-[#FAF7F0] font-semibold dark:bg-[#B85353] dark:text-white'
-                  : 'bg-[#EFE8DD] dark:bg-[#2A2824] text-stone-700 dark:text-stone-300'
+                  : 'bg-[var(--bg-subtle)] dark:bg-[var(--bg-subtle)] text-stone-700 dark:text-stone-300'
               }`}
             >
               4 giờ sau (Lao động thặng dư)
@@ -106,7 +106,7 @@ export const SurplusValueSimulator: React.FC = () => {
               className={`px-2.5 py-1 rounded text-xs transition-colors ${
                 timelineStep === 'all'
                   ? 'bg-[#2E2A27] dark:bg-[#DCD6CA] text-[#FAF7F0] dark:text-[#1B1A18] font-semibold'
-                  : 'bg-[#EFE8DD] dark:bg-[#2A2824] text-stone-700 dark:text-stone-300'
+                  : 'bg-[var(--bg-subtle)] dark:bg-[var(--bg-subtle)] text-stone-700 dark:text-stone-300'
               }`}
             >
               Toàn bộ ngày làm việc
@@ -144,67 +144,68 @@ export const SurplusValueSimulator: React.FC = () => {
 
       {/* Numerical Ledger — Academic Accuracy */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 my-5">
-        <div className="p-3 bg-[#EFE8DD]/70 dark:bg-[#2A2824] rounded-lg border border-[#DFD7CA] dark:border-[#383530]">
+        <div className="p-3.5 bg-[var(--bg-subtle)]/70 dark:bg-[var(--bg-subtle)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] hover:border-[#8A6328]/40 transition-all hover:-translate-y-0.5 shadow-2xs">
           <span className="text-[11px] text-stone-500 dark:text-stone-400 block">Tiền mua bông</span>
-          <span className="text-base font-serif font-bold text-stone-900 dark:text-stone-100 tabular-nums">
+          <span className="text-lg font-serif font-bold text-stone-900 dark:text-stone-100 tabular-nums">
             {cottonCost} USD
           </span>
-          <span className="text-[10px] text-stone-400 block">Tư bản bất biến (c₁)</span>
+          <span className="text-[10px] text-stone-400 block mt-0.5">Tư bản bất biến (c₁)</span>
         </div>
 
-        <div className="p-3 bg-[#EFE8DD]/70 dark:bg-[#2A2824] rounded-lg border border-[#DFD7CA] dark:border-[#383530]">
+        <div className="p-3.5 bg-[var(--bg-subtle)]/70 dark:bg-[var(--bg-subtle)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] hover:border-[#8A6328]/40 transition-all hover:-translate-y-0.5 shadow-2xs">
           <span className="text-[11px] text-stone-500 dark:text-stone-400 block">Hao mòn máy móc</span>
-          <span className="text-base font-serif font-bold text-stone-900 dark:text-stone-100 tabular-nums">
+          <span className="text-lg font-serif font-bold text-stone-900 dark:text-stone-100 tabular-nums">
             {machineryDepreciation} USD
           </span>
-          <span className="text-[10px] text-stone-400 block">Tư bản bất biến (c₂)</span>
+          <span className="text-[10px] text-stone-400 block mt-0.5">Tư bản bất biến (c₂)</span>
         </div>
 
-        <div className="p-3 bg-[#F2ECE0]/90 dark:bg-[#2A261F]/70 rounded-lg border border-[#DFD3BF] dark:border-[#524838]">
+        <div className="p-3.5 bg-[#F2ECE0]/90 dark:bg-[#2A261F]/70 rounded-xl border border-[#DFD3BF] dark:border-[#524838] hover:border-[#8A6328]/60 transition-all hover:-translate-y-0.5 shadow-2xs">
           <span className="text-[11px] text-[#5C4A30] dark:text-[#D4B886] block font-medium">Giá trị sức lao động (v)</span>
-          <span className="text-base font-serif font-bold text-[#3D311F] dark:text-[#E8D4B0] tabular-nums">
+          <span className="text-lg font-serif font-bold text-[#3D311F] dark:text-[#E8D4B0] tabular-nums">
             {laborPowerValue} USD
           </span>
-          <span className="text-[10px] text-stone-400 block">Tư bản khả biến (v)</span>
+          <span className="text-[10px] text-stone-400 block mt-0.5">Tư bản khả biến (v)</span>
         </div>
 
-        <div className="p-3 bg-[#EFE8DD]/70 dark:bg-[#2A2824] rounded-lg border border-[#DFD7CA] dark:border-[#383530]">
+        <div className="p-3.5 bg-[var(--bg-subtle)]/70 dark:bg-[var(--bg-subtle)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] hover:border-[#8A6328]/40 transition-all hover:-translate-y-0.5 shadow-2xs">
           <span className="text-[11px] text-stone-500 dark:text-stone-400 block">Tư bản ứng trước (C)</span>
-          <span className="text-base font-serif font-bold text-stone-900 dark:text-stone-100 tabular-nums">
+          <span className="text-lg font-serif font-bold text-stone-900 dark:text-stone-100 tabular-nums">
             {advancedCapital} USD
           </span>
-          <span className="text-[10px] text-stone-400 block">c + v ({constantCapital} + {laborPowerValue})</span>
+          <span className="text-[10px] text-stone-400 block mt-0.5">c + v ({constantCapital} + {laborPowerValue})</span>
         </div>
 
-        <div className="p-3 bg-[#EFE8DD]/70 dark:bg-[#2A2824] rounded-lg border border-[#DFD7CA] dark:border-[#383530]">
+        <div className="p-3.5 bg-[var(--bg-subtle)]/70 dark:bg-[var(--bg-subtle)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] hover:border-[#8A6328]/40 transition-all hover:-translate-y-0.5 shadow-2xs">
           <span className="text-[11px] text-stone-500 dark:text-stone-400 block">Giá trị mới sáng tạo</span>
-          <span className="text-base font-serif font-bold text-stone-900 dark:text-stone-100 tabular-nums">
+          <span className="text-lg font-serif font-bold text-stone-900 dark:text-stone-100 tabular-nums">
             {totalNewValue.toFixed(1)} USD
           </span>
-          <span className="text-[10px] text-stone-400 block">v + m ({laborPowerValue} + {surplusValue.toFixed(1)})</span>
+          <span className="text-[10px] text-stone-400 block mt-0.5">v + m ({laborPowerValue} + {surplusValue.toFixed(1)})</span>
         </div>
 
-        <div className="p-3 bg-[#EFE8DD]/70 dark:bg-[#2A2824] rounded-lg border border-[#DFD7CA] dark:border-[#383530]">
+        <div className="p-3.5 bg-[var(--bg-subtle)]/70 dark:bg-[var(--bg-subtle)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] hover:border-[#8A6328]/40 transition-all hover:-translate-y-0.5 shadow-2xs">
           <span className="text-[11px] text-stone-500 dark:text-stone-400 block">Giá trị sản phẩm (G)</span>
-          <span className="text-base font-serif font-bold text-stone-900 dark:text-stone-100 tabular-nums">
+          <span className="text-lg font-serif font-bold text-stone-900 dark:text-stone-100 tabular-nums">
             {productValue.toFixed(1)} USD
           </span>
-          <span className="text-[10px] text-stone-400 block">c + v + m</span>
+          <span className="text-[10px] text-stone-400 block mt-0.5">c + v + m</span>
         </div>
 
-        <div className="p-3 bg-[#682626]/5 dark:bg-[#B85353]/10 rounded-lg border border-[#682626]/20 dark:border-[#B85353]/30 sm:col-span-2">
+        <div className="p-3.5 bg-gradient-to-br from-[#682626]/10 to-[#8A6328]/10 dark:from-[#B85353]/15 dark:to-[#C2A267]/15 rounded-xl border border-[#682626]/30 dark:border-[#B85353]/40 sm:col-span-2 shadow-xs hover:shadow-md transition-all">
           <div className="flex items-center justify-between">
             <div>
-              <span className="text-[11px] text-[#682626] dark:text-[#E09B9B] block font-semibold">
+              <span className="text-[11px] text-[#682626] dark:text-[#E09B9B] block font-semibold flex items-center gap-1">
+                <Sparkles className="w-3 h-3 text-[#8A6328] dark:text-[#C2A267]" />
                 Giá trị thặng dư (m) thu được
               </span>
-              <span className="text-xl font-serif font-bold text-[#682626] dark:text-[#E09B9B] tabular-nums">
+              <span className="text-2xl font-serif font-bold text-[#682626] dark:text-[#E09B9B] tabular-nums">
                 + {surplusValue.toFixed(1)} USD
               </span>
             </div>
             <div className="text-right">
-              <span className="text-[10px] text-stone-500 block">Tỷ suất bóc lột (m′)</span>
-              <span className="text-base font-serif font-bold text-[#682626] dark:text-[#E09B9B] tabular-nums">
+              <span className="text-[10px] text-stone-500 dark:text-stone-400 block">Tỷ suất bóc lột (m′)</span>
+              <span className="text-xl font-serif font-bold text-[#682626] dark:text-[#E09B9B] tabular-nums">
                 {surplusRate.toFixed(0)}%
               </span>
             </div>
@@ -215,7 +216,7 @@ export const SurplusValueSimulator: React.FC = () => {
       {/* Step Explanation Cards */}
       <div className="space-y-3 my-4 text-xs sm:text-sm text-stone-700 dark:text-stone-300 leading-relaxed">
         {(timelineStep === 'all' || timelineStep === 'phase1') && (
-          <div className="p-4 bg-[#F4EFE6]/80 dark:bg-stone-800/30 rounded-xl border border-[#DFD5C4] dark:border-stone-700">
+          <div className="p-4 bg-[var(--bg-page)]/80 dark:bg-stone-800/30 rounded-xl border border-[#DFD5C4] dark:border-stone-700">
             <h4 className="font-serif font-bold text-[#5C4A30] dark:text-[#D4B886] mb-1">
               Giai đoạn 1: 4 giờ đầu (Thời gian lao động tất yếu - t = 4h)
             </h4>

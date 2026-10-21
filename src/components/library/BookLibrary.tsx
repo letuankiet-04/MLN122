@@ -54,7 +54,7 @@ export const BookLibrary: React.FC<BookLibraryProps> = ({
       </div>
 
       {/* Featured Book Showcase Card */}
-      <div className="p-6 sm:p-8 bg-[#FAF7F0] dark:bg-[#23221F] rounded-2xl border border-[#DFD7CA] dark:border-[#383530] shadow-sm flex flex-col md:flex-row gap-8 items-center">
+      <div className="p-6 sm:p-8 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-2xl border border-[var(--border-color)] dark:border-[var(--border-color)] shadow-sm flex flex-col md:flex-row gap-8 items-center">
         {/* Scholarly Illustrated Book Cover */}
         <div className="w-56 sm:w-64 shrink-0 aspect-3/4 rounded-xl bg-gradient-to-br from-[#682626] via-[#541E1E] to-[#361313] p-6 text-white shadow-xl border border-[#967338]/40 flex flex-col justify-between relative overflow-hidden group select-none">
           {/* Subtle gold ornamentation borders */}
@@ -105,7 +105,7 @@ export const BookLibrary: React.FC<BookLibraryProps> = ({
           </div>
 
           {/* Last Studied Section Banner */}
-          <div className="p-3.5 bg-[#EFE8DD]/70 dark:bg-[#2A2824] rounded-xl border border-[#DFD7CA] dark:border-[#383530] flex items-center justify-between">
+          <div className="p-3.5 bg-[var(--bg-subtle)]/70 dark:bg-[var(--bg-subtle)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] flex items-center justify-between">
             <div className="text-xs">
               <span className="text-[10px] uppercase tracking-wider text-stone-500 dark:text-stone-400 block">Bài đang học dở</span>
               <span className="font-serif font-bold text-stone-900 dark:text-stone-100 line-clamp-1">
@@ -132,7 +132,7 @@ export const BookLibrary: React.FC<BookLibraryProps> = ({
                 {completedSections.length}/{totalSections} bài ({progressPercent}%)
               </span>
             </div>
-            <div className="h-2 w-full bg-[#DFD7CA] dark:bg-[#33302B] rounded-full overflow-hidden">
+            <div className="h-2 w-full bg-[var(--border-color)] dark:bg-[var(--border-color)] rounded-full overflow-hidden">
               <div
                 style={{ width: `${progressPercent}%` }}
                 className="h-full bg-[#682626] dark:bg-[#C2A267] transition-all duration-300"
@@ -155,7 +155,7 @@ export const BookLibrary: React.FC<BookLibraryProps> = ({
 
             <button
               onClick={() => onSelectTab('practice')}
-              className="px-4 py-2.5 text-xs font-semibold rounded-lg border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#23221F] hover:bg-[#EFE8DD] text-stone-800 dark:text-stone-200 transition-colors flex items-center gap-2"
+              className="px-4 py-2.5 text-xs font-semibold rounded-lg border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] hover:bg-[var(--bg-subtle)] text-stone-800 dark:text-stone-200 transition-colors flex items-center gap-2"
             >
               <Award className="w-4 h-4 text-[#8A6328] dark:text-[#C2A267]" />
               <span>Luyện đề trắc nghiệm</span>
@@ -163,7 +163,7 @@ export const BookLibrary: React.FC<BookLibraryProps> = ({
 
             <button
               onClick={() => onSelectTab('simulators')}
-              className="px-4 py-2.5 text-xs font-semibold rounded-lg border border-[#DFD7CA] dark:border-[#383530] bg-[#FAF7F0] dark:bg-[#23221F] hover:bg-[#EFE8DD] text-stone-800 dark:text-stone-200 transition-colors flex items-center gap-2"
+              className="px-4 py-2.5 text-xs font-semibold rounded-lg border border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] hover:bg-[var(--bg-subtle)] text-stone-800 dark:text-stone-200 transition-colors flex items-center gap-2"
             >
               <Layers className="w-4 h-4 text-[#2D5A34] dark:text-[#88B88E]" />
               <span>Mô phỏng tương tác</span>
@@ -174,7 +174,7 @@ export const BookLibrary: React.FC<BookLibraryProps> = ({
 
       {/* Real Statistics Strip */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="p-4 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530] shadow-2xs">
+        <div className="p-4 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] shadow-2xs">
           <div className="flex items-center gap-1.5 text-amber-700 dark:text-amber-400 mb-1">
             <Flame className="w-4 h-4 fill-current" />
             <span className="text-xs font-semibold">Chuỗi ngày học</span>
@@ -185,7 +185,7 @@ export const BookLibrary: React.FC<BookLibraryProps> = ({
           <span className="text-[11px] text-stone-500 dark:text-stone-400">Duy trì thói quen đọc</span>
         </div>
 
-        <div className="p-4 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530] shadow-2xs">
+        <div className="p-4 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] shadow-2xs">
           <div className="flex items-center gap-1.5 text-[#2D5A34] dark:text-[#88B88E] mb-1">
             <CheckCircle className="w-4 h-4" />
             <span className="text-xs font-semibold">Bài đã hoàn thành</span>
@@ -196,7 +196,7 @@ export const BookLibrary: React.FC<BookLibraryProps> = ({
           <span className="text-[11px] text-stone-500 dark:text-stone-400">Mục lý luận</span>
         </div>
 
-        <div className="p-4 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530] shadow-2xs">
+        <div className="p-4 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] shadow-2xs">
           <div className="flex items-center gap-1.5 text-[#682626] dark:text-[#C2A267] mb-1">
             <Brain className="w-4 h-4" />
             <span className="text-xs font-semibold">Thẻ Flashcard đã ôn</span>
@@ -207,7 +207,7 @@ export const BookLibrary: React.FC<BookLibraryProps> = ({
           <span className="text-[11px] text-stone-500 dark:text-stone-400">Thuật toán SM-2</span>
         </div>
 
-        <div className="p-4 bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530] shadow-2xs">
+        <div className="p-4 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] shadow-2xs">
           <div className="flex items-center gap-1.5 text-sky-700 dark:text-sky-400 mb-1">
             <FileText className="w-4 h-4" />
             <span className="text-xs font-semibold">Ghi chú & Đánh dấu</span>
@@ -220,7 +220,7 @@ export const BookLibrary: React.FC<BookLibraryProps> = ({
       </div>
 
       {/* Chapter Syllabus Outline */}
-      <div className="p-6 bg-[#FAF7F0] dark:bg-[#23221F] rounded-2xl border border-[#DFD7CA] dark:border-[#383530] shadow-2xs space-y-4">
+      <div className="p-6 bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-2xl border border-[var(--border-color)] dark:border-[var(--border-color)] shadow-2xs space-y-4">
         <h3 className="font-serif font-bold text-base text-stone-900 dark:text-stone-100">
           Chương trình học tập chi tiết (Toàn bộ 6 mục lý luận)
         </h3>
@@ -235,7 +235,7 @@ export const BookLibrary: React.FC<BookLibraryProps> = ({
                   onNavigateToSection(sec.id);
                   onSelectTab('reader');
                 }}
-                className="p-3.5 rounded-xl border border-[#DFD7CA] dark:border-[#383530] hover:border-[#682626]/40 hover:bg-[#EFE8DD]/60 dark:hover:bg-[#2A2824]/60 transition-all cursor-pointer flex items-start gap-3 group"
+                className="p-3.5 rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] hover:border-[#682626]/40 hover:bg-[var(--bg-subtle)]/60 dark:hover:bg-[var(--bg-subtle)]/60 transition-all cursor-pointer flex items-start gap-3 group"
               >
                 <span className="font-mono text-xs font-bold text-[#682626] dark:text-[#C2A267] mt-0.5">
                   {sec.number}

@@ -18,9 +18,9 @@ export const ReaderSettingsModal: React.FC<ReaderSettingsModalProps> = ({
   if (!isOpen) return null;
 
   const themes: { id: ReaderTheme; label: string; bg: string; text: string; border: string }[] = [
-    { id: 'paper', label: 'Trang giấy ngà (Paper)', bg: 'bg-[#F2ECE1]', text: 'text-[#2C2723]', border: 'border-[#DFD7CA]' },
+    { id: 'paper', label: 'Trang giấy ngà (Paper)', bg: 'bg-[var(--bg-page)]', text: 'text-[#2C2723]', border: 'border-[var(--border-color)]' },
     { id: 'sepia', label: 'Nâu ấm dịu mắt (Sepia)', bg: 'bg-[#EAE0CE]', text: 'text-[#342A22]', border: 'border-[#D6C9B0]' },
-    { id: 'dark', label: 'Đêm tối êm ái (Dark)', bg: 'bg-[#1B1A18]', text: 'text-[#DCD6CA]', border: 'border-[#383530]' },
+    { id: 'dark', label: 'Đêm tối êm ái (Dark)', bg: 'bg-[#1B1A18]', text: 'text-[#DCD6CA]', border: 'border-[var(--border-color)]' },
     { id: 'focus', label: 'Tập trung thanh nhẹ (Focus)', bg: 'bg-[#F5F2EB]', text: 'text-[#262320]', border: 'border-[#E2DDD2]' },
   ];
 
@@ -45,8 +45,8 @@ export const ReaderSettingsModal: React.FC<ReaderSettingsModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs">
-      <div className="w-full max-w-md bg-[#FAF7F0] dark:bg-[#23221F] rounded-xl border border-[#DFD7CA] dark:border-[#383530] shadow-xl p-5 space-y-5 animate-in fade-in zoom-in-95 duration-150">
-        <div className="flex items-center justify-between pb-3 border-b border-[#DFD7CA] dark:border-[#383530]">
+      <div className="w-full max-w-md bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)] rounded-xl border border-[var(--border-color)] dark:border-[var(--border-color)] shadow-xl p-5 space-y-5 animate-in fade-in zoom-in-95 duration-150">
+        <div className="flex items-center justify-between pb-3 border-b border-[var(--border-color)] dark:border-[var(--border-color)]">
           <div>
             <h3 className="font-serif font-bold text-base text-stone-900 dark:text-stone-100">
               Tùy chỉnh chế độ đọc sách
@@ -123,7 +123,7 @@ export const ReaderSettingsModal: React.FC<ReaderSettingsModalProps> = ({
               className={`p-2 rounded-lg border text-xs font-serif transition-all ${
                 settings.fontFamily === 'serif'
                   ? 'border-[#682626] dark:border-[#C2A267] bg-[#682626]/10 dark:bg-[#C2A267]/15 text-[#682626] dark:text-[#C2A267] font-bold'
-                  : 'border-[#DFD7CA] dark:border-[#383530] text-stone-700 dark:text-stone-300 bg-[#EFE8DD]/50 dark:bg-[#2A2824]'
+                  : 'border-[var(--border-color)] dark:border-[var(--border-color)] text-stone-700 dark:text-stone-300 bg-[var(--bg-subtle)]/50 dark:bg-[var(--bg-subtle)]'
               }`}
             >
               Chữ có chân (Literata Serif)
@@ -133,7 +133,7 @@ export const ReaderSettingsModal: React.FC<ReaderSettingsModalProps> = ({
               className={`p-2 rounded-lg border text-xs font-sans transition-all ${
                 settings.fontFamily === 'sans'
                   ? 'border-[#682626] dark:border-[#C2A267] bg-[#682626]/10 dark:bg-[#C2A267]/15 text-[#682626] dark:text-[#C2A267] font-bold'
-                  : 'border-[#DFD7CA] dark:border-[#383530] text-stone-700 dark:text-stone-300 bg-[#EFE8DD]/50 dark:bg-[#2A2824]'
+                  : 'border-[var(--border-color)] dark:border-[var(--border-color)] text-stone-700 dark:text-stone-300 bg-[var(--bg-subtle)]/50 dark:bg-[var(--bg-subtle)]'
               }`}
             >
               Chữ không chân (Sans-Serif)
@@ -154,7 +154,7 @@ export const ReaderSettingsModal: React.FC<ReaderSettingsModalProps> = ({
                 className={`py-1.5 px-2 rounded-lg border text-xs text-center transition-all ${
                   settings.fontSize === s.id
                     ? 'border-[#682626] dark:border-[#C2A267] bg-[#682626]/10 dark:bg-[#C2A267]/15 text-[#682626] dark:text-[#C2A267] font-bold'
-                    : 'border-[#DFD7CA] dark:border-[#383530] text-stone-700 dark:text-stone-300 hover:bg-[#EFE8DD]/50'
+                    : 'border-[var(--border-color)] dark:border-[var(--border-color)] text-stone-700 dark:text-stone-300 hover:bg-[var(--bg-subtle)]/50'
                 }`}
               >
                 <div>{s.label}</div>
@@ -178,7 +178,7 @@ export const ReaderSettingsModal: React.FC<ReaderSettingsModalProps> = ({
                   className={`w-full py-1 px-2 rounded-md border text-xs text-left transition-all ${
                     settings.lineHeight === lh.id
                       ? 'border-[#682626] dark:border-[#C2A267] bg-[#682626]/10 dark:bg-[#C2A267]/15 text-[#682626] dark:text-[#C2A267] font-bold'
-                      : 'border-[#DFD7CA] dark:border-[#383530] text-stone-700 dark:text-stone-300 hover:bg-[#EFE8DD]/50'
+                      : 'border-[var(--border-color)] dark:border-[var(--border-color)] text-stone-700 dark:text-stone-300 hover:bg-[var(--bg-subtle)]/50'
                   }`}
                 >
                   {lh.label}
@@ -199,7 +199,7 @@ export const ReaderSettingsModal: React.FC<ReaderSettingsModalProps> = ({
                   className={`w-full py-1 px-2 rounded-md border text-xs text-left transition-all ${
                     settings.contentWidth === w.id
                       ? 'border-[#682626] dark:border-[#C2A267] bg-[#682626]/10 dark:bg-[#C2A267]/15 text-[#682626] dark:text-[#C2A267] font-bold'
-                      : 'border-[#DFD7CA] dark:border-[#383530] text-stone-700 dark:text-stone-300 hover:bg-[#EFE8DD]/50'
+                      : 'border-[var(--border-color)] dark:border-[var(--border-color)] text-stone-700 dark:text-stone-300 hover:bg-[var(--bg-subtle)]/50'
                   }`}
                 >
                   {w.label}

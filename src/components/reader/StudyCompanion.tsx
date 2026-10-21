@@ -81,10 +81,10 @@ export const StudyCompanion: React.FC<StudyCompanionProps> = ({
   };
 
   return (
-    <aside className="w-full h-full flex flex-col bg-[#EFE9DF]/80 dark:bg-[#1F1E1B]/80 border-l border-[#DFD7CA] dark:border-[#383530]">
+    <aside className="w-full h-full flex flex-col bg-[var(--bg-sidebar)]/80 dark:bg-[var(--bg-sidebar)]/80 border-l border-[var(--border-color)] dark:border-[var(--border-color)]">
       {/* Video Quick Action Pill if video available */}
       {companionVideo && onPlayVideo && (
-        <div className="p-2.5 bg-[#FAF7F0] dark:bg-[#252420] border-b border-[#DFD7CA] dark:border-[#383530] flex items-center justify-between gap-2 shrink-0">
+        <div className="p-2.5 bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)] border-b border-[var(--border-color)] dark:border-[var(--border-color)] flex items-center justify-between gap-2 shrink-0">
           <div className="min-w-0">
             <span className="text-[10px] uppercase font-bold text-[#8A6328] dark:text-[#C2A267] tracking-wider block">
               🎬 Video bài học ({companionVideo.formattedDuration})
@@ -104,12 +104,12 @@ export const StudyCompanion: React.FC<StudyCompanionProps> = ({
       )}
 
       {/* Companion Tabs Header */}
-      <div className="flex border-b border-[#DFD7CA] dark:border-[#383530] bg-[#EAE4D7] dark:bg-[#201F1B]">
+      <div className="flex border-b border-[var(--border-color)] dark:border-[var(--border-color)] bg-[var(--bg-sidebar)] dark:bg-[#201F1B]">
         <button
           onClick={() => setActiveTab('notes')}
           className={`flex-1 py-2.5 px-2 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors border-b-2 ${
             activeTab === 'notes'
-              ? 'border-[#682626] dark:border-[#C2A267] text-[#682626] dark:text-[#C2A267] bg-[#FAF7F0] dark:bg-[#282723]'
+              ? 'border-[#682626] dark:border-[#C2A267] text-[#682626] dark:text-[#C2A267] bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)]'
               : 'border-transparent text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200'
           }`}
         >
@@ -121,7 +121,7 @@ export const StudyCompanion: React.FC<StudyCompanionProps> = ({
           onClick={() => setActiveTab('glossary')}
           className={`flex-1 py-2.5 px-2 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors border-b-2 ${
             activeTab === 'glossary'
-              ? 'border-[#682626] dark:border-[#C2A267] text-[#682626] dark:text-[#C2A267] bg-[#FAF7F0] dark:bg-[#282723]'
+              ? 'border-[#682626] dark:border-[#C2A267] text-[#682626] dark:text-[#C2A267] bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)]'
               : 'border-transparent text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200'
           }`}
         >
@@ -133,7 +133,7 @@ export const StudyCompanion: React.FC<StudyCompanionProps> = ({
           onClick={() => setActiveTab('tutor')}
           className={`flex-1 py-2.5 px-2 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors border-b-2 ${
             activeTab === 'tutor'
-              ? 'border-[#682626] dark:border-[#C2A267] text-[#682626] dark:text-[#C2A267] bg-[#FAF7F0] dark:bg-[#282723]'
+              ? 'border-[#682626] dark:border-[#C2A267] text-[#682626] dark:text-[#C2A267] bg-[var(--bg-surface)] dark:bg-[var(--bg-surface)]'
               : 'border-transparent text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-200'
           }`}
         >
@@ -162,20 +162,20 @@ export const StudyCompanion: React.FC<StudyCompanionProps> = ({
 
             {/* Add Note Form */}
             {isAddingNote && (
-              <div className="p-3 bg-[#FAF7F0] dark:bg-[#252420] rounded-lg border border-[#DFD7CA] dark:border-[#383530] shadow-xs space-y-2 animate-in fade-in duration-150">
+              <div className="p-3 bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)] rounded-lg border border-[var(--border-color)] dark:border-[var(--border-color)] shadow-xs space-y-2 animate-in fade-in duration-150">
                 <input
                   type="text"
                   placeholder="Tiêu đề ghi chú (tùy chọn)"
                   value={newNoteTitle}
                   onChange={(e) => setNewNoteTitle(e.target.value)}
-                  className="w-full text-xs font-semibold px-2 py-1 border rounded bg-transparent border-[#DFD7CA] dark:border-[#383530]"
+                  className="w-full text-xs font-semibold px-2 py-1 border rounded bg-transparent border-[var(--border-color)] dark:border-[var(--border-color)]"
                 />
                 <textarea
                   placeholder="Nhập suy nghĩ, công thức hoặc lưu ý cần nhớ..."
                   value={newNoteContent}
                   onChange={(e) => setNewNoteContent(e.target.value)}
                   rows={3}
-                  className="w-full text-xs p-2 border rounded bg-transparent border-[#DFD7CA] dark:border-[#383530] leading-relaxed"
+                  className="w-full text-xs p-2 border rounded bg-transparent border-[var(--border-color)] dark:border-[var(--border-color)] leading-relaxed"
                 />
                 <div className="flex justify-end gap-1.5 pt-1">
                   <button
@@ -203,7 +203,7 @@ export const StudyCompanion: React.FC<StudyCompanionProps> = ({
               sectionNotes.map((n) => (
                 <div
                   key={n.id}
-                  className="p-3 bg-[#FAF7F0] dark:bg-[#252420] rounded-lg border border-[#DFD7CA] dark:border-[#383530] shadow-2xs space-y-1.5 group"
+                  className="p-3 bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)] rounded-lg border border-[var(--border-color)] dark:border-[var(--border-color)] shadow-2xs space-y-1.5 group"
                 >
                   <div className="flex items-center justify-between">
                     <span className="font-serif font-bold text-xs text-stone-900 dark:text-stone-100">
@@ -229,7 +229,7 @@ export const StudyCompanion: React.FC<StudyCompanionProps> = ({
 
             {/* Highlights section */}
             {sectionHighlights.length > 0 && (
-              <div className="pt-3 border-t border-[#DFD7CA] dark:border-[#383530] space-y-2">
+              <div className="pt-3 border-t border-[var(--border-color)] dark:border-[var(--border-color)] space-y-2">
                 <span className="text-xs font-semibold text-stone-600 dark:text-stone-400 block">
                   Đoạn trích đã đánh dấu:
                 </span>
@@ -262,7 +262,7 @@ export const StudyCompanion: React.FC<StudyCompanionProps> = ({
                 <div
                   key={t.id}
                   onClick={() => onSelectTerm(t.id)}
-                  className="p-3 bg-[#FAF7F0] dark:bg-[#252420] rounded-lg border border-[#DFD7CA] dark:border-[#383530] hover:border-[#682626]/50 dark:hover:border-[#C2A267]/50 transition-colors cursor-pointer space-y-1"
+                  className="p-3 bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)] rounded-lg border border-[var(--border-color)] dark:border-[var(--border-color)] hover:border-[#682626]/50 dark:hover:border-[#C2A267]/50 transition-colors cursor-pointer space-y-1"
                 >
                   <div className="flex items-center justify-between">
                     <span className="font-serif font-bold text-xs text-stone-900 dark:text-stone-100">
@@ -293,26 +293,26 @@ export const StudyCompanion: React.FC<StudyCompanionProps> = ({
               <span className="text-[11px] font-semibold text-stone-500 block">Hành động gợi ý:</span>
               <button
                 onClick={() => handleAskTutor('explain')}
-                className="w-full text-left p-2 rounded-md bg-[#FAF7F0] dark:bg-[#252420] border border-[#DFD7CA] dark:border-[#383530] hover:bg-[#EFE8DD] text-xs text-stone-800 dark:text-stone-200 transition-colors"
+                className="w-full text-left p-2 rounded-md bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)] border border-[var(--border-color)] dark:border-[var(--border-color)] hover:bg-[var(--bg-subtle)] text-xs text-stone-800 dark:text-stone-200 transition-colors"
               >
                 💡 Giải thích dễ hiểu phần này
               </button>
               <button
                 onClick={() => handleAskTutor('formula')}
-                className="w-full text-left p-2 rounded-md bg-[#FAF7F0] dark:bg-[#252420] border border-[#DFD7CA] dark:border-[#383530] hover:bg-[#EFE8DD] text-xs text-stone-800 dark:text-stone-200 transition-colors"
+                className="w-full text-left p-2 rounded-md bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)] border border-[var(--border-color)] dark:border-[var(--border-color)] hover:bg-[var(--bg-subtle)] text-xs text-stone-800 dark:text-stone-200 transition-colors"
               >
                 📐 Hướng dẫn công thức & bài toán
               </button>
               <button
                 onClick={() => handleAskTutor('exam_tip')}
-                className="w-full text-left p-2 rounded-md bg-[#FAF7F0] dark:bg-[#252420] border border-[#DFD7CA] dark:border-[#383530] hover:bg-[#EFE8DD] text-xs text-stone-800 dark:text-stone-200 transition-colors"
+                className="w-full text-left p-2 rounded-md bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)] border border-[var(--border-color)] dark:border-[var(--border-color)] hover:bg-[var(--bg-subtle)] text-xs text-stone-800 dark:text-stone-200 transition-colors"
               >
                 🎯 Trọng tâm câu hỏi thi học phần
               </button>
             </div>
 
             {tutorResponse && (
-              <div className="mt-3 p-3 bg-[#FAF7F0] dark:bg-[#252420] rounded-lg border border-[#682626]/20 dark:border-[#C2A267]/30 text-xs text-stone-800 dark:text-stone-200 whitespace-pre-line leading-relaxed shadow-xs animate-in fade-in duration-150">
+              <div className="mt-3 p-3 bg-[var(--bg-surface)] dark:bg-[var(--bg-subtle)] rounded-lg border border-[#682626]/20 dark:border-[#C2A267]/30 text-xs text-stone-800 dark:text-stone-200 whitespace-pre-line leading-relaxed shadow-xs animate-in fade-in duration-150">
                 {tutorResponse}
               </div>
             )}

@@ -15,7 +15,8 @@ import {
   HelpCircle,
   AlertTriangle,
   Flame,
-  Award
+  Award,
+  Clock
 } from 'lucide-react';
 
 interface InteractiveExplainerCanvasProps {
@@ -152,11 +153,32 @@ function renderSceneVisual(video: KnowledgeVideo, scene: VideoScene, progress: n
 
   // 1. H - T - H
   if (videoId === 'video-hth') {
+    const activeStep = progress < 0.33 ? 1 : progress < 0.67 ? 2 : 3;
+
     return (
       <div className="w-full space-y-5 animate-in fade-in duration-300">
+        {/* Step tracker */}
+        <div className="flex items-center justify-center gap-2 text-[10px] font-mono text-stone-400">
+          <span className={`px-2 py-0.5 rounded-full transition-all ${activeStep === 1 ? 'bg-amber-500 text-stone-950 font-bold' : 'bg-stone-800'}`}>
+            Bước 1: Bán hàng lấy tiền
+          </span>
+          <span>➔</span>
+          <span className={`px-2 py-0.5 rounded-full transition-all ${activeStep === 2 ? 'bg-emerald-500 text-stone-950 font-bold' : 'bg-stone-800'}`}>
+            Bước 2: Tiền làm môi giới
+          </span>
+          <span>➔</span>
+          <span className={`px-2 py-0.5 rounded-full transition-all ${activeStep === 3 ? 'bg-rose-500 text-stone-950 font-bold' : 'bg-stone-800'}`}>
+            Bước 3: Mua hàng để dùng
+          </span>
+        </div>
+
         <div className="flex items-center justify-center gap-2 sm:gap-5 font-mono text-xs">
           {/* H1 */}
-          <div className="p-3 sm:p-4 rounded-xl border bg-[#8A6328]/30 border-amber-500/80 shadow-lg shadow-amber-950/40">
+          <div className={`p-3 sm:p-4 rounded-xl border transition-all duration-300 ${
+            activeStep === 1
+              ? 'bg-[#8A6328]/50 border-amber-400 scale-105 shadow-xl shadow-amber-950/60 ring-2 ring-amber-400/40'
+              : 'bg-[#8A6328]/20 border-amber-500/50 opacity-80'
+          }`}>
             <div className="text-3xl mb-1">🌾</div>
             <div className="text-xs font-bold text-amber-200">HÀNG HÓA 1</div>
             <div className="text-[11px] text-stone-300">100kg Lúa</div>
@@ -164,11 +186,15 @@ function renderSceneVisual(video: KnowledgeVideo, scene: VideoScene, progress: n
 
           <div className="flex flex-col items-center">
             <span className="text-[10px] text-amber-300 font-sans mb-0.5">Bán</span>
-            <ArrowRight className="w-5 h-5 text-amber-400" />
+            <ArrowRight className={`w-5 h-5 transition-colors ${activeStep >= 2 ? 'text-amber-400 animate-pulse' : 'text-stone-600'}`} />
           </div>
 
           {/* T */}
-          <div className="p-3 sm:p-4 rounded-xl border bg-emerald-950/50 border-emerald-500/80 shadow-lg shadow-emerald-950/40">
+          <div className={`p-3 sm:p-4 rounded-xl border transition-all duration-300 ${
+            activeStep === 2
+              ? 'bg-emerald-950/80 border-emerald-400 scale-105 shadow-xl shadow-emerald-950/60 ring-2 ring-emerald-400/40'
+              : 'bg-emerald-950/30 border-emerald-500/50 opacity-80'
+          }`}>
             <div className="text-3xl mb-1">💰</div>
             <div className="text-xs font-bold text-emerald-300">TIỀN TỆ (T)</div>
             <div className="text-[11px] text-stone-300">1.000.000 đ</div>
@@ -176,21 +202,25 @@ function renderSceneVisual(video: KnowledgeVideo, scene: VideoScene, progress: n
 
           <div className="flex flex-col items-center">
             <span className="text-[10px] text-amber-300 font-sans mb-0.5">Mua</span>
-            <ArrowRight className="w-5 h-5 text-amber-400" />
+            <ArrowRight className={`w-5 h-5 transition-colors ${activeStep === 3 ? 'text-amber-400 animate-pulse' : 'text-stone-600'}`} />
           </div>
 
           {/* H2 */}
-          <div className="p-3 sm:p-4 rounded-xl border bg-rose-950/50 border-rose-500/80 shadow-lg shadow-rose-950/40">
+          <div className={`p-3 sm:p-4 rounded-xl border transition-all duration-300 ${
+            activeStep === 3
+              ? 'bg-rose-950/80 border-rose-400 scale-105 shadow-xl shadow-rose-950/60 ring-2 ring-rose-400/40'
+              : 'bg-rose-950/30 border-rose-500/50 opacity-80'
+          }`}>
             <div className="text-3xl mb-1">🧵</div>
             <div className="text-xs font-bold text-rose-200">HÀNG HÓA 2</div>
             <div className="text-[11px] text-stone-300">10m Vải</div>
           </div>
         </div>
 
-        <div className="p-3 bg-stone-900/90 rounded-xl border border-stone-700 max-w-lg mx-auto text-xs font-sans text-stone-300">
+        <div className="p-3 bg-stone-900/90 rounded-xl border border-stone-700 max-w-lg mx-auto text-xs font-sans text-stone-300 shadow-md">
           <p className="font-semibold text-amber-300 mb-1 flex items-center justify-center gap-1.5">
             <CheckCircle className="w-4 h-4 text-emerald-400" />
-            Mục đích: Giá trị sử dụng (Tiêu dùng)
+            Mục đích: Giá trị sử dụng (Thỏa mãn nhu cầu tiêu dùng)
           </p>
           <p className="text-stone-400 text-[11px] leading-relaxed">
             Hành vi chấm dứt khi người nông dân có Vải để mặc. Tiền chỉ đóng vai trò vật trung gian phục vụ trao đổi, không tự tăng thêm giá trị!
@@ -202,11 +232,32 @@ function renderSceneVisual(video: KnowledgeVideo, scene: VideoScene, progress: n
 
   // 2. T - H - T'
   if (videoId === 'video-tht') {
+    const activeStep = progress < 0.35 ? 1 : progress < 0.7 ? 2 : 3;
+
     return (
       <div className="w-full space-y-5 animate-in fade-in duration-300">
+        {/* Step tracker */}
+        <div className="flex items-center justify-center gap-2 text-[10px] font-mono text-stone-400">
+          <span className={`px-2 py-0.5 rounded-full transition-all ${activeStep === 1 ? 'bg-amber-500 text-stone-950 font-bold' : 'bg-stone-800'}`}>
+            1. Ứng tiền (T)
+          </span>
+          <span>➔</span>
+          <span className={`px-2 py-0.5 rounded-full transition-all ${activeStep === 2 ? 'bg-amber-500 text-stone-950 font-bold' : 'bg-stone-800'}`}>
+            2. Mua TLSX & Sức LĐ (H)
+          </span>
+          <span>➔</span>
+          <span className={`px-2 py-0.5 rounded-full transition-all ${activeStep === 3 ? 'bg-emerald-500 text-stone-950 font-bold animate-pulse' : 'bg-stone-800'}`}>
+            3. Thu hồi Tiền lớn hơn (T′ = T + m)
+          </span>
+        </div>
+
         <div className="flex items-center justify-center gap-2 sm:gap-5 font-mono text-xs">
           {/* T ban đầu */}
-          <div className="p-3 sm:p-4 rounded-xl border bg-stone-800/90 border-stone-700">
+          <div className={`p-3 sm:p-4 rounded-xl border transition-all duration-300 ${
+            activeStep === 1
+              ? 'bg-stone-800 border-amber-400 scale-105 shadow-xl shadow-amber-950/50 ring-2 ring-amber-400/40'
+              : 'bg-stone-800/80 border-stone-700 opacity-80'
+          }`}>
             <div className="text-3xl mb-1">💵</div>
             <div className="text-xs font-bold text-amber-300">TIỀN ỨNG (T)</div>
             <div className="text-[11px] text-stone-300 font-bold">100 Triệu</div>
@@ -214,11 +265,15 @@ function renderSceneVisual(video: KnowledgeVideo, scene: VideoScene, progress: n
 
           <div className="flex flex-col items-center">
             <span className="text-[10px] text-stone-400 font-sans mb-0.5">Ứng ra</span>
-            <ArrowRight className="w-5 h-5 text-amber-400" />
+            <ArrowRight className={`w-5 h-5 transition-colors ${activeStep >= 2 ? 'text-amber-400 animate-pulse' : 'text-stone-600'}`} />
           </div>
 
           {/* H */}
-          <div className="p-3 sm:p-4 rounded-xl border bg-stone-800/90 border-amber-500/50">
+          <div className={`p-3 sm:p-4 rounded-xl border transition-all duration-300 ${
+            activeStep === 2
+              ? 'bg-stone-800 border-amber-400 scale-105 shadow-xl shadow-amber-950/50 ring-2 ring-amber-400/40'
+              : 'bg-stone-800/80 border-amber-500/40 opacity-80'
+          }`}>
             <div className="text-3xl mb-1">🏭</div>
             <div className="text-xs font-bold text-stone-200">HÀNG HÓA (H)</div>
             <div className="text-[11px] text-amber-300">Tư liệu + SLĐ</div>
@@ -226,13 +281,17 @@ function renderSceneVisual(video: KnowledgeVideo, scene: VideoScene, progress: n
 
           <div className="flex flex-col items-center">
             <span className="text-[10px] text-stone-400 font-sans mb-0.5">Bán ra</span>
-            <ArrowRight className="w-5 h-5 text-amber-400" />
+            <ArrowRight className={`w-5 h-5 transition-colors ${activeStep === 3 ? 'text-amber-400 animate-pulse' : 'text-stone-600'}`} />
           </div>
 
           {/* T' */}
-          <div className="p-3 sm:p-4 rounded-xl border bg-[#682626]/50 border-amber-400 shadow-xl shadow-amber-950/50 ring-2 ring-amber-400/30">
+          <div className={`p-3 sm:p-4 rounded-xl border transition-all duration-300 ${
+            activeStep === 3
+              ? 'bg-[#682626] border-amber-400 scale-110 shadow-2xl shadow-amber-900/60 ring-4 ring-amber-400/50'
+              : 'bg-[#682626]/40 border-amber-500/50 opacity-85'
+          }`}>
             <div className="text-3xl mb-1 flex justify-center">
-              💰<Sparkles className="w-4 h-4 text-amber-300 animate-pulse" />
+              💰<Sparkles className="w-4 h-4 text-amber-300 animate-spin" />
             </div>
             <div className="text-xs font-bold text-amber-300">TIỀN MỚI (T′)</div>
             <div className="text-[11px] text-amber-200 font-bold">120 Triệu!</div>
@@ -243,7 +302,7 @@ function renderSceneVisual(video: KnowledgeVideo, scene: VideoScene, progress: n
           <div className="px-3 py-1.5 rounded-lg bg-stone-900 border border-stone-700 text-stone-300">
             T′ = T + ΔT
           </div>
-          <div className="px-3 py-1.5 rounded-lg bg-[#8A6328]/40 border border-amber-500/60 text-amber-200 font-bold flex items-center gap-1.5">
+          <div className="px-3.5 py-1.5 rounded-lg bg-[#8A6328]/50 border border-amber-400 text-amber-200 font-bold flex items-center gap-1.5 shadow-sm">
             <Sparkles className="w-3.5 h-3.5 text-amber-300" />
             ΔT = 20 Triệu = Giá trị thặng dư (m)
           </div>
@@ -252,8 +311,8 @@ function renderSceneVisual(video: KnowledgeVideo, scene: VideoScene, progress: n
     );
   }
 
-  // 3. Giá trị thặng dư là gì? (video-surplus-definition)
-  if (videoId === 'video-surplus-definition') {
+  // 3. Giá trị thặng dư là gì? (video-surplus-definition / video-surplus-concept)
+  if (videoId === 'video-surplus-definition' || videoId === 'video-surplus-concept') {
     return (
       <div className="w-full space-y-4 animate-in fade-in duration-300">
         <div className="p-3 rounded-xl bg-stone-900/90 border border-stone-700 max-w-lg mx-auto">
@@ -370,8 +429,8 @@ function renderSceneVisual(video: KnowledgeVideo, scene: VideoScene, progress: n
     );
   }
 
-  // 6. Hai thuộc tính hàng hóa sức lao động (video-labor-properties)
-  if (videoId === 'video-labor-properties') {
+  // 6. Hai thuộc tính hàng hóa sức lao động (video-labor-properties / video-two-attributes)
+  if (videoId === 'video-labor-properties' || videoId === 'video-two-attributes') {
     return (
       <div className="w-full space-y-4 animate-in fade-in duration-300 font-sans text-xs">
         <div className="grid grid-cols-2 gap-3 max-w-lg mx-auto text-left">
@@ -410,8 +469,8 @@ function renderSceneVisual(video: KnowledgeVideo, scene: VideoScene, progress: n
     );
   }
 
-  // 7. Chìa khóa giải quyết mâu thuẫn (video-labor-key)
-  if (videoId === 'video-labor-key') {
+  // 7. Chìa khóa giải quyết mâu thuẫn (video-labor-key / video-key-solution)
+  if (videoId === 'video-labor-key' || videoId === 'video-key-solution') {
     return (
       <div className="w-full space-y-4 animate-in fade-in duration-300 font-sans text-xs">
         <div className="p-3 rounded-xl bg-gradient-to-r from-stone-900 via-[#8A6328]/30 to-stone-900 border border-amber-500/50 max-w-lg mx-auto">
@@ -446,14 +505,62 @@ function renderSceneVisual(video: KnowledgeVideo, scene: VideoScene, progress: n
 
   // 8. Quá trình sản xuất giá trị thặng dư (kéo sợi bông) (video-production-process)
   if (videoId === 'video-production-process') {
+    const currentHour = Math.min(8, Math.max(0, Math.round(progress * 8 * 10) / 10));
+    const isSecondHalf = progress >= 0.5;
+
     return (
       <div className="w-full space-y-4 animate-in fade-in duration-300 font-sans text-xs">
+        {/* Interactive 8h Working Day Timeline */}
+        <div className="p-2.5 rounded-xl bg-stone-900/90 border border-stone-700 max-w-lg mx-auto space-y-1.5 shadow-md">
+          <div className="flex justify-between items-center text-[10px] font-mono text-stone-300">
+            <span className="flex items-center gap-1">
+              <Clock className="w-3.5 h-3.5 text-amber-400" />
+              <span>Tiến trình ngày làm việc:</span>
+              <strong className="text-amber-300 text-xs">{currentHour}h / 8h</strong>
+            </span>
+            <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${
+              isSecondHalf
+                ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 animate-pulse'
+                : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
+            }`}>
+              {isSecondHalf ? "Giai đoạn 2: Lao động thặng dư (t')" : 'Giai đoạn 1: Lao động tất yếu (t)'}
+            </span>
+          </div>
+
+          <div className="relative w-full h-3 bg-stone-800 rounded-full overflow-hidden flex border border-stone-700">
+            {/* 4h đầu boundary */}
+            <div className="w-1/2 h-full bg-emerald-950/80 border-r border-dashed border-stone-500 relative flex items-center justify-center">
+              <span className="text-[8px] font-mono text-emerald-300 font-bold">4h Tất yếu (t)</span>
+            </div>
+            {/* 4h sau boundary */}
+            <div className="w-1/2 h-full bg-amber-950/80 relative flex items-center justify-center">
+              <span className="text-[8px] font-mono text-amber-300 font-bold">4h Thặng dư (t')</span>
+            </div>
+            {/* Live Progress Scrubber */}
+            <div
+              className="absolute top-0 bottom-0 left-0 bg-gradient-to-r from-emerald-500 via-amber-400 to-amber-500 transition-all duration-150 shadow-sm"
+              style={{ width: `${Math.min(100, Math.max(0, progress * 100))}%` }}
+            />
+          </div>
+        </div>
+
         <div className="grid grid-cols-2 gap-3 max-w-lg mx-auto text-left">
           {/* 4h đầu */}
-          <div className="p-3 rounded-xl border bg-emerald-950/40 border-emerald-500/60">
-            <span className="text-[11px] font-mono text-emerald-400 font-bold block mb-1">
-              4 GIỜ ĐẦU: TẤT YẾU (t)
-            </span>
+          <div className={`p-3 rounded-xl border transition-all duration-300 ${
+            !isSecondHalf
+              ? 'bg-emerald-950/60 border-emerald-400 scale-[1.02] shadow-xl shadow-emerald-950/50 ring-2 ring-emerald-400/40'
+              : 'bg-emerald-950/20 border-emerald-500/30 opacity-75'
+          }`}>
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-[11px] font-mono text-emerald-400 font-bold">
+                4 GIỜ ĐẦU: TẤT YẾU (t)
+              </span>
+              {!isSecondHalf && (
+                <span className="text-[9px] px-1.5 py-0.5 rounded bg-emerald-500/30 text-emerald-300 font-bold animate-pulse">
+                  Đang chạy
+                </span>
+              )}
+            </div>
             <ul className="space-y-1 text-stone-300 text-[11px]">
               <li>• 10kg bông: 100$ (c1)</li>
               <li>• Hao mòn máy: 6$ (c2)</li>
@@ -465,10 +572,21 @@ function renderSceneVisual(video: KnowledgeVideo, scene: VideoScene, progress: n
           </div>
 
           {/* 4h sau */}
-          <div className="p-3 rounded-xl border bg-amber-950/40 border-amber-400 ring-2 ring-amber-400/40">
-            <span className="text-[11px] font-mono text-amber-300 font-bold block mb-1">
-              4 GIỜ SAU: THẶNG DƯ (t′)
-            </span>
+          <div className={`p-3 rounded-xl border transition-all duration-300 ${
+            isSecondHalf
+              ? 'bg-amber-950/60 border-amber-400 scale-[1.02] shadow-xl shadow-amber-950/50 ring-2 ring-amber-400/40'
+              : 'bg-amber-950/20 border-amber-500/30 opacity-75'
+          }`}>
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-[11px] font-mono text-amber-300 font-bold">
+                4 GIỜ SAU: THẶNG DƯ (t′)
+              </span>
+              {isSecondHalf && (
+                <span className="text-[9px] px-1.5 py-0.5 rounded bg-amber-500/30 text-amber-300 font-bold animate-pulse">
+                  Bóc lột m
+                </span>
+              )}
+            </div>
             <ul className="space-y-1 text-stone-300 text-[11px]">
               <li>• 10kg bông: 100$ (c1)</li>
               <li>• Hao mòn máy: 6$ (c2)</li>
@@ -480,8 +598,9 @@ function renderSceneVisual(video: KnowledgeVideo, scene: VideoScene, progress: n
           </div>
         </div>
 
-        <div className="p-2.5 bg-stone-900/90 rounded-lg border border-amber-500/40 max-w-md mx-auto text-xs font-mono text-amber-200">
-          Tỷ suất bóc lột: m′ = (15$ / 15$) × 100% = 100%!
+        <div className="p-2.5 bg-stone-900/90 rounded-lg border border-amber-500/40 max-w-md mx-auto text-xs font-mono text-amber-200 flex items-center justify-center gap-2 shadow-sm">
+          <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+          <span>Tỷ suất bóc lột: m′ = (15$ / 15$) × 100% = 100%!</span>
         </div>
       </div>
     );
@@ -491,25 +610,25 @@ function renderSceneVisual(video: KnowledgeVideo, scene: VideoScene, progress: n
   if (videoId === 'video-nature-surplus') {
     return (
       <div className="w-full space-y-4 animate-in fade-in duration-300 font-sans text-xs">
-        <div className="p-3 rounded-xl bg-stone-900/90 border border-amber-500/40 max-w-lg mx-auto text-center">
+        <div className="p-3 rounded-xl bg-stone-900/90 border border-amber-500/40 max-w-lg mx-auto text-center shadow-md">
           <span className="text-xs font-bold text-amber-300 block mb-1">
             2 Công thức đo lường cốt lõi:
           </span>
           <div className="grid grid-cols-2 gap-2 mt-2 font-mono text-xs">
-            <div className="p-2 rounded bg-stone-800 border border-stone-700">
+            <div className="p-2.5 rounded-lg bg-stone-800 border border-stone-700 hover:border-amber-400/50 transition-colors">
               <span className="text-[10px] text-stone-400 block font-sans">Tỷ suất giá trị thặng dư:</span>
-              <span className="text-amber-300 font-bold">m′ = (m / v) × 100%</span>
+              <span className="text-amber-300 font-bold text-sm">m′ = (m / v) × 100%</span>
             </div>
-            <div className="p-2 rounded bg-stone-800 border border-stone-700">
+            <div className="p-2.5 rounded-lg bg-stone-800 border border-stone-700 hover:border-emerald-400/50 transition-colors">
               <span className="text-[10px] text-stone-400 block font-sans">Khối lượng thặng dư:</span>
-              <span className="text-emerald-400 font-bold">M = m′ × V</span>
+              <span className="text-emerald-400 font-bold text-sm">M = m′ × V</span>
             </div>
           </div>
         </div>
 
-        <div className="p-3 bg-stone-900/90 rounded-xl border border-stone-700 max-w-lg mx-auto text-left text-[11px] text-stone-300 leading-relaxed">
-          • <strong>m′</strong> phản ánh trình độ bóc lột của nhà tư bản đối với công nhân làm thuê.<br />
-          • <strong>M</strong> phản ánh quy mô bóc lột của nhà tư bản trên toàn bộ lực lượng lao động.
+        <div className="p-3 bg-stone-900/90 rounded-xl border border-stone-700 max-w-lg mx-auto text-left text-[11px] text-stone-300 leading-relaxed shadow-sm">
+          • <strong className="text-amber-300">m′</strong> phản ánh trình độ bóc lột của nhà tư bản đối với công nhân làm thuê.<br />
+          • <strong className="text-emerald-300">M</strong> phản ánh quy mô bóc lột của nhà tư bản trên toàn bộ lực lượng lao động.
         </div>
       </div>
     );
@@ -520,12 +639,12 @@ function renderSceneVisual(video: KnowledgeVideo, scene: VideoScene, progress: n
     return (
       <div className="w-full space-y-4 animate-in fade-in duration-300 font-sans text-xs">
         <div className="flex items-center justify-center gap-3 max-w-lg mx-auto">
-          <div className="flex-1 p-3 rounded-xl bg-stone-900/90 border border-stone-700 text-left space-y-1">
+          <div className="flex-1 p-3 rounded-xl bg-stone-900/90 border border-cyan-500/40 text-left space-y-1 shadow-md hover:border-cyan-400 transition-all">
             <div className="flex items-center gap-1.5 text-stone-200 font-bold">
-              <Cpu className="w-4 h-4 text-cyan-400" />
+              <Cpu className="w-4 h-4 text-cyan-400 animate-pulse" />
               <span>Robot & AI</span>
             </div>
-            <div className="px-1.5 py-0.5 rounded bg-cyan-950/60 text-cyan-300 text-[10px] font-mono inline-block">
+            <div className="px-1.5 py-0.5 rounded bg-cyan-950/60 text-cyan-300 text-[10px] font-mono inline-block border border-cyan-700/50">
               TƯ BẢN BẤT BIẾN (c)
             </div>
             <p className="text-[11px] text-stone-400 leading-relaxed">
@@ -533,14 +652,16 @@ function renderSceneVisual(video: KnowledgeVideo, scene: VideoScene, progress: n
             </p>
           </div>
 
-          <div className="text-lg font-bold text-amber-400">VS</div>
+          <div className="px-2 py-1 rounded-full bg-stone-800 border border-stone-600 text-xs font-bold text-amber-400 shadow-sm">
+            VS
+          </div>
 
-          <div className="flex-1 p-3 rounded-xl bg-stone-900/90 border border-amber-500/50 text-left space-y-1">
+          <div className="flex-1 p-3 rounded-xl bg-stone-900/90 border border-amber-500/50 text-left space-y-1 shadow-md hover:border-amber-400 transition-all">
             <div className="flex items-center gap-1.5 text-amber-200 font-bold">
               <Users className="w-4 h-4 text-amber-400" />
               <span>Lao động trí tuệ</span>
             </div>
-            <div className="px-1.5 py-0.5 rounded bg-amber-950/60 text-amber-300 text-[10px] font-mono inline-block">
+            <div className="px-1.5 py-0.5 rounded bg-amber-950/60 text-amber-300 text-[10px] font-mono inline-block border border-amber-700/50">
               TƯ BẢN KHẢ BIẾN (v)
             </div>
             <p className="text-[11px] text-stone-400 leading-relaxed">
@@ -549,8 +670,8 @@ function renderSceneVisual(video: KnowledgeVideo, scene: VideoScene, progress: n
           </div>
         </div>
 
-        <div className="p-2.5 bg-stone-900/90 rounded-lg border border-stone-700 max-w-md mx-auto text-center text-[11px] text-stone-300">
-          ⭐ Máy móc càng hiện đại thì lao động sống trí tuệ của con người càng đóng vai trò quyết định!
+        <div className="p-2.5 bg-gradient-to-r from-stone-900 via-stone-800 to-stone-900 rounded-lg border border-amber-500/30 max-w-md mx-auto text-center text-[11px] text-stone-200 shadow-sm">
+          ⭐ Máy móc càng hiện đại thì <strong className="text-amber-300">lao động sống trí tuệ của con người</strong> càng đóng vai trò quyết định!
         </div>
       </div>
     );
